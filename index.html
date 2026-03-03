@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Ingegnere FPGA</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1219;
+    --accent: #00f5c4;
+    --accent2: #0077ff;
+    --text: #e8edf2;
+    --muted: #5a6a7a;
+    --border: #1a2535;
+    --card: #0f1825;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---- GRID BACKGROUND ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,196,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,196,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(0,245,196,0.3);
+    border-radius: 2px;
+    background: rgba(0,245,196,0.05);
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-name {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 0.9rem 2rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(0,245,196,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(0,245,196,0.5);
+  }
+
+  .btn-outline {
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ---- FLOATING CIRCUIT DECORATION ---- */
+  .circuit-deco {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .circuit-deco svg {
+    width: min(500px, 45vw);
+    height: auto;
+  }
+
+  /* ---- STATS ---- */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    flex: 1;
+    padding: 2.5rem 4rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---- SECTIONS ---- */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ---- SKILLS ---- */
+  #skills { background: var(--bg2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-card {
+    background: var(--card);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .skill-card:hover { background: #121e2e; }
+
+  .skill-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .skill-level {
+    margin-top: 1.2rem;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 1px;
+    animation: fillBar 1.5s ease forwards;
+    transform-origin: left;
+  }
+
+  @keyframes fillBar {
+    from { width: 0; }
+  }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,245,196,0.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,245,196,0.08);
+  }
+
+  .project-top {
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .project-body {
+    padding: 1.8rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0,245,196,0.07);
+    color: var(--accent);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(0,245,196,0.15);
+  }
+
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .project-footer {
+    padding: 1.2rem 1.8rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .project-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  .project-arrow {
+    color: var(--accent);
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+  }
+
+  .project-card:hover .project-arrow { transform: translate(3px, -3px); }
+
+  /* ---- CONTACT ---- */
+  #contact { background: var(--bg2); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-headline {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-headline span {
+    color: var(--accent);
+  }
+
+  .contact-text {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,245,196,0.04);
+  }
+
+  .contact-icon { font-size: 1.2rem; }
+
+  /* ---- FORM ---- */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-field label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--muted);
+  }
+
+  .btn-send {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+
+  .btn-send:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .footer-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  /* ---- ANIMATIONS ---- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .stats-bar { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .circuit-deco { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">// FPGA.ENGINEER</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Competenze</a></li>
+    <li><a href="#projects">Progetti</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Disponibile per nuovi progetti</div>
+    <h1 class="hero-name">
+      Mario Rossi
+      <span>FPGA Engineer</span>
+    </h1>
+    <p class="hero-sub">
+      Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">VEDI PROGETTI →</a>
+      <a href="#contact" class="btn-outline">CONTATTAMI</a>
+    </div>
+  </div>
+
+  <div class="circuit-deco">
+    <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="180" y="180" width="140" height="140" stroke="#00f5c4" stroke-width="2"/>
+      <line x1="180" y1="250" x2="50" y2="250" stroke="#00f5c4" stroke-width="1.5"/>
+      <line x1="320" y1="250" x2="450" y2="250" stroke="#00f5c4" stroke-width="1.5"/>
+      <line x1="250" y1="180" x2="250" y2="50" stroke="#00f5c4" stroke-width="1.5"/>
+      <line x1="250" y1="320" x2="250" y2="450" stroke="#00f5c4" stroke-width="1.5"/>
+      <circle cx="50" cy="250" r="8" stroke="#00f5c4" stroke-width="1.5"/>
+      <circle cx="450" cy="250" r="8" stroke="#00f5c4" stroke-width="1.5"/>
+      <circle cx="250" cy="50" r="8" stroke="#00f5c4" stroke-width="1.5"/>
+      <circle cx="250" cy="450" r="8" stroke="#00f5c4" stroke-width="1.5"/>
+      <line x1="180" y1="180" x2="80" y2="80" stroke="#0077ff" stroke-width="1"/>
+      <line x1="320" y1="180" x2="420" y2="80" stroke="#0077ff" stroke-width="1"/>
+      <line x1="180" y1="320" x2="80" y2="420" stroke="#0077ff" stroke-width="1"/>
+      <line x1="320" y1="320" x2="420" y2="420" stroke="#0077ff" stroke-width="1"/>
+      <circle cx="80" cy="80" r="5" fill="#0077ff" opacity="0.6"/>
+      <circle cx="420" cy="80" r="5" fill="#0077ff" opacity="0.6"/>
+      <circle cx="80" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
+      <circle cx="420" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
+      <rect x="220" y="220" width="60" height="60" fill="rgba(0,245,196,0.08)" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="220" y1="235" x2="200" y2="235" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="220" y1="250" x2="200" y2="250" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="220" y1="265" x2="200" y2="265" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="280" y1="235" x2="300" y2="235" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="280" y1="250" x2="300" y2="250" stroke="#00f5c4" stroke-width="1"/>
+      <line x1="280" y1="265" x2="300" y2="265" stroke="#00f5c4" stroke-width="1"/>
+      <circle cx="250" cy="250" r="3" fill="#00f5c4"/>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat fade-up">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Anni di esperienza</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-num">12+</div>
+    <div class="stat-label">Progetti completati</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Famiglie FPGA</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Soddisfazione clienti</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-num">01 /</span>
+    <h2 class="section-title">Competenze</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">VHDL / FPGA Design</div>
+      <div class="skill-desc">Progettazione RTL avanzata, FSM, pipeline e architetture custom su Xilinx, Intel e Lattice.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:95%"></div></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon">🔬</div>
+      <div class="skill-name">Simulazione & Verifica</div>
+      <div class="skill-desc">Testbench VHDL, ModelSim, GHDL. Copertura funzionale e verifica formale dei design.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:88%"></div></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon">🔄</div>
+      <div class="skill-name">Protocolli di Comunicazione</div>
+      <div class="skill-desc">Implementazione di SPI, I2C, UART, PCIe, AXI4 e protocolli custom ad alta velocità.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon">🛠</div>
+      <div class="skill-name">Toolchain & Sintesi</div>
+      <div class="skill-desc">Vivado, Quartus Prime, ISE. Ottimizzazione timing, place & route, analisi dei report.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon">📡</div>
+      <div class="skill-name">DSP su FPGA</div>
+      <div class="skill-desc">Filtri FIR/IIR, FFT, elaborazione segnali in tempo reale, IP core per applicazioni RF.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon">🔗</div>
+      <div class="skill-name">Embedded & SoC</div>
+      <div class="skill-desc">Integrazione con microcontrollori, design Zynq (ARM+FPGA), interfacce hardware-software.</div>
+      <div class="skill-level"><div class="skill-fill" style="width:75%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-num">02 /</span>
+    <h2 class="section-title">Progetti</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">Xilinx</span>
+          <span class="tag">DSP</span>
+        </div>
+        <div class="project-title">Sistema di Acquisizione Dati ad Alta Velocità</div>
+        <div class="project-desc">Implementazione su FPGA Xilinx Artix-7 di un sistema di acquisizione a 500 MSPS con interfaccia ADC parallela e trasmissione via PCIe verso host PC.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2023 · 3 mesi</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">AXI4</span>
+          <span class="tag">Zynq</span>
+        </div>
+        <div class="project-title">Controller Motore Brushless Real-Time</div>
+        <div class="project-desc">Design di un controller FOC per motore BLDC su piattaforma Zynq 7000. Latenza inferiore a 1 μs grazie alla logica programmabile dedicata al loop di controllo.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2023 · 2 mesi</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">Ethernet</span>
+          <span class="tag">UDP/IP</span>
+        </div>
+        <div class="project-title">Stack UDP/IP su FPGA</div>
+        <div class="project-desc">Implementazione completa di uno stack di rete UDP/IP a 1 Gbps, con supporto ARP, ICMP e buffer FIFO per burst ad alta velocità.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2022 · 4 mesi</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">FFT</span>
+          <span class="tag">Intel</span>
+        </div>
+        <div class="project-title">Analizzatore di Spettro Real-Time</div>
+        <div class="project-desc">Pipeline FFT a 1024 punti su Intel Cyclone V per analisi spettrale continua su segnali audio e RF. Output su display VGA con waterfall chart.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2022 · 2 mesi</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">SPI</span>
+          <span class="tag">Lattice</span>
+        </div>
+        <div class="project-title">Interfaccia Multi-Sensore IoT</div>
+        <div class="project-desc">Hub di acquisizione per 16 sensori SPI simultanei su Lattice ECP5, con preprocessing dati e trasmissione UART verso gateway.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2021 · 6 settimane</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">VHDL</span>
+          <span class="tag">Crittografia</span>
+          <span class="tag">AES</span>
+        </div>
+        <div class="project-title">Core Crittografico AES-128</div>
+        <div class="project-desc">Implementazione hardware di AES-128 in modalità CBC con throughput di 10 Gbps. Ottimizzato per area ridotta e timing stringenti.</div>
+      </div>
+      <div class="project-footer">
+        <span class="project-meta">2021 · 3 mesi</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-num">03 /</span>
+    <h2 class="section-title">Contatti</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-inner">
+    <div class="fade-up">
+      <h3 class="contact-headline">Hai un progetto<br><span>FPGA in mente?</span></h3>
+      <p class="contact-text">
+        Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:mario.rossi@email.com" class="contact-link">
+          <span class="contact-icon">✉</span>
+          mario.rossi@email.com
+        </a>
+        <a href="https://linkedin.com/in/mario-rossi" class="contact-link">
+          <span class="contact-icon">in</span>
+          linkedin.com/in/mario-rossi
+        </a>
+        <a href="https://github.com/mario-rossi" class="contact-link">
+          <span class="contact-icon">◈</span>
+          github.com/mario-rossi
+        </a>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Nome</label>
+            <input type="text" placeholder="Il tuo nome">
+          </div>
+          <div class="form-field">
+            <label>Azienda</label>
+            <input type="text" placeholder="Azienda (opz.)">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="tua@email.com">
+        </div>
+        <div class="form-field">
+          <label>Messaggio</label>
+          <textarea rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
+        </div>
+        <button class="btn-send">INVIA MESSAGGIO →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Mario Rossi · Tutti i diritti riservati</div>
+  <div class="footer-tag">// Built with precision</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Stagger children in grids
+  document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 80}ms`;
+  });
+</script>
+</body>
+</html>
