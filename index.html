@@ -7,14 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #111820;
-    --bg2: #172029;
-    --accent: #00f5c4;
-    --accent2: #1a8aff;
-    --text: #eef2f6;
-    --muted: #7a8fa0;
-    --border: #263548;
-    --card: #192333;
+    --bg: #1e1e1e;
+    --bg2: #242424;
+    --accent: #e8924a;
+    --accent2: #c9762e;
+    --text: #eeebe6;
+    --muted: #8a8580;
+    --border: #2e2e2e;
+    --card: #252525;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,8 +34,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,245,196,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,245,196,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(232,146,74,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,146,74,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
@@ -104,9 +104,9 @@
     text-transform: uppercase;
     margin-bottom: 2rem;
     padding: 0.4rem 1rem;
-    border: 1px solid rgba(0,245,196,0.3);
+    border: 1px solid rgba(232,146,74,0.3);
     border-radius: 2px;
-    background: rgba(0,245,196,0.05);
+    background: rgba(232,146,74,0.05);
   }
 
   .hero-tag::before {
@@ -164,12 +164,12 @@
     text-decoration: none;
     border-radius: 2px;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 20px rgba(0,245,196,0.3);
+    
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 40px rgba(0,245,196,0.5);
+    
   }
 
   .btn-outline {
@@ -345,8 +345,8 @@
 
   .project-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(0,245,196,0.3);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,245,196,0.08);
+    border-color: rgba(232,146,74,0.3);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
 
   .project-top {
@@ -369,11 +369,11 @@
     font-family: 'Space Mono', monospace;
     font-size: 0.65rem;
     padding: 0.2rem 0.6rem;
-    background: rgba(0,245,196,0.07);
+    background: rgba(232,146,74,0.07);
     color: var(--accent);
     border-radius: 2px;
     letter-spacing: 0.05em;
-    border: 1px solid rgba(0,245,196,0.15);
+    border: 1px solid rgba(232,146,74,0.15);
   }
 
   .project-title {
@@ -462,7 +462,7 @@
   .contact-link:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(0,245,196,0.04);
+    background: rgba(232,146,74,0.04);
   }
 
   .contact-icon { font-size: 1.2rem; }
@@ -595,7 +595,7 @@
 
   .modal {
     background: var(--card);
-    border: 1px solid rgba(0,245,196,0.25);
+    border: 1px solid rgba(232,146,74,0.25);
     border-radius: 4px;
     max-width: 640px;
     width: 100%;
@@ -603,7 +603,7 @@
     overflow-y: auto;
     transform: translateY(24px) scale(0.97);
     transition: transform 0.3s ease;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(0,245,196,0.06);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
 
   .modal-overlay.open .modal {
@@ -794,7 +794,7 @@
       <circle cx="420" cy="80" r="5" fill="#0077ff" opacity="0.6"/>
       <circle cx="80" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
       <circle cx="420" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
-      <rect x="220" y="220" width="60" height="60" fill="rgba(0,245,196,0.08)" stroke="#00f5c4" stroke-width="1"/>
+      <rect x="220" y="220" width="60" height="60" fill="rgba(232,146,74,0.08)" stroke="#00f5c4" stroke-width="1"/>
       <line x1="220" y1="235" x2="200" y2="235" stroke="#00f5c4" stroke-width="1"/>
       <line x1="220" y1="250" x2="200" y2="250" stroke="#00f5c4" stroke-width="1"/>
       <line x1="220" y1="265" x2="200" y2="265" stroke="#00f5c4" stroke-width="1"/>
