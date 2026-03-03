@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Ingegnere FPGA</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
+
+
   :root {
     --bg: #1e1e1e;
     --bg2: #242424;
@@ -546,8 +549,8 @@
 
   /* ---- ANIMATIONS ---- */
   .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
@@ -563,7 +566,7 @@
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(8px);
     z-index: 200;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 2rem;
@@ -573,6 +576,7 @@
   }
 
   .modal-overlay.open {
+    display: flex;
     opacity: 1;
     pointer-events: all;
   }
@@ -728,6 +732,8 @@
     footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     .circuit-deco { display: none; }
   }
+
+
 </style>
 </head>
 <body>
@@ -1132,7 +1138,7 @@
           <label>Messaggio</label>
           <textarea rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
         </div>
-        <button class="btn-send">INVIA MESSAGGIO →</button>
+        <button class="btn-send" onclick="inviaMailto(event)">INVIA MESSAGGIO →</button>
       </div>
     </div>
   </div>
@@ -1145,79 +1151,41 @@
 </footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
 
   // ---- SKILLS DATA ----
   const skills = [
     {
       title: "VHDL / FPGA Design",
-      level: 95,
       description: "Competenza principale e cuore della mia attività professionale. Progetto architetture digitali RTL in VHDL partendo dalle specifiche funzionali fino al design finale sintetizzabile. Ho esperienza su macchine a stati finiti complesse, pipeline multi-stage, arbitri, FIFO sincrone e asincrone, e IP core custom. Lavoro su famiglie FPGA Xilinx, Intel/Altera e Lattice.",
       tools: ["VHDL-93 / VHDL-2008", "Xilinx Vivado", "Intel Quartus Prime", "Lattice Diamond / Radiant", "IP Integrator / Qsys"]
     },
     {
       title: "Simulazione & Verifica",
-      level: 88,
       description: "Sviluppo testbench VHDL strutturati per la verifica funzionale completa dei design. Utilizzo metodologie di verifica basate su stimoli automatici, self-checking testbench e analisi della copertura funzionale. Ho esperienza con simulatori sia commerciali che open source, e con tecniche di verifica formale per design critici.",
       tools: ["ModelSim / Questa", "GHDL", "CoCoTB (Python)", "GTKWave", "Verifica formale con SymbiYosys"]
     },
     {
       title: "Protocolli di Comunicazione",
-      level: 90,
       description: "Implementazione e verifica di interfacce di comunicazione standard e custom in VHDL. Ho sviluppato controller per protocolli seriali e paralleli, stack di rete leggeri e interfacce ad alta velocità. Particolare esperienza con il bus AXI4 per l'integrazione di IP in sistemi SoC e con protocolli industriali.",
       tools: ["AXI4 / AXI4-Lite / AXI4-Stream", "SPI / I2C / UART", "PCIe (IP core)", "Ethernet / UDP-IP", "LVDS / SERDES"]
     },
     {
       title: "Toolchain & Sintesi",
-      level: 85,
       description: "Gestione completa del flusso di implementazione FPGA: dalla sintesi RTL al bitstream finale. Esperienza nell'analisi e risoluzione di timing violations, ottimizzazione del place & route per design ad alta frequenza, gestione dei constraint XDC/SDC e analisi dei report di utilizzo risorse.",
       tools: ["Xilinx Vivado (sintesi + implementazione)", "Intel Quartus Prime", "Synplify Pro", "Timing Analyzer / Timing Closure", "XDC / SDC constraints"]
     },
     {
       title: "DSP su FPGA",
-      level: 80,
       description: "Progettazione di algoritmi di elaborazione del segnale digitale ottimizzati per implementazione hardware su FPGA. Lavoro con aritmetica in virgola fissa, ottimizzando precisione e consumo di risorse DSP slice. Ho esperienza in filtri digitali, trasformate e pipeline per acquisizione e analisi di segnali in tempo reale.",
       tools: ["MATLAB / Simulink (prototipazione)", "Fixed-Point Designer", "FFT / FIR / IIR in VHDL", "DSP48 slice optimization", "Xilinx System Generator"]
     },
     {
       title: "Embedded & SoC",
-      level: 75,
-      description: "Integrazione di logica FPGA con processori embedded in architetture SoC, con focus sulla piattaforma Zynq (ARM Cortex-A9 + FPGA). Progettazione di IP custom con interfaccia AXI per la comunicazione tra PS (Processing System) e PL (Programmable Logic), sviluppo di driver Linux bare-metal e gestione delle risorse condivise.",
+      description: "Integrazione di logica FPGA con processori embedded in architetture SoC, con focus sulla piattaforma Zynq (ARM Cortex-A9 + FPGA). Progettazione di IP custom con interfaccia AXI per la comunicazione tra PS e PL, sviluppo di driver Linux bare-metal e gestione delle risorse condivise.",
       tools: ["Xilinx Zynq-7000 / Zynq UltraScale+", "Vitis / SDK (bare-metal)", "Vivado IP Packager", "Device Tree (Linux)", "AXI DMA / AXI GPIO"]
     }
   ];
-
-  function openSkillModal(idx) {
-    const s = skills[idx];
-    document.getElementById('skillModalTitle').textContent = s.title;
-    document.getElementById('skillModalBody').innerHTML = `
-      <div>
-        <div class="modal-section-label">Descrizione</div>
-        <p class="modal-text">${s.description}</p>
-      </div>
-      <div>
-        <div class="modal-section-label">Tool e software</div>
-        <ul class="modal-challenges">
-          ${s.tools.map(t => `<li>${t}</li>`).join('')}
-        </ul>
-      </div>
-
-    `;
-    document.getElementById('skillModalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeSkillModal() {
-    document.getElementById('skillModalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeSkillModalOutside(e) {
-    if (e.target === document.getElementById('skillModalOverlay')) closeSkillModal();
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeSkillModal(); }
-  });
 
   // ---- PROJECTS DATA ----
   const projects = [
@@ -1233,31 +1201,21 @@
         { key: "Interfaccia", val: "PCIe Gen2 x4" },
         { key: "Throughput", val: "~1.5 GB/s" }
       ],
-      challenges: [
-        "Sincronizzazione clock di acquisizione ADC e clock FPGA con MMCM dedicato",
-        "Gestione di FIFO asincrone per il crossing di domini di clock",
-        "Ottimizzazione del timing closure per frequenze operative > 250 MHz",
-        "Implementazione del DMA controller per trasferimento bulk verso host"
-      ]
+      challenges: ["Sincronizzazione clock di acquisizione ADC e clock FPGA con MMCM dedicato", "Gestione di FIFO asincrone per il crossing di domini di clock", "Ottimizzazione del timing closure per frequenze operative > 250 MHz", "Implementazione del DMA controller per trasferimento bulk verso host"]
     },
     {
       title: "Controller Motore Brushless Real-Time",
       tags: ["VHDL", "AXI4", "Zynq", "FOC", "PWM"],
       period: "2023 · 2 mesi",
       platform: "Xilinx Zynq-7000",
-      description: "Implementazione di un algoritmo FOC (Field-Oriented Control) per motore BLDC direttamente in logica programmabile su piattaforma Zynq 7000. Il loop di controllo gira interamente nella PL (Programmable Logic), garantendo una latenza deterministica inferiore a 1 μs, mentre il processore ARM gestisce la supervisione e la comunicazione.",
+      description: "Implementazione di un algoritmo FOC (Field-Oriented Control) per motore BLDC direttamente in logica programmabile su piattaforma Zynq 7000. Il loop di controllo gira interamente nella PL, garantendo una latenza deterministica inferiore a 1 μs, mentre il processore ARM gestisce la supervisione e la comunicazione.",
       specs: [
         { key: "Piattaforma", val: "Xilinx Zynq XC7Z020" },
         { key: "Latenza loop", val: "< 1 μs" },
         { key: "Frequenza PWM", val: "20 kHz" },
         { key: "Bus", val: "AXI4-Lite" }
       ],
-      challenges: [
-        "Implementazione in virgola fissa delle trasformazioni di Clarke e Park",
-        "Progettazione di regolatori PI in VHDL con anti-windup",
-        "Interfaccia AXI4-Lite per configurazione parametri da ARM",
-        "Generazione PWM a 3 fasi con dead-time programmabile"
-      ]
+      challenges: ["Implementazione in virgola fissa delle trasformazioni di Clarke e Park", "Progettazione di regolatori PI in VHDL con anti-windup", "Interfaccia AXI4-Lite per configurazione parametri da ARM", "Generazione PWM a 3 fasi con dead-time programmabile"]
     },
     {
       title: "Stack UDP/IP su FPGA",
@@ -1271,12 +1229,7 @@
         { key: "Latenza TX", val: "< 400 ns" },
         { key: "Protocolli", val: "ETH / ARP / ICMP / UDP" }
       ],
-      challenges: [
-        "Parsing e generazione header Ethernet/IP/UDP in pipeline a stage multipli",
-        "Implementazione tabella ARP con lookup in un singolo ciclo di clock",
-        "Gestione checksum IP e UDP in hardware con correzione incrementale",
-        "Buffer circolare per gestione burst e backpressure sul bus dati"
-      ]
+      challenges: ["Parsing e generazione header Ethernet/IP/UDP in pipeline a stage multipli", "Implementazione tabella ARP con lookup in un singolo ciclo di clock", "Gestione checksum IP e UDP in hardware con correzione incrementale", "Buffer circolare per gestione burst e backpressure sul bus dati"]
     },
     {
       title: "Analizzatore di Spettro Real-Time",
@@ -1287,81 +1240,77 @@
       specs: [
         { key: "Piattaforma", val: "Intel Cyclone V 5CSEBA6" },
         { key: "Punti FFT", val: "1024 punti" },
-        { key: "Output", val: "VGA 640×480 @60Hz" },
+        { key: "Output", val: "VGA 640x480 @60Hz" },
         { key: "Finestramento", val: "Hanning window" }
       ],
-      challenges: [
-        "Ottimizzazione della pipeline FFT Cooley-Tukey in VHDL con butterfly unit",
-        "Gestione dei twiddle factor in memoria ROM inizializzata a compile-time",
-        "Conversione del risultato FFT in scala logaritmica (dB) in virgola fissa",
-        "Controller VGA con framebuffer dual-port per rendering senza flickering"
-      ]
+      challenges: ["Ottimizzazione della pipeline FFT Cooley-Tukey in VHDL con butterfly unit", "Gestione dei twiddle factor in memoria ROM inizializzata a compile-time", "Conversione del risultato FFT in scala logaritmica (dB) in virgola fissa", "Controller VGA con framebuffer dual-port per rendering senza flickering"]
     },
     {
       title: "Interfaccia Multi-Sensore IoT",
       tags: ["VHDL", "SPI", "Lattice", "UART", "IoT"],
       period: "2021 · 6 settimane",
       platform: "Lattice ECP5",
-      description: "Hub di acquisizione in grado di gestire simultaneamente 16 sensori con interfaccia SPI su Lattice ECP5. I dati vengono pre-processati (filtraggio mediano, scalatura) direttamente in FPGA e trasmessi via UART verso un gateway IoT a 921600 baud.",
+      description: "Hub di acquisizione in grado di gestire simultaneamente 16 sensori con interfaccia SPI su Lattice ECP5. I dati vengono pre-processati direttamente in FPGA e trasmessi via UART verso un gateway IoT a 921600 baud.",
       specs: [
         { key: "Piattaforma", val: "Lattice ECP5-25F" },
         { key: "Canali SPI", val: "16 simultanei" },
         { key: "UART Baud", val: "921600 bps" },
         { key: "Latenza totale", val: "< 5 ms/ciclo" }
       ],
-      challenges: [
-        "Arbitraggio e scheduling dei 16 master SPI con round-robin a priorità",
-        "Filtraggio mediano a finestra scorrevole implementato in VHDL",
-        "Gestione del timing SPI con divisore di clock configurabile per sensore",
-        "Protocollo di framing UART custom con CRC-8 per affidabilità"
-      ]
+      challenges: ["Arbitraggio e scheduling dei 16 master SPI con round-robin a priorità", "Filtraggio mediano a finestra scorrevole implementato in VHDL", "Gestione del timing SPI con divisore di clock configurabile per sensore", "Protocollo di framing UART custom con CRC-8 per affidabilità"]
     },
     {
       title: "Core Crittografico AES-128",
       tags: ["VHDL", "AES-128", "CBC", "Crittografia"],
       period: "2021 · 3 mesi",
       platform: "Xilinx Kintex-7",
-      description: "Implementazione hardware ad alte prestazioni dell'algoritmo AES-128 in modalità CBC su FPGA Xilinx Kintex-7. Il design è ottimizzato per massimizzare il throughput con una pipeline a 10 stage (uno per round AES), raggiungendo 10 Gbps con un'area di risorse contenuta.",
+      description: "Implementazione hardware ad alte prestazioni dell'algoritmo AES-128 in modalità CBC su FPGA Xilinx Kintex-7. Il design è ottimizzato per massimizzare il throughput con una pipeline a 10 stage, raggiungendo 10 Gbps con un'area di risorse contenuta.",
       specs: [
         { key: "Piattaforma", val: "Xilinx Kintex-7 XC7K325T" },
         { key: "Throughput", val: "10 Gbps" },
         { key: "Modalità", val: "AES-128 CBC" },
         { key: "Latenza", val: "10 cicli (pipeline)" }
       ],
-      challenges: [
-        "Implementazione delle S-Box AES tramite LUT ottimizzate per area",
-        "Pipeline a 10 stage per massimizzare il throughput senza aumentare la latenza percepita",
-        "Gestione del feedback CBC con registro di stato tra blocchi consecutivi",
-        "Verifica formale della correttezza tramite test vector NIST ufficiali"
-      ]
+      challenges: ["Implementazione delle S-Box AES tramite LUT ottimizzate per area", "Pipeline a 10 stage per massimizzare il throughput senza aumentare la latenza percepita", "Gestione del feedback CBC con registro di stato tra blocchi consecutivi", "Verifica formale della correttezza tramite test vector NIST ufficiali"]
     }
   ];
 
+  // ---- SKILL MODAL ----
+  function openSkillModal(idx) {
+    const s = skills[idx];
+    document.getElementById('skillModalTitle').textContent = s.title;
+    document.getElementById('skillModalBody').innerHTML =
+      '<div><div class="modal-section-label">Descrizione</div><p class="modal-text">' + s.description + '</p></div>' +
+      '<div><div class="modal-section-label">Tool e software</div><ul class="modal-challenges">' +
+      s.tools.map(function(t) { return '<li>' + t + '</li>'; }).join('') +
+      '</ul></div>';
+    document.getElementById('skillModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSkillModal() {
+    document.getElementById('skillModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeSkillModalOutside(e) {
+    if (e.target === document.getElementById('skillModalOverlay')) closeSkillModal();
+  }
+
+  // ---- PROJECT MODAL ----
   function openModal(idx) {
     const p = projects[idx];
     document.getElementById('modalTitle').textContent = p.title;
-    document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
-    document.getElementById('modalBody').innerHTML = `
-      <div>
-        <div class="modal-section-label">Descrizione</div>
-        <p class="modal-text">${p.description}</p>
-      </div>
-      <div>
-        <div class="modal-section-label">Specifiche tecniche</div>
-        <div class="modal-specs">
-          ${p.specs.map(s => `<div class="modal-spec"><div class="modal-spec-key">${s.key}</div><div class="modal-spec-val">${s.val}</div></div>`).join('')}
-        </div>
-      </div>
-      <div>
-        <div class="modal-section-label">Sfide affrontate</div>
-        <ul class="modal-challenges">
-          ${p.challenges.map(c => `<li>${c}</li>`).join('')}
-        </ul>
-      </div>
-      <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border);">
-        ${p.period} · ${p.platform}
-      </div>
-    `;
+    document.getElementById('modalTags').innerHTML = p.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+    document.getElementById('modalBody').innerHTML =
+      '<div><div class="modal-section-label">Descrizione</div><p class="modal-text">' + p.description + '</p></div>' +
+      '<div><div class="modal-section-label">Specifiche tecniche</div><div class="modal-specs">' +
+      p.specs.map(function(s) { return '<div class="modal-spec"><div class="modal-spec-key">' + s.key + '</div><div class="modal-spec-val">' + s.val + '</div></div>'; }).join('') +
+      '</div></div>' +
+      '<div><div class="modal-section-label">Sfide affrontate</div><ul class="modal-challenges">' +
+      p.challenges.map(function(c) { return '<li>' + c + '</li>'; }).join('') +
+      '</ul></div>' +
+      '<div style="font-family:\'Space Mono\',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border);">' + p.period + ' · ' + p.platform + '</div>';
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1375,20 +1324,77 @@
     if (e.target === document.getElementById('modalOverlay')) closeModal();
   }
 
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 3) * 80}ms`;
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeModal(); closeSkillModal(); }
   });
+
+  // ---- EMAILJS ----
+  emailjs.init('kpcS4_EBMmxvlnJGD');
+
+  function inviaMailto(e) {
+    e.preventDefault();
+    var btn = e.target;
+    var nome = document.querySelector('input[placeholder="Il tuo nome"]').value.trim();
+    var azienda = document.querySelector('input[placeholder="Azienda (opz.)"]').value.trim();
+    var email = document.querySelector('input[placeholder="tua@email.com"]').value.trim();
+    var messaggio = document.querySelector('textarea').value.trim();
+
+    if (!nome || !email || !messaggio) {
+      btn.textContent = 'COMPILA TUTTI I CAMPI';
+      btn.style.borderColor = '#e05252';
+      btn.style.color = '#e05252';
+      setTimeout(function() {
+        btn.textContent = 'INVIA MESSAGGIO →';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2500);
+      return;
+    }
+
+    btn.textContent = 'INVIO IN CORSO...';
+    btn.disabled = true;
+
+    emailjs.send('service_3q0h5db', 'template_j7883ln', {
+      name: nome,
+      company: azienda || '—',
+      email: email,
+      message: messaggio
+    }).then(function() {
+      btn.textContent = 'MESSAGGIO INVIATO ✓';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'var(--bg)';
+      btn.style.borderColor = 'var(--accent)';
+      document.querySelector('input[placeholder="Il tuo nome"]').value = '';
+      document.querySelector('input[placeholder="Azienda (opz.)"]').value = '';
+      document.querySelector('input[placeholder="tua@email.com"]').value = '';
+      document.querySelector('textarea').value = '';
+      setTimeout(function() {
+        btn.textContent = 'INVIA MESSAGGIO →';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+        btn.disabled = false;
+      }, 3000);
+    }, function(err) {
+      console.error('EmailJS error:', JSON.stringify(err));
+      btn.textContent = 'ERRORE: ' + (err.text || err.status || 'sconosciuto');
+      btn.style.borderColor = '#e05252';
+      btn.style.color = '#e05252';
+      btn.disabled = false;
+      setTimeout(function() {
+        btn.textContent = 'INVIA MESSAGGIO →';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 5000);
+    });
+  }
+
+  // ---- STAGGER ANIMATION ----
+  document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach(function(el, i) {
+    el.style.transitionDelay = (i % 3) * 80 + 'ms';
+  });
+
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
