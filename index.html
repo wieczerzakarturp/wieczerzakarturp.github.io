@@ -572,6 +572,166 @@
     transform: translateY(0);
   }
 
+  /* ---- MODAL ---- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid rgba(0,245,196,0.25);
+    border-radius: 4px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.3s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(0,245,196,0.06);
+  }
+
+  .modal-overlay.open .modal {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-top {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .modal-header {
+    padding: 2rem 2rem 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .modal-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .modal-tags {
+    padding: 0 2rem 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .modal-body {
+    padding: 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modal-section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-text {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .modal-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .modal-spec {
+    background: var(--bg2);
+    padding: 1rem 1.2rem;
+  }
+
+  .modal-spec-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-spec-val {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .modal-challenges {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .modal-challenges li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .modal-challenges li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.2rem;
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -723,13 +883,11 @@
   </div>
 
   <div class="projects-grid">
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(0)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">Xilinx</span>
-          <span class="tag">DSP</span>
+          <span class="tag">VHDL</span><span class="tag">Xilinx</span><span class="tag">DSP</span>
         </div>
         <div class="project-title">Sistema di Acquisizione Dati ad Alta Velocità</div>
         <div class="project-desc">Implementazione su FPGA Xilinx Artix-7 di un sistema di acquisizione a 500 MSPS con interfaccia ADC parallela e trasmissione via PCIe verso host PC.</div>
@@ -740,13 +898,11 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(1)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">AXI4</span>
-          <span class="tag">Zynq</span>
+          <span class="tag">VHDL</span><span class="tag">AXI4</span><span class="tag">Zynq</span>
         </div>
         <div class="project-title">Controller Motore Brushless Real-Time</div>
         <div class="project-desc">Design di un controller FOC per motore BLDC su piattaforma Zynq 7000. Latenza inferiore a 1 μs grazie alla logica programmabile dedicata al loop di controllo.</div>
@@ -757,13 +913,11 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(2)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">Ethernet</span>
-          <span class="tag">UDP/IP</span>
+          <span class="tag">VHDL</span><span class="tag">Ethernet</span><span class="tag">UDP/IP</span>
         </div>
         <div class="project-title">Stack UDP/IP su FPGA</div>
         <div class="project-desc">Implementazione completa di uno stack di rete UDP/IP a 1 Gbps, con supporto ARP, ICMP e buffer FIFO per burst ad alta velocità.</div>
@@ -774,13 +928,11 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(3)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">FFT</span>
-          <span class="tag">Intel</span>
+          <span class="tag">VHDL</span><span class="tag">FFT</span><span class="tag">Intel</span>
         </div>
         <div class="project-title">Analizzatore di Spettro Real-Time</div>
         <div class="project-desc">Pipeline FFT a 1024 punti su Intel Cyclone V per analisi spettrale continua su segnali audio e RF. Output su display VGA con waterfall chart.</div>
@@ -791,13 +943,11 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(4)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">SPI</span>
-          <span class="tag">Lattice</span>
+          <span class="tag">VHDL</span><span class="tag">SPI</span><span class="tag">Lattice</span>
         </div>
         <div class="project-title">Interfaccia Multi-Sensore IoT</div>
         <div class="project-desc">Hub di acquisizione per 16 sensori SPI simultanei su Lattice ECP5, con preprocessing dati e trasmissione UART verso gateway.</div>
@@ -808,13 +958,11 @@
       </div>
     </div>
 
-    <div class="project-card fade-up">
+    <div class="project-card fade-up" onclick="openModal(5)">
       <div class="project-top"></div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="tag">VHDL</span>
-          <span class="tag">Crittografia</span>
-          <span class="tag">AES</span>
+          <span class="tag">VHDL</span><span class="tag">Crittografia</span><span class="tag">AES</span>
         </div>
         <div class="project-title">Core Crittografico AES-128</div>
         <div class="project-desc">Implementazione hardware di AES-128 in modalità CBC con throughput di 10 Gbps. Ottimizzato per area ridotta e timing stringenti.</div>
@@ -823,6 +971,19 @@
         <span class="project-meta">2021 · 3 mesi</span>
         <span class="project-arrow">↗</span>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modal">
+      <div class="modal-top"></div>
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
 </section>
@@ -842,9 +1003,9 @@
         Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.
       </p>
       <div class="contact-links">
-        <a href="mailto:mario.rossi@email.com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#751814071c1a5b071a06061c351018141c195b161a18" class="contact-link">
           <span class="contact-icon">✉</span>
-          mario.rossi@email.com
+          <span class="__cf_email__" data-cfemail="204d4152494f0e524f53534960454d41494c0e434f4d">[email&#160;protected]</span>
         </a>
         <a href="https://linkedin.com/in/mario-rossi" class="contact-link">
           <span class="contact-icon">in</span>
@@ -890,21 +1051,174 @@
 </footer>
 
 <script>
-  // Intersection Observer for fade-up animations
+  // ---- PROJECTS DATA ----
+  const projects = [
+    {
+      title: "Sistema di Acquisizione Dati ad Alta Velocità",
+      tags: ["VHDL", "Xilinx", "DSP", "PCIe", "ADC"],
+      period: "2023 · 3 mesi",
+      platform: "Xilinx Artix-7",
+      description: "Progettazione completa di un sistema di acquisizione dati ad alta velocità su FPGA Xilinx Artix-7. Il sistema acquisisce segnali analogici a 500 MSPS tramite un'interfaccia ADC parallela a 12 bit, li processa internamente con un pipeline FIFO a doppio clock e li trasferisce verso un host PC via interfaccia PCIe Gen2 x4.",
+      specs: [
+        { key: "Piattaforma", val: "Xilinx Artix-7 XC7A200T" },
+        { key: "Sample Rate", val: "500 MSPS" },
+        { key: "Interfaccia", val: "PCIe Gen2 x4" },
+        { key: "Throughput", val: "~1.5 GB/s" }
+      ],
+      challenges: [
+        "Sincronizzazione clock di acquisizione ADC e clock FPGA con MMCM dedicato",
+        "Gestione di FIFO asincrone per il crossing di domini di clock",
+        "Ottimizzazione del timing closure per frequenze operative > 250 MHz",
+        "Implementazione del DMA controller per trasferimento bulk verso host"
+      ]
+    },
+    {
+      title: "Controller Motore Brushless Real-Time",
+      tags: ["VHDL", "AXI4", "Zynq", "FOC", "PWM"],
+      period: "2023 · 2 mesi",
+      platform: "Xilinx Zynq-7000",
+      description: "Implementazione di un algoritmo FOC (Field-Oriented Control) per motore BLDC direttamente in logica programmabile su piattaforma Zynq 7000. Il loop di controllo gira interamente nella PL (Programmable Logic), garantendo una latenza deterministica inferiore a 1 μs, mentre il processore ARM gestisce la supervisione e la comunicazione.",
+      specs: [
+        { key: "Piattaforma", val: "Xilinx Zynq XC7Z020" },
+        { key: "Latenza loop", val: "< 1 μs" },
+        { key: "Frequenza PWM", val: "20 kHz" },
+        { key: "Bus", val: "AXI4-Lite" }
+      ],
+      challenges: [
+        "Implementazione in virgola fissa delle trasformazioni di Clarke e Park",
+        "Progettazione di regolatori PI in VHDL con anti-windup",
+        "Interfaccia AXI4-Lite per configurazione parametri da ARM",
+        "Generazione PWM a 3 fasi con dead-time programmabile"
+      ]
+    },
+    {
+      title: "Stack UDP/IP su FPGA",
+      tags: ["VHDL", "Ethernet", "UDP/IP", "ARP", "ICMP"],
+      period: "2022 · 4 mesi",
+      platform: "Lattice ECP5",
+      description: "Implementazione completa di uno stack di rete leggero con supporto Ethernet, ARP, ICMP e UDP/IP interamente in VHDL. Il design opera a 1 Gbps con latenza minima e zero dipendenze da soft-core CPU, rendendolo ideale per applicazioni industriali a bassa latenza.",
+      specs: [
+        { key: "Piattaforma", val: "Lattice ECP5-85F" },
+        { key: "Throughput", val: "1 Gbps wire-speed" },
+        { key: "Latenza TX", val: "< 400 ns" },
+        { key: "Protocolli", val: "ETH / ARP / ICMP / UDP" }
+      ],
+      challenges: [
+        "Parsing e generazione header Ethernet/IP/UDP in pipeline a stage multipli",
+        "Implementazione tabella ARP con lookup in un singolo ciclo di clock",
+        "Gestione checksum IP e UDP in hardware con correzione incrementale",
+        "Buffer circolare per gestione burst e backpressure sul bus dati"
+      ]
+    },
+    {
+      title: "Analizzatore di Spettro Real-Time",
+      tags: ["VHDL", "FFT", "Intel", "VGA", "DSP"],
+      period: "2022 · 2 mesi",
+      platform: "Intel Cyclone V",
+      description: "Sistema di analisi spettrale in tempo reale basato su una pipeline FFT a 1024 punti implementata su Intel Cyclone V. Il risultato viene visualizzato su display VGA come waterfall chart aggiornato a 60 fps, utile per analisi di segnali audio e RF in ambito laboratoriale.",
+      specs: [
+        { key: "Piattaforma", val: "Intel Cyclone V 5CSEBA6" },
+        { key: "Punti FFT", val: "1024 punti" },
+        { key: "Output", val: "VGA 640×480 @60Hz" },
+        { key: "Finestramento", val: "Hanning window" }
+      ],
+      challenges: [
+        "Ottimizzazione della pipeline FFT Cooley-Tukey in VHDL con butterfly unit",
+        "Gestione dei twiddle factor in memoria ROM inizializzata a compile-time",
+        "Conversione del risultato FFT in scala logaritmica (dB) in virgola fissa",
+        "Controller VGA con framebuffer dual-port per rendering senza flickering"
+      ]
+    },
+    {
+      title: "Interfaccia Multi-Sensore IoT",
+      tags: ["VHDL", "SPI", "Lattice", "UART", "IoT"],
+      period: "2021 · 6 settimane",
+      platform: "Lattice ECP5",
+      description: "Hub di acquisizione in grado di gestire simultaneamente 16 sensori con interfaccia SPI su Lattice ECP5. I dati vengono pre-processati (filtraggio mediano, scalatura) direttamente in FPGA e trasmessi via UART verso un gateway IoT a 921600 baud.",
+      specs: [
+        { key: "Piattaforma", val: "Lattice ECP5-25F" },
+        { key: "Canali SPI", val: "16 simultanei" },
+        { key: "UART Baud", val: "921600 bps" },
+        { key: "Latenza totale", val: "< 5 ms/ciclo" }
+      ],
+      challenges: [
+        "Arbitraggio e scheduling dei 16 master SPI con round-robin a priorità",
+        "Filtraggio mediano a finestra scorrevole implementato in VHDL",
+        "Gestione del timing SPI con divisore di clock configurabile per sensore",
+        "Protocollo di framing UART custom con CRC-8 per affidabilità"
+      ]
+    },
+    {
+      title: "Core Crittografico AES-128",
+      tags: ["VHDL", "AES-128", "CBC", "Crittografia"],
+      period: "2021 · 3 mesi",
+      platform: "Xilinx Kintex-7",
+      description: "Implementazione hardware ad alte prestazioni dell'algoritmo AES-128 in modalità CBC su FPGA Xilinx Kintex-7. Il design è ottimizzato per massimizzare il throughput con una pipeline a 10 stage (uno per round AES), raggiungendo 10 Gbps con un'area di risorse contenuta.",
+      specs: [
+        { key: "Piattaforma", val: "Xilinx Kintex-7 XC7K325T" },
+        { key: "Throughput", val: "10 Gbps" },
+        { key: "Modalità", val: "AES-128 CBC" },
+        { key: "Latenza", val: "10 cicli (pipeline)" }
+      ],
+      challenges: [
+        "Implementazione delle S-Box AES tramite LUT ottimizzate per area",
+        "Pipeline a 10 stage per massimizzare il throughput senza aumentare la latenza percepita",
+        "Gestione del feedback CBC con registro di stato tra blocchi consecutivi",
+        "Verifica formale della correttezza tramite test vector NIST ufficiali"
+      ]
+    }
+  ];
+
+  function openModal(idx) {
+    const p = projects[idx];
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    document.getElementById('modalBody').innerHTML = `
+      <div>
+        <div class="modal-section-label">Descrizione</div>
+        <p class="modal-text">${p.description}</p>
+      </div>
+      <div>
+        <div class="modal-section-label">Specifiche tecniche</div>
+        <div class="modal-specs">
+          ${p.specs.map(s => `<div class="modal-spec"><div class="modal-spec-key">${s.key}</div><div class="modal-spec-val">${s.val}</div></div>`).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-label">Sfide affrontate</div>
+        <ul class="modal-challenges">
+          ${p.challenges.map(c => `<li>${c}</li>`).join('')}
+        </ul>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border);">
+        ${p.period} · ${p.platform}
+      </div>
+    `;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 100);
+        setTimeout(() => entry.target.classList.add('visible'), 100);
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Stagger children in grids
   document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
     el.style.transitionDelay = `${(i % 3) * 80}ms`;
   });
