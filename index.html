@@ -1151,7 +1151,6 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
 
   // ---- SKILLS DATA ----
   const skills = [
@@ -1329,7 +1328,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ---- EMAILJS ----
-  emailjs.init('kpcS4_EBMmxvlnJGD');
+  window.addEventListener('load', function() { emailjs.init('kpcS4_EBMmxvlnJGD'); });
 
   function inviaMailto(e) {
     e.preventDefault();
@@ -1394,7 +1393,6 @@ document.addEventListener("DOMContentLoaded", function() {
     el.style.transitionDelay = (i % 3) * 80 + 'ms';
   });
 
-}); // DOMContentLoaded
 </script>
 </body>
 </html>
