@@ -12,7 +12,7 @@
     --accent: #e8924a;
     --accent2: #c9762e;
     --text: #eeebe6;
-    --muted: #8a8580;
+    --muted: #b8b0a8;
     --border: #2e2e2e;
     --card: #252525;
   }
@@ -195,12 +195,12 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.12;
+    opacity: 0.28;
     pointer-events: none;
   }
 
   .circuit-deco svg {
-    width: min(500px, 45vw);
+    width: min(720px, 58vw);
     height: auto;
   }
 
@@ -296,31 +296,15 @@
   }
 
   .skill-name {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
   .skill-desc {
-    font-size: 0.82rem;
+    font-size: 1.02rem;
     color: var(--muted);
     line-height: 1.6;
-  }
-
-  .skill-level {
-    margin-top: 1.2rem;
-    height: 2px;
-    background: var(--border);
-    border-radius: 1px;
-    overflow: hidden;
-  }
-
-  .skill-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 1px;
-    animation: fillBar 1.5s ease forwards;
-    transform-origin: left;
   }
 
   @keyframes fillBar {
@@ -377,14 +361,14 @@
   }
 
   .project-title {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.7rem;
     line-height: 1.3;
   }
 
   .project-desc {
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     color: var(--muted);
     line-height: 1.7;
   }
@@ -436,7 +420,7 @@
     color: var(--muted);
     line-height: 1.7;
     margin-bottom: 2rem;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .contact-links {
@@ -597,7 +581,7 @@
     background: var(--card);
     border: 1px solid rgba(232,146,74,0.25);
     border-radius: 4px;
-    max-width: 640px;
+    max-width: 780px;
     width: 100%;
     max-height: 85vh;
     overflow-y: auto;
@@ -624,7 +608,7 @@
   }
 
   .modal-title {
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     font-weight: 800;
     line-height: 1.3;
   }
@@ -674,7 +658,7 @@
   }
 
   .modal-text {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--muted);
     line-height: 1.75;
   }
@@ -695,7 +679,7 @@
 
   .modal-spec-key {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     color: var(--muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -703,7 +687,7 @@
   }
 
   .modal-spec-val {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text);
   }
@@ -716,7 +700,7 @@
   }
 
   .modal-challenges li {
-    font-size: 0.88rem;
+    font-size: 1.1rem;
     color: var(--muted);
     line-height: 1.6;
     padding-left: 1.2rem;
@@ -776,33 +760,142 @@
   </div>
 
   <div class="circuit-deco">
-    <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="180" y="180" width="140" height="140" stroke="#00f5c4" stroke-width="2"/>
-      <line x1="180" y1="250" x2="50" y2="250" stroke="#00f5c4" stroke-width="1.5"/>
-      <line x1="320" y1="250" x2="450" y2="250" stroke="#00f5c4" stroke-width="1.5"/>
-      <line x1="250" y1="180" x2="250" y2="50" stroke="#00f5c4" stroke-width="1.5"/>
-      <line x1="250" y1="320" x2="250" y2="450" stroke="#00f5c4" stroke-width="1.5"/>
-      <circle cx="50" cy="250" r="8" stroke="#00f5c4" stroke-width="1.5"/>
-      <circle cx="450" cy="250" r="8" stroke="#00f5c4" stroke-width="1.5"/>
-      <circle cx="250" cy="50" r="8" stroke="#00f5c4" stroke-width="1.5"/>
-      <circle cx="250" cy="450" r="8" stroke="#00f5c4" stroke-width="1.5"/>
-      <line x1="180" y1="180" x2="80" y2="80" stroke="#0077ff" stroke-width="1"/>
-      <line x1="320" y1="180" x2="420" y2="80" stroke="#0077ff" stroke-width="1"/>
-      <line x1="180" y1="320" x2="80" y2="420" stroke="#0077ff" stroke-width="1"/>
-      <line x1="320" y1="320" x2="420" y2="420" stroke="#0077ff" stroke-width="1"/>
-      <circle cx="80" cy="80" r="5" fill="#0077ff" opacity="0.6"/>
-      <circle cx="420" cy="80" r="5" fill="#0077ff" opacity="0.6"/>
-      <circle cx="80" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
-      <circle cx="420" cy="420" r="5" fill="#0077ff" opacity="0.6"/>
-      <rect x="220" y="220" width="60" height="60" fill="rgba(232,146,74,0.08)" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="220" y1="235" x2="200" y2="235" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="220" y1="250" x2="200" y2="250" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="220" y1="265" x2="200" y2="265" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="280" y1="235" x2="300" y2="235" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="280" y1="250" x2="300" y2="250" stroke="#00f5c4" stroke-width="1"/>
-      <line x1="280" y1="265" x2="300" y2="265" stroke="#00f5c4" stroke-width="1"/>
-      <circle cx="250" cy="250" r="3" fill="#00f5c4"/>
-    </svg>
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Central FPGA chip body -->
+  <rect x="200" y="200" width="200" height="200" stroke="#e8924a" stroke-width="2.5" fill="rgba(232,146,74,0.06)"/>
+  <!-- Chip inner detail lines -->
+  <rect x="220" y="220" width="160" height="160" stroke="#e8924a" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+  <rect x="240" y="240" width="120" height="120" stroke="#e8924a" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Internal grid pattern (LUT array suggestion) -->
+  <line x1="253" y1="240" x2="253" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="273" y1="240" x2="273" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="293" y1="240" x2="293" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="313" y1="240" x2="313" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="333" y1="240" x2="333" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="240" y1="253" x2="360" y2="253" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="240" y1="273" x2="360" y2="273" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="240" y1="333" x2="360" y2="333" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+  <line x1="240" y1="347" x2="360" y2="347" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- LEFT pins -->
+  <line x1="200" y1="222" x2="140" y2="222" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="238" x2="120" y2="238" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="254" x2="140" y2="254" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="270" x2="120" y2="270" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="286" x2="140" y2="286" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="302" x2="120" y2="302" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="318" x2="140" y2="318" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="334" x2="120" y2="334" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="350" x2="140" y2="350" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="366" x2="120" y2="366" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="200" y1="382" x2="140" y2="382" stroke="#e8924a" stroke-width="1.5"/>
+
+  <!-- RIGHT pins -->
+  <line x1="400" y1="222" x2="460" y2="222" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="238" x2="480" y2="238" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="254" x2="460" y2="254" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="270" x2="480" y2="270" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="286" x2="460" y2="286" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="302" x2="480" y2="302" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="318" x2="460" y2="318" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="334" x2="480" y2="334" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="350" x2="460" y2="350" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="366" x2="480" y2="366" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="400" y1="382" x2="460" y2="382" stroke="#e8924a" stroke-width="1.5"/>
+
+  <!-- TOP pins -->
+  <line x1="222" y1="200" x2="222" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="238" y1="200" x2="238" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="254" y1="200" x2="254" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="270" y1="200" x2="270" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="286" y1="200" x2="286" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="302" y1="200" x2="302" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="318" y1="200" x2="318" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="334" y1="200" x2="334" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="350" y1="200" x2="350" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="366" y1="200" x2="366" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="382" y1="200" x2="382" y2="140" stroke="#e8924a" stroke-width="1.5"/>
+
+  <!-- BOTTOM pins -->
+  <line x1="222" y1="400" x2="222" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="238" y1="400" x2="238" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="254" y1="400" x2="254" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="270" y1="400" x2="270" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="286" y1="400" x2="286" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="302" y1="400" x2="302" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="318" y1="400" x2="318" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="334" y1="400" x2="334" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="350" y1="400" x2="350" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="366" y1="400" x2="366" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+  <line x1="382" y1="400" x2="382" y2="460" stroke="#e8924a" stroke-width="1.5"/>
+
+  <!-- Pin tip dots - left -->
+  <circle cx="140" cy="222" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="120" cy="238" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="140" cy="254" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="120" cy="270" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="140" cy="286" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="120" cy="302" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="140" cy="318" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="120" cy="334" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="140" cy="350" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="120" cy="366" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="140" cy="382" r="3" fill="#e8924a" opacity="0.9"/>
+
+  <!-- Pin tip dots - right -->
+  <circle cx="460" cy="222" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="480" cy="238" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="460" cy="254" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="480" cy="270" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="460" cy="286" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="480" cy="302" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="460" cy="318" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="480" cy="334" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="460" cy="350" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="480" cy="366" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="460" cy="382" r="3" fill="#e8924a" opacity="0.9"/>
+
+  <!-- Pin tip dots - top -->
+  <circle cx="222" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="238" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="254" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="270" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="286" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="302" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="318" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="334" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="350" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="366" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="382" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
+
+  <!-- Pin tip dots - bottom -->
+  <circle cx="222" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="238" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="254" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="270" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="286" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="302" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="318" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="334" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="350" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="366" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+  <circle cx="382" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
+
+  <!-- Routing traces from pins (a few selected ones) -->
+  <polyline points="120,238 80,238 80,180 50,180" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+  <polyline points="480,270 530,270 530,200 560,200" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+  <polyline points="302,120 302,70 360,70 360,40" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+  <polyline points="254,480 254,530 180,530 180,560" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+  <polyline points="120,302 60,302 60,400 30,400" stroke="#c9762e" stroke-width="1" opacity="0.45" fill="none"/>
+  <polyline points="480,334 540,334 540,440 570,440" stroke="#c9762e" stroke-width="1" opacity="0.45" fill="none"/>
+
+  <!-- Trace endpoint pads -->
+  <rect x="42" y="173" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+  <rect x="553" y="193" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+  <rect x="353" y="33" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+  <rect x="173" y="553" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+</svg>
   </div>
 </section>
 
@@ -835,41 +928,29 @@
   </div>
 
   <div class="skills-grid">
-    <div class="skill-card fade-up">
-      <div class="skill-icon">⚡</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(0)" style="cursor:pointer">
       <div class="skill-name">VHDL / FPGA Design</div>
       <div class="skill-desc">Progettazione RTL avanzata, FSM, pipeline e architetture custom su Xilinx, Intel e Lattice.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:95%"></div></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🔬</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(1)" style="cursor:pointer">
       <div class="skill-name">Simulazione & Verifica</div>
       <div class="skill-desc">Testbench VHDL, ModelSim, GHDL. Copertura funzionale e verifica formale dei design.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:88%"></div></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🔄</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(2)" style="cursor:pointer">
       <div class="skill-name">Protocolli di Comunicazione</div>
       <div class="skill-desc">Implementazione di SPI, I2C, UART, PCIe, AXI4 e protocolli custom ad alta velocità.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:90%"></div></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🛠</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(3)" style="cursor:pointer">
       <div class="skill-name">Toolchain & Sintesi</div>
       <div class="skill-desc">Vivado, Quartus Prime, ISE. Ottimizzazione timing, place & route, analisi dei report.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:85%"></div></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">📡</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(4)" style="cursor:pointer">
       <div class="skill-name">DSP su FPGA</div>
       <div class="skill-desc">Filtri FIR/IIR, FFT, elaborazione segnali in tempo reale, IP core per applicazioni RF.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:80%"></div></div>
     </div>
-    <div class="skill-card fade-up">
-      <div class="skill-icon">🔗</div>
+    <div class="skill-card fade-up" onclick="openSkillModal(5)" style="cursor:pointer">
       <div class="skill-name">Embedded & SoC</div>
       <div class="skill-desc">Integrazione con microcontrollori, design Zynq (ARM+FPGA), interfacce hardware-software.</div>
-      <div class="skill-level"><div class="skill-fill" style="width:75%"></div></div>
     </div>
   </div>
 </section>
@@ -974,6 +1055,19 @@
     </div>
   </div>
 
+
+  <!-- SKILL MODAL -->
+  <div class="modal-overlay" id="skillModalOverlay" onclick="closeSkillModalOutside(event)">
+    <div class="modal" id="skillModal">
+      <div class="modal-top"></div>
+      <div class="modal-header">
+        <div class="modal-title" id="skillModalTitle"></div>
+        <button class="modal-close" onclick="closeSkillModal()">✕</button>
+      </div>
+      <div class="modal-body" id="skillModalBody"></div>
+    </div>
+  </div>
+
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
     <div class="modal" id="modal">
@@ -1051,6 +1145,80 @@
 </footer>
 
 <script>
+
+  // ---- SKILLS DATA ----
+  const skills = [
+    {
+      title: "VHDL / FPGA Design",
+      level: 95,
+      description: "Competenza principale e cuore della mia attività professionale. Progetto architetture digitali RTL in VHDL partendo dalle specifiche funzionali fino al design finale sintetizzabile. Ho esperienza su macchine a stati finiti complesse, pipeline multi-stage, arbitri, FIFO sincrone e asincrone, e IP core custom. Lavoro su famiglie FPGA Xilinx, Intel/Altera e Lattice.",
+      tools: ["VHDL-93 / VHDL-2008", "Xilinx Vivado", "Intel Quartus Prime", "Lattice Diamond / Radiant", "IP Integrator / Qsys"]
+    },
+    {
+      title: "Simulazione & Verifica",
+      level: 88,
+      description: "Sviluppo testbench VHDL strutturati per la verifica funzionale completa dei design. Utilizzo metodologie di verifica basate su stimoli automatici, self-checking testbench e analisi della copertura funzionale. Ho esperienza con simulatori sia commerciali che open source, e con tecniche di verifica formale per design critici.",
+      tools: ["ModelSim / Questa", "GHDL", "CoCoTB (Python)", "GTKWave", "Verifica formale con SymbiYosys"]
+    },
+    {
+      title: "Protocolli di Comunicazione",
+      level: 90,
+      description: "Implementazione e verifica di interfacce di comunicazione standard e custom in VHDL. Ho sviluppato controller per protocolli seriali e paralleli, stack di rete leggeri e interfacce ad alta velocità. Particolare esperienza con il bus AXI4 per l'integrazione di IP in sistemi SoC e con protocolli industriali.",
+      tools: ["AXI4 / AXI4-Lite / AXI4-Stream", "SPI / I2C / UART", "PCIe (IP core)", "Ethernet / UDP-IP", "LVDS / SERDES"]
+    },
+    {
+      title: "Toolchain & Sintesi",
+      level: 85,
+      description: "Gestione completa del flusso di implementazione FPGA: dalla sintesi RTL al bitstream finale. Esperienza nell'analisi e risoluzione di timing violations, ottimizzazione del place & route per design ad alta frequenza, gestione dei constraint XDC/SDC e analisi dei report di utilizzo risorse.",
+      tools: ["Xilinx Vivado (sintesi + implementazione)", "Intel Quartus Prime", "Synplify Pro", "Timing Analyzer / Timing Closure", "XDC / SDC constraints"]
+    },
+    {
+      title: "DSP su FPGA",
+      level: 80,
+      description: "Progettazione di algoritmi di elaborazione del segnale digitale ottimizzati per implementazione hardware su FPGA. Lavoro con aritmetica in virgola fissa, ottimizzando precisione e consumo di risorse DSP slice. Ho esperienza in filtri digitali, trasformate e pipeline per acquisizione e analisi di segnali in tempo reale.",
+      tools: ["MATLAB / Simulink (prototipazione)", "Fixed-Point Designer", "FFT / FIR / IIR in VHDL", "DSP48 slice optimization", "Xilinx System Generator"]
+    },
+    {
+      title: "Embedded & SoC",
+      level: 75,
+      description: "Integrazione di logica FPGA con processori embedded in architetture SoC, con focus sulla piattaforma Zynq (ARM Cortex-A9 + FPGA). Progettazione di IP custom con interfaccia AXI per la comunicazione tra PS (Processing System) e PL (Programmable Logic), sviluppo di driver Linux bare-metal e gestione delle risorse condivise.",
+      tools: ["Xilinx Zynq-7000 / Zynq UltraScale+", "Vitis / SDK (bare-metal)", "Vivado IP Packager", "Device Tree (Linux)", "AXI DMA / AXI GPIO"]
+    }
+  ];
+
+  function openSkillModal(idx) {
+    const s = skills[idx];
+    document.getElementById('skillModalTitle').textContent = s.title;
+    document.getElementById('skillModalBody').innerHTML = `
+      <div>
+        <div class="modal-section-label">Descrizione</div>
+        <p class="modal-text">${s.description}</p>
+      </div>
+      <div>
+        <div class="modal-section-label">Tool e software</div>
+        <ul class="modal-challenges">
+          ${s.tools.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+
+    `;
+    document.getElementById('skillModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSkillModal() {
+    document.getElementById('skillModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeSkillModalOutside(e) {
+    if (e.target === document.getElementById('skillModalOverlay')) closeSkillModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal(); closeSkillModal(); }
+  });
+
   // ---- PROJECTS DATA ----
   const projects = [
     {
@@ -1207,7 +1375,6 @@
     if (e.target === document.getElementById('modalOverlay')) closeModal();
   }
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
