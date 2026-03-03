@@ -7,1389 +7,434 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
+  :root { --bg:#1e1e1e; --bg2:#242424; --accent:#e8924a; --accent2:#c9762e; --text:#eeebe6; --muted:#b8b0a8; --border:#2e2e2e; --card:#252525; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(232,146,74,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,146,74,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(30,30,30,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Space Mono',monospace;font-size:0.85rem;color:var(--accent);letter-spacing:0.1em;}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--accent);}
+  .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.35rem 0.9rem;border-radius:2px;cursor:pointer;letter-spacing:0.1em;transition:border-color 0.2s,color 0.2s;}
+  .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+  #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;z-index:1;}
+  .hero-inner{max-width:900px;}
+  .hero-tag{display:inline-flex;align-items:center;gap:0.6rem;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:2rem;padding:0.4rem 1rem;border:1px solid rgba(232,146,74,0.3);border-radius:2px;background:rgba(232,146,74,0.05);}
+  .hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 1.2s infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .hero-name{font-size:clamp(3.5rem,8vw,7rem);font-weight:800;line-height:0.95;letter-spacing:-0.03em;margin-bottom:1.5rem;}
+  .hero-name span{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero-sub{font-size:1.25rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:3rem;}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{padding:0.9rem 2rem;background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-decoration:none;border-radius:2px;transition:transform 0.2s;}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-outline{padding:0.9rem 2rem;border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;text-decoration:none;border-radius:2px;transition:border-color 0.2s,color 0.2s;}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+  .circuit-deco{position:absolute;right:0;top:50%;transform:translateY(-50%);opacity:0.28;pointer-events:none;}
+  .circuit-deco svg{width:min(720px,58vw);height:auto;}
+  .stats-bar{position:relative;z-index:1;display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .stat{flex:1;padding:2.5rem 4rem;border-right:1px solid var(--border);}
+  .stat:last-child{border-right:none;}
+  .stat-num{font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:0.4rem;}
+  .stat-label{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+  section{position:relative;z-index:1;padding:6rem 4rem;}
+  .section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;}
+  .section-num{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;}
+  .section-title{font-size:2.5rem;font-weight:800;letter-spacing:-0.02em;}
+  .section-line{flex:1;height:1px;background:var(--border);}
+  #skills{background:var(--bg2);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
+  .skill-card{background:var(--card);padding:2rem;transition:background 0.2s;cursor:pointer;}
+  .skill-card:hover{background:#2e2e2e;}
+  .skill-name{font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;}
+  .skill-desc{font-size:1.12rem;color:var(--muted);line-height:1.6;}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;cursor:pointer;}
+  .project-card:hover{transform:translateY(-4px);border-color:rgba(232,146,74,0.3);box-shadow:0 8px 24px rgba(0,0,0,0.35);}
+  .project-top{height:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .project-body{padding:1.8rem;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+  .tag{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.2rem 0.6rem;background:rgba(232,146,74,0.07);color:var(--accent);border-radius:2px;letter-spacing:0.05em;border:1px solid rgba(232,146,74,0.15);}
+  .project-title{font-size:1.25rem;font-weight:700;margin-bottom:0.7rem;line-height:1.3;}
+  .project-desc{font-size:1.15rem;color:var(--muted);line-height:1.7;}
+  .project-footer{padding:1.2rem 1.8rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .project-meta{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);}
+  .project-arrow{color:var(--accent);font-size:1.1rem;transition:transform 0.2s;}
+  .project-card:hover .project-arrow{transform:translate(3px,-3px);}
+  #contact{background:var(--bg2);}
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+  .contact-headline{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1.2rem;}
+  .contact-headline span{color:var(--accent);}
+  .contact-text{color:var(--muted);line-height:1.7;margin-bottom:2rem;font-size:1.15rem;}
+  .contact-links{display:flex;flex-direction:column;gap:1rem;}
+  .contact-link{display:flex;align-items:center;gap:1rem;color:var(--text);text-decoration:none;font-family:'Space Mono',monospace;font-size:0.8rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:2px;transition:border-color 0.2s,color 0.2s,background 0.2s;}
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,146,74,0.04);}
+  .contact-icon{font-size:1.2rem;}
+  .contact-form{display:flex;flex-direction:column;gap:1rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .form-field{display:flex;flex-direction:column;gap:0.4rem;}
+  .form-field label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+  .form-field input,.form-field textarea{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:0.8rem 1rem;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:1.1rem;outline:none;transition:border-color 0.2s;resize:none;}
+  .form-field input:focus,.form-field textarea:focus{border-color:var(--accent);}
+  .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted);}
+  .btn-send{padding:1rem 2rem;background:transparent;border:1px solid var(--accent);color:var(--accent);font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.1em;cursor:pointer;border-radius:2px;transition:background 0.2s,color 0.2s;align-self:flex-start;}
+  .btn-send:hover{background:var(--accent);color:var(--bg);}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
+  .modal-overlay.open{display:flex;opacity:1;pointer-events:all;}
+  .modal{background:var(--card);border:1px solid rgba(232,146,74,0.25);border-radius:4px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .modal-top{height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+  .modal-header{padding:2rem 2rem 1.2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+  .modal-title{font-size:1.6rem;font-weight:800;line-height:1.3;}
+  .modal-close{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:2px;cursor:pointer;font-size:1rem;flex-shrink:0;transition:border-color 0.2s,color 0.2s;display:flex;align-items:center;justify-content:center;}
+  .modal-close:hover{border-color:var(--accent);color:var(--accent);}
+  .modal-tags{padding:0 2rem 1.2rem;display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .modal-body{padding:0 2rem 2rem;display:flex;flex-direction:column;gap:1.5rem;}
+  .modal-section-label{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
+  .modal-text{font-size:1.1rem;color:var(--muted);line-height:1.75;}
+  .modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:2px;}
+  .modal-spec{background:var(--bg2);padding:1rem 1.2rem;}
+  .modal-spec-key{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;}
+  .modal-spec-val{font-size:1rem;font-weight:600;color:var(--text);}
+  .modal-challenges{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+  .modal-challenges li{font-size:1.1rem;color:var(--muted);line-height:1.6;padding-left:1.2rem;position:relative;}
+  .modal-challenges li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:0.2rem;}
+  footer{position:relative;z-index:1;padding:2rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .footer-tag{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);}
+  .fade-up{opacity:1;transform:translateY(0);}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+  .anim-item{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+  .anim-item.visible{opacity:1;transform:translateY(0);}
+  .modal-overlay.open .modal{animation:modalIn 0.28s ease forwards;}
 
-
-  :root {
-    --bg: #1e1e1e;
-    --bg2: #242424;
-    --accent: #e8924a;
-    --accent2: #c9762e;
-    --text: #eeebe6;
-    --muted: #b8b0a8;
-    --border: #2e2e2e;
-    --card: #252525;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* ---- GRID BACKGROUND ---- */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(232,146,74,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,146,74,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ---- NAV ---- */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 4rem;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-family: 'Space Mono', monospace;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* ---- HERO ---- */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    max-width: 900px;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(232,146,74,0.3);
-    border-radius: 2px;
-    background: rgba(232,146,74,0.05);
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: blink 1.2s infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  .hero-name {
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-name span {
-    display: block;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-sub {
-    font-size: 1.25rem;
-    color: var(--muted);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    font-weight: 400;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    padding: 0.9rem 2rem;
-    background: var(--accent);
-    color: var(--bg);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    
-  }
-
-  .btn-outline {
-    padding: 0.9rem 2rem;
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .btn-outline:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* ---- FLOATING CIRCUIT DECORATION ---- */
-  .circuit-deco {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.28;
-    pointer-events: none;
-  }
-
-  .circuit-deco svg {
-    width: min(720px, 58vw);
-    height: auto;
-  }
-
-  /* ---- STATS ---- */
-  .stats-bar {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .stat {
-    flex: 1;
-    padding: 2.5rem 4rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .stat-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* ---- SECTIONS ---- */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 6rem 4rem;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .section-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ---- SKILLS ---- */
-  #skills { background: var(--bg2); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .skill-card {
-    background: var(--card);
-    padding: 2rem;
-    transition: background 0.2s;
-  }
-
-  .skill-card:hover { background: #121e2e; }
-
-  .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .skill-name {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .skill-desc {
-    font-size: 1.12rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  @keyframes fillBar {
-    from { width: 0; }
-  }
-
-  /* ---- PROJECTS ---- */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
-
-  .project-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(232,146,74,0.3);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-  }
-
-  .project-top {
-    height: 6px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
-
-  .project-body {
-    padding: 1.8rem;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(232,146,74,0.07);
-    color: var(--accent);
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(232,146,74,0.15);
-  }
-
-  .project-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-    line-height: 1.3;
-  }
-
-  .project-desc {
-    font-size: 1.15rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .project-footer {
-    padding: 1.2rem 1.8rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .project-meta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-  }
-
-  .project-arrow {
-    color: var(--accent);
-    font-size: 1.1rem;
-    transition: transform 0.2s;
-  }
-
-  .project-card:hover .project-arrow { transform: translate(3px, -3px); }
-
-  /* ---- CONTACT ---- */
-  #contact { background: var(--bg2); }
-
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .contact-headline {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1.2rem;
-  }
-
-  .contact-headline span {
-    color: var(--accent);
-  }
-
-  .contact-text {
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    font-size: 1.15rem;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--text);
-    text-decoration: none;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    padding: 1rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-
-  .contact-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(232,146,74,0.04);
-  }
-
-  .contact-icon { font-size: 1.2rem; }
-
-  /* ---- FORM ---- */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-field label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .form-field input,
-  .form-field textarea {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 0.8rem 1rem;
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.1rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-
-  .form-field input:focus,
-  .form-field textarea:focus {
-    border-color: var(--accent);
-  }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: var(--muted);
-  }
-
-  .btn-send {
-    padding: 1rem 2rem;
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: background 0.2s, color 0.2s;
-    align-self: flex-start;
-  }
-
-  .btn-send:hover {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  /* ---- FOOTER ---- */
-  footer {
-    position: relative;
-    z-index: 1;
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-
-  .footer-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-
-  /* ---- ANIMATIONS ---- */
-  .fade-up {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ---- MODAL ---- */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .modal-overlay.open {
-    display: flex;
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .modal {
-    background: var(--card);
-    border: 1px solid rgba(232,146,74,0.25);
-    border-radius: 4px;
-    max-width: 780px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    transform: translateY(24px) scale(0.97);
-    transition: transform 0.3s ease;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
-
-  .modal-overlay.open .modal {
-    transform: translateY(0) scale(1);
-  }
-
-  .modal-top {
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
-
-  .modal-header {
-    padding: 2rem 2rem 1.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .modal-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1.3;
-  }
-
-  .modal-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 32px;
-    height: 32px;
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: 1rem;
-    flex-shrink: 0;
-    transition: border-color 0.2s, color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-close:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .modal-tags {
-    padding: 0 2rem 1.2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .modal-body {
-    padding: 0 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .modal-section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .modal-text {
-    font-size: 1.1rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  .modal-specs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-  }
-
-  .modal-spec {
-    background: var(--bg2);
-    padding: 1rem 1.2rem;
-  }
-
-  .modal-spec-key {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-
-  .modal-spec-val {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .modal-challenges {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .modal-challenges li {
-    font-size: 1.1rem;
-    color: var(--muted);
-    line-height: 1.6;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-
-  .modal-challenges li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 0.7rem;
-    top: 0.2rem;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    #hero { padding: 7rem 1.5rem 3rem; }
-    section { padding: 4rem 1.5rem; }
-    .stats-bar { flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .circuit-deco { display: none; }
-  }
-
-
+  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}#hero{padding:7rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <div class="nav-logo">// FPGA.ENGINEER</div>
   <ul class="nav-links">
-    <li><a href="#skills">Competenze</a></li>
-    <li><a href="#projects">Progetti</a></li>
-    <li><a href="#contact">Contatti</a></li>
+    <li><a href="#skills" data-i18n="nav_skills">Competenze</a></li>
+    <li><a href="#projects" data-i18n="nav_projects">Progetti</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contatti</a></li>
   </ul>
+  <button id="lang-btn" class="lang-btn" onclick="switchLang()">EN</button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-tag">Disponibile per nuovi progetti</div>
-    <h1 class="hero-name">
-      Mario Rossi
-      <span>FPGA Engineer</span>
-    </h1>
-    <p class="hero-sub">
-      Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.
-    </p>
+    <div class="hero-tag" data-i18n="hero_tag">Disponibile per nuovi progetti</div>
+    <h1 class="hero-name">Mario Rossi<span data-i18n="hero_job">FPGA Engineer</span></h1>
+    <p class="hero-sub" data-i18n="hero_sub">Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.</p>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary">VEDI PROGETTI →</a>
-      <a href="#contact" class="btn-outline">CONTATTAMI</a>
+      <a href="#projects" class="btn-primary" data-i18n="cta1">VEDI PROGETTI →</a>
+      <a href="#contact" class="btn-outline" data-i18n="cta2">CONTATTAMI</a>
     </div>
   </div>
-
   <div class="circuit-deco">
     <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Central FPGA chip body -->
-  <rect x="200" y="200" width="200" height="200" stroke="#e8924a" stroke-width="2.5" fill="rgba(232,146,74,0.06)"/>
-  <!-- Chip inner detail lines -->
-  <rect x="220" y="220" width="160" height="160" stroke="#e8924a" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
-  <rect x="240" y="240" width="120" height="120" stroke="#e8924a" stroke-width="0.8" opacity="0.4"/>
-
-  <!-- Internal grid pattern (LUT array suggestion) -->
-  <line x1="253" y1="240" x2="253" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="273" y1="240" x2="273" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="293" y1="240" x2="293" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="313" y1="240" x2="313" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="333" y1="240" x2="333" y2="360" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="240" y1="253" x2="360" y2="253" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="240" y1="273" x2="360" y2="273" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="240" y1="333" x2="360" y2="333" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-  <line x1="240" y1="347" x2="360" y2="347" stroke="#e8924a" stroke-width="0.5" opacity="0.35"/>
-
-  <!-- LEFT pins -->
-  <line x1="200" y1="222" x2="140" y2="222" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="238" x2="120" y2="238" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="254" x2="140" y2="254" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="270" x2="120" y2="270" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="286" x2="140" y2="286" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="302" x2="120" y2="302" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="318" x2="140" y2="318" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="334" x2="120" y2="334" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="350" x2="140" y2="350" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="366" x2="120" y2="366" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="200" y1="382" x2="140" y2="382" stroke="#e8924a" stroke-width="1.5"/>
-
-  <!-- RIGHT pins -->
-  <line x1="400" y1="222" x2="460" y2="222" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="238" x2="480" y2="238" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="254" x2="460" y2="254" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="270" x2="480" y2="270" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="286" x2="460" y2="286" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="302" x2="480" y2="302" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="318" x2="460" y2="318" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="334" x2="480" y2="334" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="350" x2="460" y2="350" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="366" x2="480" y2="366" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="400" y1="382" x2="460" y2="382" stroke="#e8924a" stroke-width="1.5"/>
-
-  <!-- TOP pins -->
-  <line x1="222" y1="200" x2="222" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="238" y1="200" x2="238" y2="120" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="254" y1="200" x2="254" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="270" y1="200" x2="270" y2="120" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="286" y1="200" x2="286" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="302" y1="200" x2="302" y2="120" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="318" y1="200" x2="318" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="334" y1="200" x2="334" y2="120" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="350" y1="200" x2="350" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="366" y1="200" x2="366" y2="120" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="382" y1="200" x2="382" y2="140" stroke="#e8924a" stroke-width="1.5"/>
-
-  <!-- BOTTOM pins -->
-  <line x1="222" y1="400" x2="222" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="238" y1="400" x2="238" y2="480" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="254" y1="400" x2="254" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="270" y1="400" x2="270" y2="480" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="286" y1="400" x2="286" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="302" y1="400" x2="302" y2="480" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="318" y1="400" x2="318" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="334" y1="400" x2="334" y2="480" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="350" y1="400" x2="350" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="366" y1="400" x2="366" y2="480" stroke="#e8924a" stroke-width="1.5"/>
-  <line x1="382" y1="400" x2="382" y2="460" stroke="#e8924a" stroke-width="1.5"/>
-
-  <!-- Pin tip dots - left -->
-  <circle cx="140" cy="222" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="120" cy="238" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="140" cy="254" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="120" cy="270" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="140" cy="286" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="120" cy="302" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="140" cy="318" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="120" cy="334" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="140" cy="350" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="120" cy="366" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="140" cy="382" r="3" fill="#e8924a" opacity="0.9"/>
-
-  <!-- Pin tip dots - right -->
-  <circle cx="460" cy="222" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="480" cy="238" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="460" cy="254" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="480" cy="270" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="460" cy="286" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="480" cy="302" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="460" cy="318" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="480" cy="334" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="460" cy="350" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="480" cy="366" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="460" cy="382" r="3" fill="#e8924a" opacity="0.9"/>
-
-  <!-- Pin tip dots - top -->
-  <circle cx="222" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="238" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="254" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="270" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="286" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="302" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="318" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="334" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="350" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="366" cy="120" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="382" cy="140" r="3" fill="#e8924a" opacity="0.9"/>
-
-  <!-- Pin tip dots - bottom -->
-  <circle cx="222" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="238" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="254" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="270" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="286" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="302" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="318" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="334" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="350" cy="460" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="366" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-  <circle cx="382" cy="480" r="3" fill="#e8924a" opacity="0.9"/>
-
-  <!-- Routing traces from pins (a few selected ones) -->
-  <polyline points="120,238 80,238 80,180 50,180" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
-  <polyline points="480,270 530,270 530,200 560,200" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
-  <polyline points="302,120 302,70 360,70 360,40" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
-  <polyline points="254,480 254,530 180,530 180,560" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
-  <polyline points="120,302 60,302 60,400 30,400" stroke="#c9762e" stroke-width="1" opacity="0.45" fill="none"/>
-  <polyline points="480,334 540,334 540,440 570,440" stroke="#c9762e" stroke-width="1" opacity="0.45" fill="none"/>
-
-  <!-- Trace endpoint pads -->
-  <rect x="42" y="173" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
-  <rect x="553" y="193" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
-  <rect x="353" y="33" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
-  <rect x="173" y="553" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
-</svg>
+      <rect x="200" y="200" width="200" height="200" stroke="#e8924a" stroke-width="2.5" fill="rgba(232,146,74,0.06)"/>
+      <rect x="220" y="220" width="160" height="160" stroke="#e8924a" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+      <rect x="240" y="240" width="120" height="120" stroke="#e8924a" stroke-width="0.8" opacity="0.4"/>
+      <line x1="200" y1="222" x2="120" y2="222" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="238" x2="120" y2="238" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="254" x2="120" y2="254" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="270" x2="120" y2="270" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="286" x2="120" y2="286" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="302" x2="120" y2="302" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="318" x2="120" y2="318" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="334" x2="120" y2="334" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="350" x2="120" y2="350" stroke="#e8924a" stroke-width="1.5"/><line x1="200" y1="366" x2="120" y2="366" stroke="#e8924a" stroke-width="1.5"/>
+      <line x1="400" y1="222" x2="480" y2="222" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="238" x2="480" y2="238" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="254" x2="480" y2="254" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="270" x2="480" y2="270" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="286" x2="480" y2="286" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="302" x2="480" y2="302" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="318" x2="480" y2="318" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="334" x2="480" y2="334" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="350" x2="480" y2="350" stroke="#e8924a" stroke-width="1.5"/><line x1="400" y1="366" x2="480" y2="366" stroke="#e8924a" stroke-width="1.5"/>
+      <line x1="222" y1="200" x2="222" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="238" y1="200" x2="238" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="254" y1="200" x2="254" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="270" y1="200" x2="270" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="286" y1="200" x2="286" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="302" y1="200" x2="302" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="318" y1="200" x2="318" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="334" y1="200" x2="334" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="350" y1="200" x2="350" y2="120" stroke="#e8924a" stroke-width="1.5"/><line x1="366" y1="200" x2="366" y2="120" stroke="#e8924a" stroke-width="1.5"/>
+      <line x1="222" y1="400" x2="222" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="238" y1="400" x2="238" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="254" y1="400" x2="254" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="270" y1="400" x2="270" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="286" y1="400" x2="286" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="302" y1="400" x2="302" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="318" y1="400" x2="318" y2="480" stroke="#e8924a" stroke-width="1.5"/><line x1="334" y1="400" x2="334" y2="480" stroke="#e8924a" stroke-width="1.5"/>
+      <polyline points="120,238 80,238 80,180 50,180" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+      <polyline points="480,270 530,270 530,200 560,200" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+      <polyline points="302,120 302,70 360,70 360,40" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+      <polyline points="254,480 254,530 180,530 180,560" stroke="#c9762e" stroke-width="1" opacity="0.55" fill="none"/>
+      <rect x="42" y="173" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+      <rect x="553" y="193" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+      <rect x="353" y="33" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+      <rect x="173" y="553" width="14" height="14" stroke="#c9762e" stroke-width="1" fill="rgba(201,118,46,0.15)" opacity="0.7"/>
+    </svg>
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-bar">
-  <div class="stat fade-up">
-    <div class="stat-num">5+</div>
-    <div class="stat-label">Anni di esperienza</div>
+  <div class="stat anim-item"><div class="stat-num">5+</div><div class="stat-label" data-i18n="stat1">Anni di esperienza</div></div>
+  <div class="stat anim-item"><div class="stat-num">12+</div><div class="stat-label" data-i18n="stat2">Progetti completati</div></div>
+  <div class="stat anim-item"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat3">Famiglie FPGA</div></div>
+  <div class="stat anim-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat4">Soddisfazione clienti</div></div>
+</div>
+
+<section id="skills">
+  <div class="section-header anim-item"><span class="section-num">01 /</span><h2 class="section-title" data-i18n="sec1">Competenze</h2><div class="section-line"></div></div>
+  <div class="skills-grid">
+    <div class="skill-card anim-item" onclick="openSkillModal(0)"><div class="skill-name" data-i18n="sk0_name">VHDL / FPGA Design</div><div class="skill-desc" data-i18n="sk0_desc">Progettazione RTL avanzata, FSM, pipeline e architetture custom su Xilinx, Intel e Lattice.</div></div>
+    <div class="skill-card anim-item" onclick="openSkillModal(1)"><div class="skill-name" data-i18n="sk1_name">Simulazione &amp; Verifica</div><div class="skill-desc" data-i18n="sk1_desc">Testbench VHDL, ModelSim, GHDL. Copertura funzionale e verifica formale dei design.</div></div>
+    <div class="skill-card anim-item" onclick="openSkillModal(2)"><div class="skill-name" data-i18n="sk2_name">Protocolli di Comunicazione</div><div class="skill-desc" data-i18n="sk2_desc">Implementazione di SPI, I2C, UART, PCIe, AXI4 e protocolli custom ad alta velocit&#224;.</div></div>
+    <div class="skill-card anim-item" onclick="openSkillModal(3)"><div class="skill-name" data-i18n="sk3_name">Toolchain &amp; Sintesi</div><div class="skill-desc" data-i18n="sk3_desc">Vivado, Quartus Prime, ISE. Ottimizzazione timing, place &amp; route, analisi dei report.</div></div>
+    <div class="skill-card anim-item" onclick="openSkillModal(4)"><div class="skill-name" data-i18n="sk4_name">DSP su FPGA</div><div class="skill-desc" data-i18n="sk4_desc">Filtri FIR/IIR, FFT, elaborazione segnali in tempo reale, IP core per applicazioni RF.</div></div>
+    <div class="skill-card anim-item" onclick="openSkillModal(5)"><div class="skill-name" data-i18n="sk5_name">Embedded &amp; SoC</div><div class="skill-desc" data-i18n="sk5_desc">Integrazione con microcontrollori, design Zynq (ARM+FPGA), interfacce hardware-software.</div></div>
   </div>
-  <div class="stat fade-up">
-    <div class="stat-num">12+</div>
-    <div class="stat-label">Progetti completati</div>
+</section>
+
+<section id="projects">
+  <div class="section-header anim-item"><span class="section-num">02 /</span><h2 class="section-title" data-i18n="sec2">Progetti</h2><div class="section-line"></div></div>
+  <div class="projects-grid">
+    <div class="project-card anim-item" onclick="openModal(0)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">Xilinx</span><span class="tag">PCIe</span></div><div class="project-title" data-i18n="pt0">Sistema di Acquisizione Dati ad Alta Velocit&#224;</div><div class="project-desc" data-i18n="pd0">Acquisizione a 500 MSPS su Artix-7 con interfaccia ADC parallela e trasferimento via PCIe Gen2 x4.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm0">2023 &middot; 3 mesi</span><span class="project-arrow">&#8599;</span></div></div>
+    <div class="project-card anim-item" onclick="openModal(1)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">AXI4</span><span class="tag">Zynq</span></div><div class="project-title" data-i18n="pt1">Controller Motore Brushless Real-Time</div><div class="project-desc" data-i18n="pd1">Controller FOC per BLDC su Zynq 7000. Loop di controllo in PL con latenza &lt; 1 &mu;s.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm1">2023 &middot; 2 mesi</span><span class="project-arrow">&#8599;</span></div></div>
+    <div class="project-card anim-item" onclick="openModal(2)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">Ethernet</span><span class="tag">UDP/IP</span></div><div class="project-title" data-i18n="pt2">Stack UDP/IP su FPGA</div><div class="project-desc" data-i18n="pd2">Stack di rete leggero a 1 Gbps con Ethernet, ARP, ICMP e UDP/IP, senza dipendenze da CPU.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm2">2022 &middot; 4 mesi</span><span class="project-arrow">&#8599;</span></div></div>
+    <div class="project-card anim-item" onclick="openModal(3)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">FFT</span><span class="tag">Intel</span></div><div class="project-title" data-i18n="pt3">Analizzatore di Spettro Real-Time</div><div class="project-desc" data-i18n="pd3">Pipeline FFT 1024 punti su Cyclone V con output VGA waterfall chart a 60 fps.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm3">2022 &middot; 2 mesi</span><span class="project-arrow">&#8599;</span></div></div>
+    <div class="project-card anim-item" onclick="openModal(4)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">SPI</span><span class="tag">Lattice</span></div><div class="project-title" data-i18n="pt4">Interfaccia Multi-Sensore IoT</div><div class="project-desc" data-i18n="pd4">Hub per 16 sensori SPI simultanei su ECP5 con preprocessing e trasmissione UART a gateway.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm4">2021 &middot; 6 settimane</span><span class="project-arrow">&#8599;</span></div></div>
+    <div class="project-card anim-item" onclick="openModal(5)"><div class="project-top"></div><div class="project-body"><div class="project-tags"><span class="tag">VHDL</span><span class="tag">AES-128</span><span class="tag">Crittografia</span></div><div class="project-title" data-i18n="pt5">Core Crittografico AES-128</div><div class="project-desc" data-i18n="pd5">AES-128 CBC ad alte prestazioni su Kintex-7 con 10 Gbps throughput e pipeline a 10 stage.</div></div><div class="project-footer"><span class="project-meta" data-i18n="pm5">2021 &middot; 3 mesi</span><span class="project-arrow">&#8599;</span></div></div>
   </div>
-  <div class="stat fade-up">
-    <div class="stat-num">3</div>
-    <div class="stat-label">Famiglie FPGA</div>
+</section>
+
+<section id="contact">
+  <div class="section-header anim-item"><span class="section-num">03 /</span><h2 class="section-title" data-i18n="sec3">Contatti</h2><div class="section-line"></div></div>
+  <div class="contact-inner">
+    <div>
+      <h3 class="contact-headline"><span data-i18n="cht1">Hai un progetto</span><br><span data-i18n="cht2">FPGA in mente?</span></h3>
+      <p class="contact-text" data-i18n="contact_text">Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.</p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#96e1b8f7e4e2e3e4e6d6f1fbf7fffab8f5f9fb" class="contact-link"><span class="contact-icon">&#9993;</span><span class="__cf_email__" data-cfemail="36411857444243444676515b575f5a1855595b">[email&#160;protected]</span></a>
+        <a href="https://linkedin.com/in/mario-rossi" class="contact-link"><span class="contact-icon">in</span>linkedin.com/in/mario-rossi</a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field"><label data-i18n="lbl1">Nome</label><input type="text" id="form-nome" placeholder="Il tuo nome"></div>
+          <div class="form-field"><label data-i18n="lbl2">Azienda</label><input type="text" id="form-azienda" placeholder="Azienda (opz.)"></div>
+        </div>
+        <div class="form-field"><label data-i18n="lbl3">Email</label><input type="email" id="form-email" placeholder="tua@email.com"></div>
+        <div class="form-field"><label data-i18n="lbl4">Messaggio</label><textarea id="form-messaggio" rows="5" placeholder="Descrivi il tuo progetto..."></textarea></div>
+        <button class="btn-send" data-i18n="btn_send" onclick="inviaMailto(event)">INVIA MESSAGGIO &#8594;</button>
+      </div>
+    </div>
   </div>
-  <div class="stat fade-up">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Soddisfazione clienti</div>
+</section>
+
+<div class="modal-overlay" id="skillModalOverlay" onclick="closeSkillModalOutside(event)">
+  <div class="modal"><div class="modal-top"></div>
+    <div class="modal-header"><div class="modal-title" id="skillModalTitle"></div><button class="modal-close" onclick="closeSkillModal()">&#10005;</button></div>
+    <div class="modal-body" id="skillModalBody"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal"><div class="modal-top"></div>
+    <div class="modal-header"><div class="modal-title" id="modalTitle"></div><button class="modal-close" onclick="closeModal()">&#10005;</button></div>
+    <div class="modal-tags" id="modalTags"></div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header fade-up">
-    <span class="section-num">01 /</span>
-    <h2 class="section-title">Competenze</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="skills-grid">
-    <div class="skill-card fade-up" onclick="openSkillModal(0)" style="cursor:pointer">
-      <div class="skill-name">VHDL / FPGA Design</div>
-      <div class="skill-desc">Progettazione RTL avanzata, FSM, pipeline e architetture custom su Xilinx, Intel e Lattice.</div>
-    </div>
-    <div class="skill-card fade-up" onclick="openSkillModal(1)" style="cursor:pointer">
-      <div class="skill-name">Simulazione & Verifica</div>
-      <div class="skill-desc">Testbench VHDL, ModelSim, GHDL. Copertura funzionale e verifica formale dei design.</div>
-    </div>
-    <div class="skill-card fade-up" onclick="openSkillModal(2)" style="cursor:pointer">
-      <div class="skill-name">Protocolli di Comunicazione</div>
-      <div class="skill-desc">Implementazione di SPI, I2C, UART, PCIe, AXI4 e protocolli custom ad alta velocità.</div>
-    </div>
-    <div class="skill-card fade-up" onclick="openSkillModal(3)" style="cursor:pointer">
-      <div class="skill-name">Toolchain & Sintesi</div>
-      <div class="skill-desc">Vivado, Quartus Prime, ISE. Ottimizzazione timing, place & route, analisi dei report.</div>
-    </div>
-    <div class="skill-card fade-up" onclick="openSkillModal(4)" style="cursor:pointer">
-      <div class="skill-name">DSP su FPGA</div>
-      <div class="skill-desc">Filtri FIR/IIR, FFT, elaborazione segnali in tempo reale, IP core per applicazioni RF.</div>
-    </div>
-    <div class="skill-card fade-up" onclick="openSkillModal(5)" style="cursor:pointer">
-      <div class="skill-name">Embedded & SoC</div>
-      <div class="skill-desc">Integrazione con microcontrollori, design Zynq (ARM+FPGA), interfacce hardware-software.</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header fade-up">
-    <span class="section-num">02 /</span>
-    <h2 class="section-title">Progetti</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="projects-grid">
-    <div class="project-card fade-up" onclick="openModal(0)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">Xilinx</span><span class="tag">DSP</span>
-        </div>
-        <div class="project-title">Sistema di Acquisizione Dati ad Alta Velocità</div>
-        <div class="project-desc">Implementazione su FPGA Xilinx Artix-7 di un sistema di acquisizione a 500 MSPS con interfaccia ADC parallela e trasmissione via PCIe verso host PC.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2023 · 3 mesi</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up" onclick="openModal(1)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">AXI4</span><span class="tag">Zynq</span>
-        </div>
-        <div class="project-title">Controller Motore Brushless Real-Time</div>
-        <div class="project-desc">Design di un controller FOC per motore BLDC su piattaforma Zynq 7000. Latenza inferiore a 1 μs grazie alla logica programmabile dedicata al loop di controllo.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2023 · 2 mesi</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up" onclick="openModal(2)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">Ethernet</span><span class="tag">UDP/IP</span>
-        </div>
-        <div class="project-title">Stack UDP/IP su FPGA</div>
-        <div class="project-desc">Implementazione completa di uno stack di rete UDP/IP a 1 Gbps, con supporto ARP, ICMP e buffer FIFO per burst ad alta velocità.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2022 · 4 mesi</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up" onclick="openModal(3)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">FFT</span><span class="tag">Intel</span>
-        </div>
-        <div class="project-title">Analizzatore di Spettro Real-Time</div>
-        <div class="project-desc">Pipeline FFT a 1024 punti su Intel Cyclone V per analisi spettrale continua su segnali audio e RF. Output su display VGA con waterfall chart.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2022 · 2 mesi</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up" onclick="openModal(4)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">SPI</span><span class="tag">Lattice</span>
-        </div>
-        <div class="project-title">Interfaccia Multi-Sensore IoT</div>
-        <div class="project-desc">Hub di acquisizione per 16 sensori SPI simultanei su Lattice ECP5, con preprocessing dati e trasmissione UART verso gateway.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2021 · 6 settimane</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-
-    <div class="project-card fade-up" onclick="openModal(5)">
-      <div class="project-top"></div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="tag">VHDL</span><span class="tag">Crittografia</span><span class="tag">AES</span>
-        </div>
-        <div class="project-title">Core Crittografico AES-128</div>
-        <div class="project-desc">Implementazione hardware di AES-128 in modalità CBC con throughput di 10 Gbps. Ottimizzato per area ridotta e timing stringenti.</div>
-      </div>
-      <div class="project-footer">
-        <span class="project-meta">2021 · 3 mesi</span>
-        <span class="project-arrow">↗</span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- SKILL MODAL -->
-  <div class="modal-overlay" id="skillModalOverlay" onclick="closeSkillModalOutside(event)">
-    <div class="modal" id="skillModal">
-      <div class="modal-top"></div>
-      <div class="modal-header">
-        <div class="modal-title" id="skillModalTitle"></div>
-        <button class="modal-close" onclick="closeSkillModal()">✕</button>
-      </div>
-      <div class="modal-body" id="skillModalBody"></div>
-    </div>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-    <div class="modal" id="modal">
-      <div class="modal-top"></div>
-      <div class="modal-header">
-        <div class="modal-title" id="modalTitle"></div>
-        <button class="modal-close" onclick="closeModal()">✕</button>
-      </div>
-      <div class="modal-tags" id="modalTags"></div>
-      <div class="modal-body" id="modalBody"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header fade-up">
-    <span class="section-num">03 /</span>
-    <h2 class="section-title">Contatti</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="contact-inner">
-    <div class="fade-up">
-      <h3 class="contact-headline">Hai un progetto<br><span>FPGA in mente?</span></h3>
-      <p class="contact-text">
-        Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.
-      </p>
-      <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#751814071c1a5b071a06061c351018141c195b161a18" class="contact-link">
-          <span class="contact-icon">✉</span>
-          <span class="__cf_email__" data-cfemail="204d4152494f0e524f53534960454d41494c0e434f4d">[email&#160;protected]</span>
-        </a>
-        <a href="https://linkedin.com/in/mario-rossi" class="contact-link">
-          <span class="contact-icon">in</span>
-          linkedin.com/in/mario-rossi
-        </a>
-
-      </div>
-    </div>
-
-    <div class="fade-up">
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-field">
-            <label>Nome</label>
-            <input type="text" id="form-nome" placeholder="Il tuo nome">
-          </div>
-          <div class="form-field">
-            <label>Azienda</label>
-            <input type="text" id="form-azienda" placeholder="Azienda (opz.)">
-          </div>
-        </div>
-        <div class="form-field">
-          <label>Email</label>
-          <input type="email" id="form-email" placeholder="tua@email.com">
-        </div>
-        <div class="form-field">
-          <label>Messaggio</label>
-          <textarea id="form-messaggio" rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
-        </div>
-        <button class="btn-send" onclick="inviaMailto(event)">INVIA MESSAGGIO →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-copy">© 2025 Mario Rossi · Tutti i diritti riservati</div>
+  <div class="footer-copy" data-i18n="footer">&#169; 2025 Mario Rossi &middot; Tutti i diritti riservati</div>
   <div class="footer-tag">// Built with precision</div>
 </footer>
-
-<script>
-
-  // ---- SKILLS DATA ----
-  const skills = [
-    {
-      title: "VHDL / FPGA Design",
-      description: "Competenza principale e cuore della mia attività professionale. Progetto architetture digitali RTL in VHDL partendo dalle specifiche funzionali fino al design finale sintetizzabile. Ho esperienza su macchine a stati finiti complesse, pipeline multi-stage, arbitri, FIFO sincrone e asincrone, e IP core custom. Lavoro su famiglie FPGA Xilinx, Intel/Altera e Lattice.",
-      tools: ["VHDL-93 / VHDL-2008", "Xilinx Vivado", "Intel Quartus Prime", "Lattice Diamond / Radiant", "IP Integrator / Qsys"]
-    },
-    {
-      title: "Simulazione & Verifica",
-      description: "Sviluppo testbench VHDL strutturati per la verifica funzionale completa dei design. Utilizzo metodologie di verifica basate su stimoli automatici, self-checking testbench e analisi della copertura funzionale. Ho esperienza con simulatori sia commerciali che open source, e con tecniche di verifica formale per design critici.",
-      tools: ["ModelSim / Questa", "GHDL", "CoCoTB (Python)", "GTKWave", "Verifica formale con SymbiYosys"]
-    },
-    {
-      title: "Protocolli di Comunicazione",
-      description: "Implementazione e verifica di interfacce di comunicazione standard e custom in VHDL. Ho sviluppato controller per protocolli seriali e paralleli, stack di rete leggeri e interfacce ad alta velocità. Particolare esperienza con il bus AXI4 per l'integrazione di IP in sistemi SoC e con protocolli industriali.",
-      tools: ["AXI4 / AXI4-Lite / AXI4-Stream", "SPI / I2C / UART", "PCIe (IP core)", "Ethernet / UDP-IP", "LVDS / SERDES"]
-    },
-    {
-      title: "Toolchain & Sintesi",
-      description: "Gestione completa del flusso di implementazione FPGA: dalla sintesi RTL al bitstream finale. Esperienza nell'analisi e risoluzione di timing violations, ottimizzazione del place & route per design ad alta frequenza, gestione dei constraint XDC/SDC e analisi dei report di utilizzo risorse.",
-      tools: ["Xilinx Vivado (sintesi + implementazione)", "Intel Quartus Prime", "Synplify Pro", "Timing Analyzer / Timing Closure", "XDC / SDC constraints"]
-    },
-    {
-      title: "DSP su FPGA",
-      description: "Progettazione di algoritmi di elaborazione del segnale digitale ottimizzati per implementazione hardware su FPGA. Lavoro con aritmetica in virgola fissa, ottimizzando precisione e consumo di risorse DSP slice. Ho esperienza in filtri digitali, trasformate e pipeline per acquisizione e analisi di segnali in tempo reale.",
-      tools: ["MATLAB / Simulink (prototipazione)", "Fixed-Point Designer", "FFT / FIR / IIR in VHDL", "DSP48 slice optimization", "Xilinx System Generator"]
-    },
-    {
-      title: "Embedded & SoC",
-      description: "Integrazione di logica FPGA con processori embedded in architetture SoC, con focus sulla piattaforma Zynq (ARM Cortex-A9 + FPGA). Progettazione di IP custom con interfaccia AXI per la comunicazione tra PS e PL, sviluppo di driver Linux bare-metal e gestione delle risorse condivise.",
-      tools: ["Xilinx Zynq-7000 / Zynq UltraScale+", "Vitis / SDK (bare-metal)", "Vivado IP Packager", "Device Tree (Linux)", "AXI DMA / AXI GPIO"]
-    }
-  ];
-
-  // ---- PROJECTS DATA ----
-  const projects = [
-    {
-      title: "Sistema di Acquisizione Dati ad Alta Velocità",
-      tags: ["VHDL", "Xilinx", "DSP", "PCIe", "ADC"],
-      period: "2023 · 3 mesi",
-      platform: "Xilinx Artix-7",
-      description: "Progettazione completa di un sistema di acquisizione dati ad alta velocità su FPGA Xilinx Artix-7. Il sistema acquisisce segnali analogici a 500 MSPS tramite un'interfaccia ADC parallela a 12 bit, li processa internamente con un pipeline FIFO a doppio clock e li trasferisce verso un host PC via interfaccia PCIe Gen2 x4.",
-      specs: [
-        { key: "Piattaforma", val: "Xilinx Artix-7 XC7A200T" },
-        { key: "Sample Rate", val: "500 MSPS" },
-        { key: "Interfaccia", val: "PCIe Gen2 x4" },
-        { key: "Throughput", val: "~1.5 GB/s" }
-      ],
-      challenges: ["Sincronizzazione clock di acquisizione ADC e clock FPGA con MMCM dedicato", "Gestione di FIFO asincrone per il crossing di domini di clock", "Ottimizzazione del timing closure per frequenze operative > 250 MHz", "Implementazione del DMA controller per trasferimento bulk verso host"]
-    },
-    {
-      title: "Controller Motore Brushless Real-Time",
-      tags: ["VHDL", "AXI4", "Zynq", "FOC", "PWM"],
-      period: "2023 · 2 mesi",
-      platform: "Xilinx Zynq-7000",
-      description: "Implementazione di un algoritmo FOC (Field-Oriented Control) per motore BLDC direttamente in logica programmabile su piattaforma Zynq 7000. Il loop di controllo gira interamente nella PL, garantendo una latenza deterministica inferiore a 1 μs, mentre il processore ARM gestisce la supervisione e la comunicazione.",
-      specs: [
-        { key: "Piattaforma", val: "Xilinx Zynq XC7Z020" },
-        { key: "Latenza loop", val: "< 1 μs" },
-        { key: "Frequenza PWM", val: "20 kHz" },
-        { key: "Bus", val: "AXI4-Lite" }
-      ],
-      challenges: ["Implementazione in virgola fissa delle trasformazioni di Clarke e Park", "Progettazione di regolatori PI in VHDL con anti-windup", "Interfaccia AXI4-Lite per configurazione parametri da ARM", "Generazione PWM a 3 fasi con dead-time programmabile"]
-    },
-    {
-      title: "Stack UDP/IP su FPGA",
-      tags: ["VHDL", "Ethernet", "UDP/IP", "ARP", "ICMP"],
-      period: "2022 · 4 mesi",
-      platform: "Lattice ECP5",
-      description: "Implementazione completa di uno stack di rete leggero con supporto Ethernet, ARP, ICMP e UDP/IP interamente in VHDL. Il design opera a 1 Gbps con latenza minima e zero dipendenze da soft-core CPU, rendendolo ideale per applicazioni industriali a bassa latenza.",
-      specs: [
-        { key: "Piattaforma", val: "Lattice ECP5-85F" },
-        { key: "Throughput", val: "1 Gbps wire-speed" },
-        { key: "Latenza TX", val: "< 400 ns" },
-        { key: "Protocolli", val: "ETH / ARP / ICMP / UDP" }
-      ],
-      challenges: ["Parsing e generazione header Ethernet/IP/UDP in pipeline a stage multipli", "Implementazione tabella ARP con lookup in un singolo ciclo di clock", "Gestione checksum IP e UDP in hardware con correzione incrementale", "Buffer circolare per gestione burst e backpressure sul bus dati"]
-    },
-    {
-      title: "Analizzatore di Spettro Real-Time",
-      tags: ["VHDL", "FFT", "Intel", "VGA", "DSP"],
-      period: "2022 · 2 mesi",
-      platform: "Intel Cyclone V",
-      description: "Sistema di analisi spettrale in tempo reale basato su una pipeline FFT a 1024 punti implementata su Intel Cyclone V. Il risultato viene visualizzato su display VGA come waterfall chart aggiornato a 60 fps, utile per analisi di segnali audio e RF in ambito laboratoriale.",
-      specs: [
-        { key: "Piattaforma", val: "Intel Cyclone V 5CSEBA6" },
-        { key: "Punti FFT", val: "1024 punti" },
-        { key: "Output", val: "VGA 640x480 @60Hz" },
-        { key: "Finestramento", val: "Hanning window" }
-      ],
-      challenges: ["Ottimizzazione della pipeline FFT Cooley-Tukey in VHDL con butterfly unit", "Gestione dei twiddle factor in memoria ROM inizializzata a compile-time", "Conversione del risultato FFT in scala logaritmica (dB) in virgola fissa", "Controller VGA con framebuffer dual-port per rendering senza flickering"]
-    },
-    {
-      title: "Interfaccia Multi-Sensore IoT",
-      tags: ["VHDL", "SPI", "Lattice", "UART", "IoT"],
-      period: "2021 · 6 settimane",
-      platform: "Lattice ECP5",
-      description: "Hub di acquisizione in grado di gestire simultaneamente 16 sensori con interfaccia SPI su Lattice ECP5. I dati vengono pre-processati direttamente in FPGA e trasmessi via UART verso un gateway IoT a 921600 baud.",
-      specs: [
-        { key: "Piattaforma", val: "Lattice ECP5-25F" },
-        { key: "Canali SPI", val: "16 simultanei" },
-        { key: "UART Baud", val: "921600 bps" },
-        { key: "Latenza totale", val: "< 5 ms/ciclo" }
-      ],
-      challenges: ["Arbitraggio e scheduling dei 16 master SPI con round-robin a priorità", "Filtraggio mediano a finestra scorrevole implementato in VHDL", "Gestione del timing SPI con divisore di clock configurabile per sensore", "Protocollo di framing UART custom con CRC-8 per affidabilità"]
-    },
-    {
-      title: "Core Crittografico AES-128",
-      tags: ["VHDL", "AES-128", "CBC", "Crittografia"],
-      period: "2021 · 3 mesi",
-      platform: "Xilinx Kintex-7",
-      description: "Implementazione hardware ad alte prestazioni dell'algoritmo AES-128 in modalità CBC su FPGA Xilinx Kintex-7. Il design è ottimizzato per massimizzare il throughput con una pipeline a 10 stage, raggiungendo 10 Gbps con un'area di risorse contenuta.",
-      specs: [
-        { key: "Piattaforma", val: "Xilinx Kintex-7 XC7K325T" },
-        { key: "Throughput", val: "10 Gbps" },
-        { key: "Modalità", val: "AES-128 CBC" },
-        { key: "Latenza", val: "10 cicli (pipeline)" }
-      ],
-      challenges: ["Implementazione delle S-Box AES tramite LUT ottimizzate per area", "Pipeline a 10 stage per massimizzare il throughput senza aumentare la latenza percepita", "Gestione del feedback CBC con registro di stato tra blocchi consecutivi", "Verifica formale della correttezza tramite test vector NIST ufficiali"]
-    }
-  ];
-
-  // ---- SKILL MODAL ----
-  function openSkillModal(idx) {
-    const s = skills[idx];
-    document.getElementById('skillModalTitle').textContent = s.title;
-    document.getElementById('skillModalBody').innerHTML =
-      '<div><div class="modal-section-label">Descrizione</div><p class="modal-text">' + s.description + '</p></div>' +
-      '<div><div class="modal-section-label">Tool e software</div><ul class="modal-challenges">' +
-      s.tools.map(function(t) { return '<li>' + t + '</li>'; }).join('') +
-      '</ul></div>';
-    document.getElementById('skillModalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var currentLang=(location.search==='?en')?'en':'it';
+var i18n={
+  it:{
+    nav_skills:'Competenze',nav_projects:'Progetti',nav_contact:'Contatti',lang_btn:'EN',
+    hero_tag:'Disponibile per nuovi progetti',hero_job:'FPGA Engineer',
+    hero_sub:'Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.',
+    cta1:'VEDI PROGETTI \u2192',cta2:'CONTATTAMI',
+    stat1:'Anni di esperienza',stat2:'Progetti completati',stat3:'Famiglie FPGA',stat4:'Soddisfazione clienti',
+    sec1:'Competenze',sec2:'Progetti',sec3:'Contatti',
+    sk0_name:'VHDL / FPGA Design',sk0_desc:'Progettazione RTL avanzata, FSM, pipeline e architetture custom su Xilinx, Intel e Lattice.',
+    sk1_name:'Simulazione & Verifica',sk1_desc:'Testbench VHDL, ModelSim, GHDL. Copertura funzionale e verifica formale dei design.',
+    sk2_name:'Protocolli di Comunicazione',sk2_desc:'Implementazione di SPI, I2C, UART, PCIe, AXI4 e protocolli custom ad alta velocit\u00e0.',
+    sk3_name:'Toolchain & Sintesi',sk3_desc:'Vivado, Quartus Prime, ISE. Ottimizzazione timing, place & route, analisi dei report.',
+    sk4_name:'DSP su FPGA',sk4_desc:'Filtri FIR/IIR, FFT, elaborazione segnali in tempo reale, IP core per applicazioni RF.',
+    sk5_name:'Embedded & SoC',sk5_desc:'Integrazione con microcontrollori, design Zynq (ARM+FPGA), interfacce hardware-software.',
+    cht1:'Hai un progetto',cht2:'FPGA in mente?',
+    contact_text:'Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.',
+    lbl1:'Nome',lbl2:'Azienda',lbl3:'Email',lbl4:'Messaggio',
+    ph1:'Il tuo nome',ph2:'Azienda (opz.)',ph3:'tua@email.com',ph4:'Descrivi il tuo progetto...',
+    btn_send:'INVIA MESSAGGIO \u2192',
+    pt0:'Sistema di Acquisizione Dati ad Alta Velocit\u00e0',pd0:'Acquisizione a 500 MSPS su Artix-7 con interfaccia ADC parallela e trasferimento via PCIe Gen2 x4.',pm0:'2023 \u00b7 3 mesi',
+    pt1:'Controller Motore Brushless Real-Time',pd1:'Controller FOC per BLDC su Zynq 7000. Loop di controllo in PL con latenza < 1 \u03bcs.',pm1:'2023 \u00b7 2 mesi',
+    pt2:'Stack UDP/IP su FPGA',pd2:'Stack di rete leggero a 1 Gbps con Ethernet, ARP, ICMP e UDP/IP, senza dipendenze da CPU.',pm2:'2022 \u00b7 4 mesi',
+    pt3:'Analizzatore di Spettro Real-Time',pd3:'Pipeline FFT 1024 punti su Cyclone V con output VGA waterfall chart a 60 fps.',pm3:'2022 \u00b7 2 mesi',
+    pt4:'Interfaccia Multi-Sensore IoT',pd4:'Hub per 16 sensori SPI simultanei su ECP5 con preprocessing e trasmissione UART a gateway.',pm4:'2021 \u00b7 6 settimane',
+    pt5:'Core Crittografico AES-128',pd5:'AES-128 CBC ad alte prestazioni su Kintex-7 con 10 Gbps throughput e pipeline a 10 stage.',pm5:'2021 \u00b7 3 mesi',
+    footer:'\u00a9 2025 Mario Rossi \u00b7 Tutti i diritti riservati',
+    lbl_desc:'Descrizione',lbl_specs:'Specifiche tecniche',lbl_challenges:'Sfide affrontate',lbl_tools:'Tool e software'
+  },
+  en:{
+    nav_skills:'Skills',nav_projects:'Projects',nav_contact:'Contact',lang_btn:'IT',
+    hero_tag:'Available for new projects',hero_job:'FPGA Engineer',
+    hero_sub:'Electronics engineer specialised in FPGA design and VHDL development. I turn complex requirements into efficient, reliable digital architectures.',
+    cta1:'VIEW PROJECTS \u2192',cta2:'CONTACT ME',
+    stat1:'Years of experience',stat2:'Completed projects',stat3:'FPGA families',stat4:'Client satisfaction',
+    sec1:'Skills',sec2:'Projects',sec3:'Contact',
+    sk0_name:'VHDL / FPGA Design',sk0_desc:'Advanced RTL design, FSMs, pipelines and custom architectures on Xilinx, Intel and Lattice.',
+    sk1_name:'Simulation & Verification',sk1_desc:'VHDL testbenches, ModelSim, GHDL. Functional coverage and formal verification of designs.',
+    sk2_name:'Communication Protocols',sk2_desc:'Implementation of SPI, I2C, UART, PCIe, AXI4 and custom high-speed protocols.',
+    sk3_name:'Toolchain & Synthesis',sk3_desc:'Vivado, Quartus Prime, ISE. Timing optimisation, place & route, report analysis.',
+    sk4_name:'DSP on FPGA',sk4_desc:'FIR/IIR filters, FFT, real-time signal processing, IP cores for RF applications.',
+    sk5_name:'Embedded & SoC',sk5_desc:'Microcontroller integration, Zynq design (ARM+FPGA), hardware-software interfaces.',
+    cht1:'Have an',cht2:'FPGA project in mind?',
+    contact_text:'Available for freelance collaboration on digital design, verification and FPGA optimisation projects. I reply within 24 hours.',
+    lbl1:'Name',lbl2:'Company',lbl3:'Email',lbl4:'Message',
+    ph1:'Your name',ph2:'Company (opt.)',ph3:'your@email.com',ph4:'Describe your project...',
+    btn_send:'SEND MESSAGE \u2192',
+    pt0:'High-Speed Data Acquisition System',pd0:'500 MSPS acquisition on Artix-7 with parallel ADC interface and PCIe Gen2 x4 transfer to host PC.',pm0:'2023 \u00b7 3 months',
+    pt1:'Real-Time Brushless Motor Controller',pd1:'FOC controller for BLDC on Zynq 7000. Control loop in PL with latency < 1 \u03bcs.',pm1:'2023 \u00b7 2 months',
+    pt2:'UDP/IP Stack on FPGA',pd2:'Lightweight 1 Gbps network stack with Ethernet, ARP, ICMP and UDP/IP, no CPU dependency.',pm2:'2022 \u00b7 4 months',
+    pt3:'Real-Time Spectrum Analyser',pd3:'1024-point FFT pipeline on Cyclone V with VGA waterfall chart output at 60 fps.',pm3:'2022 \u00b7 2 months',
+    pt4:'Multi-Sensor IoT Interface',pd4:'Hub for 16 simultaneous SPI sensors on ECP5 with preprocessing and UART transmission to gateway.',pm4:'2021 \u00b7 6 weeks',
+    pt5:'AES-128 Cryptographic Core',pd5:'High-performance AES-128 CBC on Kintex-7 with 10 Gbps throughput and 10-stage pipeline.',pm5:'2021 \u00b7 3 months',
+    footer:'\u00a9 2025 Mario Rossi \u00b7 All rights reserved',
+    lbl_desc:'Description',lbl_specs:'Technical specs',lbl_challenges:'Challenges',lbl_tools:'Tools & software'
   }
+};
 
-  function closeSkillModal() {
-    document.getElementById('skillModalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+var skills=[
+  {title:'VHDL / FPGA Design',description:'Competenza principale e cuore della mia attivit\u00e0 professionale. Progetto architetture digitali RTL in VHDL partendo dalle specifiche funzionali fino al design finale sintetizzabile. Esperienza su FSM complesse, pipeline multi-stage, arbitri, FIFO sincrone/asincrone e IP core custom su Xilinx, Intel/Altera e Lattice.',tools:['VHDL-93 / VHDL-2008','Xilinx Vivado','Intel Quartus Prime','Lattice Diamond / Radiant','IP Integrator / Qsys']},
+  {title:'Simulazione & Verifica',description:'Sviluppo testbench VHDL strutturati per la verifica funzionale completa dei design. Metodologie basate su stimoli automatici, self-checking testbench e analisi della copertura funzionale. Esperienza con simulatori commerciali e open source, e con tecniche di verifica formale per design critici.',tools:['ModelSim / Questa','GHDL','CoCoTB (Python)','GTKWave','SymbiYosys (formal)']},
+  {title:'Protocolli di Comunicazione',description:'Implementazione e verifica di interfacce di comunicazione standard e custom in VHDL: controller per protocolli seriali e paralleli, stack di rete leggeri e interfacce ad alta velocit\u00e0. Particolare esperienza con il bus AXI4 per l\'integrazione di IP in sistemi SoC.',tools:['AXI4 / AXI4-Lite / AXI4-Stream','SPI / I2C / UART','PCIe (IP core)','Ethernet / UDP-IP','LVDS / SERDES']},
+  {title:'Toolchain & Sintesi',description:'Gestione completa del flusso di implementazione FPGA: dalla sintesi RTL al bitstream finale. Analisi e risoluzione di timing violations, ottimizzazione del place & route per design ad alta frequenza, gestione dei constraint XDC/SDC e analisi dei report di utilizzo risorse.',tools:['Xilinx Vivado','Intel Quartus Prime','Synplify Pro','Timing Analyzer / Timing Closure','XDC / SDC constraints']},
+  {title:'DSP su FPGA',description:'Progettazione di algoritmi DSP ottimizzati per implementazione hardware su FPGA. Lavoro con aritmetica in virgola fissa, ottimizzando precisione e consumo di risorse DSP slice. Esperienza in filtri digitali, FFT e pipeline per acquisizione e analisi di segnali in tempo reale.',tools:['MATLAB / Simulink','Fixed-Point Designer','FFT / FIR / IIR in VHDL','DSP48 slice optimization','Xilinx System Generator']},
+  {title:'Embedded & SoC',description:'Integrazione di logica FPGA con processori embedded in architetture SoC, con focus sulla piattaforma Zynq (ARM Cortex-A9 + FPGA). Progettazione di IP custom con interfaccia AXI per la comunicazione tra PS e PL, sviluppo di driver bare-metal e gestione delle risorse condivise.',tools:['Xilinx Zynq-7000 / UltraScale+','Vitis / SDK (bare-metal)','Vivado IP Packager','Device Tree (Linux)','AXI DMA / AXI GPIO']}
+];
 
-  function closeSkillModalOutside(e) {
-    if (e.target === document.getElementById('skillModalOverlay')) closeSkillModal();
-  }
+var skillsEN=[
+  {title:'VHDL / FPGA Design',description:'Core competency and heart of my professional activity. I design RTL digital architectures in VHDL from functional specs to the final synthesisable design. Experienced with complex FSMs, multi-stage pipelines, arbiters, synchronous/asynchronous FIFOs and custom IP cores on Xilinx, Intel/Altera and Lattice.'},
+  {title:'Simulation & Verification',description:'I develop structured VHDL testbenches for complete functional verification, using automatic stimuli, self-checking testbenches and functional coverage analysis. Experienced with commercial and open-source simulators, and with formal verification techniques for critical designs.'},
+  {title:'Communication Protocols',description:'Implementation and verification of standard and custom communication interfaces in VHDL: controllers for serial and parallel protocols, lightweight network stacks and high-speed interfaces. Particular expertise with the AXI4 bus for SoC IP integration.'},
+  {title:'Toolchain & Synthesis',description:'Full management of the FPGA implementation flow: from RTL synthesis to final bitstream. Analysis and resolution of timing violations, place & route optimisation for high-frequency designs, XDC/SDC constraint management and resource utilisation report analysis.'},
+  {title:'DSP on FPGA',description:'Design of DSP algorithms optimised for hardware implementation on FPGA. I work with fixed-point arithmetic, optimising precision and DSP slice resource consumption. Experienced in digital filters, FFT and pipelines for real-time signal acquisition and analysis.'},
+  {title:'Embedded & SoC',description:'Integration of FPGA logic with embedded processors in SoC architectures, focusing on the Zynq platform (ARM Cortex-A9 + FPGA). Design of custom IPs with AXI interface for PS-PL communication, bare-metal driver development and shared resource management.'}
+];
 
-  // ---- PROJECT MODAL ----
-  function openModal(idx) {
-    const p = projects[idx];
-    document.getElementById('modalTitle').textContent = p.title;
-    document.getElementById('modalTags').innerHTML = p.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
-    document.getElementById('modalBody').innerHTML =
-      '<div><div class="modal-section-label">Descrizione</div><p class="modal-text">' + p.description + '</p></div>' +
-      '<div><div class="modal-section-label">Specifiche tecniche</div><div class="modal-specs">' +
-      p.specs.map(function(s) { return '<div class="modal-spec"><div class="modal-spec-key">' + s.key + '</div><div class="modal-spec-val">' + s.val + '</div></div>'; }).join('') +
-      '</div></div>' +
-      '<div><div class="modal-section-label">Sfide affrontate</div><ul class="modal-challenges">' +
-      p.challenges.map(function(c) { return '<li>' + c + '</li>'; }).join('') +
-      '</ul></div>' +
-      '<div style="font-family:\'Space Mono\',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border);">' + p.period + ' · ' + p.platform + '</div>';
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+var projects=[
+  {title:'Sistema di Acquisizione Dati ad Alta Velocit\u00e0',tags:['VHDL','Xilinx','DSP','PCIe','ADC'],period:'2023 \u00b7 3 mesi',platform:'Xilinx Artix-7 XC7A200T',description:'Progettazione completa di un sistema di acquisizione dati su FPGA Xilinx Artix-7. Il sistema acquisisce segnali a 500 MSPS tramite un\'interfaccia ADC parallela a 12 bit, processa i dati con pipeline FIFO a doppio clock e li trasferisce verso host PC via PCIe Gen2 x4.',specs:[{key:'Piattaforma',val:'Xilinx Artix-7 XC7A200T'},{key:'Sample Rate',val:'500 MSPS'},{key:'Interfaccia',val:'PCIe Gen2 x4'},{key:'Throughput',val:'~1.5 GB/s'}],challenges:['Sincronizzazione clock ADC e FPGA con MMCM dedicato','Gestione FIFO asincrone per crossing di domini di clock','Ottimizzazione timing closure per frequenze > 250 MHz','DMA controller per trasferimento bulk verso host']},
+  {title:'Controller Motore Brushless Real-Time',tags:['VHDL','AXI4','Zynq','FOC','PWM'],period:'2023 \u00b7 2 mesi',platform:'Xilinx Zynq XC7Z020',description:'Implementazione di un algoritmo FOC per motore BLDC in logica programmabile su Zynq 7000. Il loop di controllo gira interamente nella PL con latenza deterministica < 1 \u03bcs, mentre ARM gestisce supervisione e comunicazione.',specs:[{key:'Piattaforma',val:'Xilinx Zynq XC7Z020'},{key:'Latenza loop',val:'< 1 \u03bcs'},{key:'Frequenza PWM',val:'20 kHz'},{key:'Bus',val:'AXI4-Lite'}],challenges:['Implementazione in virgola fissa delle trasformazioni di Clarke e Park','Regolatori PI in VHDL con anti-windup','Interfaccia AXI4-Lite per configurazione parametri da ARM','PWM a 3 fasi con dead-time programmabile']},
+  {title:'Stack UDP/IP su FPGA',tags:['VHDL','Ethernet','UDP/IP','ARP','ICMP'],period:'2022 \u00b7 4 mesi',platform:'Lattice ECP5-85F',description:'Stack di rete leggero con supporto Ethernet, ARP, ICMP e UDP/IP interamente in VHDL. Opera a 1 Gbps con latenza minima e zero dipendenze da soft-core CPU, ideale per applicazioni industriali a bassa latenza.',specs:[{key:'Piattaforma',val:'Lattice ECP5-85F'},{key:'Throughput',val:'1 Gbps wire-speed'},{key:'Latenza TX',val:'< 400 ns'},{key:'Protocolli',val:'ETH / ARP / ICMP / UDP'}],challenges:['Header Ethernet/IP/UDP in pipeline multi-stage','Tabella ARP con lookup in singolo ciclo di clock','Checksum IP e UDP in hardware con correzione incrementale','Buffer circolare per burst e backpressure']},
+  {title:'Analizzatore di Spettro Real-Time',tags:['VHDL','FFT','Intel','VGA','DSP'],period:'2022 \u00b7 2 mesi',platform:'Intel Cyclone V 5CSEBA6',description:'Analisi spettrale in tempo reale su Intel Cyclone V con pipeline FFT a 1024 punti. Risultato visualizzato su display VGA come waterfall chart a 60 fps, per analisi di segnali audio e RF.',specs:[{key:'Piattaforma',val:'Intel Cyclone V 5CSEBA6'},{key:'Punti FFT',val:'1024 punti'},{key:'Output',val:'VGA 640x480 @60Hz'},{key:'Finestramento',val:'Hanning window'}],challenges:['Pipeline FFT Cooley-Tukey con butterfly unit','Twiddle factor in ROM inizializzata a compile-time','Conversione in scala logaritmica (dB) in virgola fissa','Controller VGA con framebuffer dual-port']},
+  {title:'Interfaccia Multi-Sensore IoT',tags:['VHDL','SPI','Lattice','UART','IoT'],period:'2021 \u00b7 6 settimane',platform:'Lattice ECP5-25F',description:'Hub di acquisizione per 16 sensori SPI simultanei su Lattice ECP5. Dati pre-processati in FPGA e trasmessi via UART a 921600 baud verso un gateway IoT.',specs:[{key:'Piattaforma',val:'Lattice ECP5-25F'},{key:'Canali SPI',val:'16 simultanei'},{key:'UART Baud',val:'921600 bps'},{key:'Latenza totale',val:'< 5 ms/ciclo'}],challenges:['Scheduling 16 master SPI con round-robin a priorit\u00e0','Filtraggio mediano a finestra scorrevole in VHDL','Divisore clock SPI configurabile per sensore','Protocollo UART custom con CRC-8']},
+  {title:'Core Crittografico AES-128',tags:['VHDL','AES-128','CBC','Crittografia'],period:'2021 \u00b7 3 mesi',platform:'Xilinx Kintex-7 XC7K325T',description:'Implementazione hardware AES-128 in modalit\u00e0 CBC su Xilinx Kintex-7. Pipeline a 10 stage per massimizzare il throughput a 10 Gbps con area di risorse contenuta.',specs:[{key:'Piattaforma',val:'Xilinx Kintex-7 XC7K325T'},{key:'Throughput',val:'10 Gbps'},{key:'Modalit\u00e0',val:'AES-128 CBC'},{key:'Latenza',val:'10 cicli (pipeline)'}],challenges:['S-Box AES tramite LUT ottimizzate per area','Pipeline a 10 stage per massimizzare throughput','Gestione feedback CBC con registro di stato','Verifica con test vector NIST ufficiali']}
+];
 
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+var projectsEN=[
+  {title:'High-Speed Data Acquisition System',tags:['VHDL','Xilinx','DSP','PCIe','ADC'],period:'2023 \u00b7 3 months',platform:'Xilinx Artix-7 XC7A200T',description:'Full design of a high-speed data acquisition system on Xilinx Artix-7. The system samples signals at 500 MSPS via a 12-bit parallel ADC interface, processes data with a dual-clock FIFO pipeline and transfers it to a host PC via PCIe Gen2 x4.',specs:[{key:'Platform',val:'Xilinx Artix-7 XC7A200T'},{key:'Sample Rate',val:'500 MSPS'},{key:'Interface',val:'PCIe Gen2 x4'},{key:'Throughput',val:'~1.5 GB/s'}],challenges:['ADC and FPGA clock synchronisation with dedicated MMCM','Asynchronous FIFO management for clock domain crossing','Timing closure optimisation for frequencies > 250 MHz','DMA controller for bulk transfers to host']},
+  {title:'Real-Time Brushless Motor Controller',tags:['VHDL','AXI4','Zynq','FOC','PWM'],period:'2023 \u00b7 2 months',platform:'Xilinx Zynq XC7Z020',description:'Implementation of a FOC algorithm for BLDC motors in programmable logic on Zynq 7000. The control loop runs entirely in PL with deterministic latency < 1 \u03bcs, while ARM handles supervision and communication.',specs:[{key:'Platform',val:'Xilinx Zynq XC7Z020'},{key:'Loop latency',val:'< 1 \u03bcs'},{key:'PWM frequency',val:'20 kHz'},{key:'Bus',val:'AXI4-Lite'}],challenges:['Fixed-point Clarke and Park transforms','PI regulators in VHDL with anti-windup','AXI4-Lite interface for ARM parameter configuration','3-phase PWM with programmable dead-time']},
+  {title:'UDP/IP Stack on FPGA',tags:['VHDL','Ethernet','UDP/IP','ARP','ICMP'],period:'2022 \u00b7 4 months',platform:'Lattice ECP5-85F',description:'Lightweight network stack with Ethernet, ARP, ICMP and UDP/IP entirely in VHDL. Operates at 1 Gbps with minimal latency and zero soft-core CPU dependency, ideal for low-latency industrial applications.',specs:[{key:'Platform',val:'Lattice ECP5-85F'},{key:'Throughput',val:'1 Gbps wire-speed'},{key:'TX latency',val:'< 400 ns'},{key:'Protocols',val:'ETH / ARP / ICMP / UDP'}],challenges:['Ethernet/IP/UDP headers in multi-stage pipeline','ARP table with single-cycle lookup','IP and UDP checksum in hardware with incremental correction','Circular buffer for burst and backpressure management']},
+  {title:'Real-Time Spectrum Analyser',tags:['VHDL','FFT','Intel','VGA','DSP'],period:'2022 \u00b7 2 months',platform:'Intel Cyclone V 5CSEBA6',description:'Real-time spectral analysis on Intel Cyclone V with a 1024-point FFT pipeline. Result displayed on VGA as a waterfall chart at 60 fps, for audio and RF signal analysis.',specs:[{key:'Platform',val:'Intel Cyclone V 5CSEBA6'},{key:'FFT points',val:'1024 points'},{key:'Output',val:'VGA 640x480 @60Hz'},{key:'Windowing',val:'Hanning window'}],challenges:['Cooley-Tukey FFT pipeline with butterfly units','Twiddle factors in compile-time initialised ROM','Logarithmic scale (dB) conversion in fixed point','VGA controller with dual-port framebuffer']},
+  {title:'Multi-Sensor IoT Interface',tags:['VHDL','SPI','Lattice','UART','IoT'],period:'2021 \u00b7 6 weeks',platform:'Lattice ECP5-25F',description:'Acquisition hub for 16 simultaneous SPI sensors on Lattice ECP5. Data pre-processed in FPGA and transmitted via UART at 921600 baud to an IoT gateway.',specs:[{key:'Platform',val:'Lattice ECP5-25F'},{key:'SPI channels',val:'16 simultaneous'},{key:'UART Baud',val:'921600 bps'},{key:'Total latency',val:'< 5 ms/cycle'}],challenges:['16 SPI master scheduling with priority round-robin','Sliding-window median filter in VHDL','Per-sensor configurable SPI clock divider','Custom UART protocol with CRC-8']},
+  {title:'AES-128 Cryptographic Core',tags:['VHDL','AES-128','CBC','Cryptography'],period:'2021 \u00b7 3 months',platform:'Xilinx Kintex-7 XC7K325T',description:'Hardware AES-128 CBC implementation on Xilinx Kintex-7. 10-stage pipeline to maximise throughput at 10 Gbps with compact resource area.',specs:[{key:'Platform',val:'Xilinx Kintex-7 XC7K325T'},{key:'Throughput',val:'10 Gbps'},{key:'Mode',val:'AES-128 CBC'},{key:'Latency',val:'10 cycles (pipeline)'}],challenges:['AES S-Box via area-optimised LUTs','10-stage pipeline to maximise throughput','CBC feedback register management','Verification with official NIST test vectors']}
+];
 
-  function closeModalOutside(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
+function openSkillModal(idx){
+  var s=currentLang==='en'?Object.assign({},skills[idx],skillsEN[idx]):skills[idx];
+  var t=i18n[currentLang];
+  document.getElementById('skillModalTitle').textContent=s.title;
+  document.getElementById('skillModalBody').innerHTML=
+    '<div><div class="modal-section-label">'+t.lbl_desc+'</div><p class="modal-text">'+s.description+'</p></div>'+
+    '<div><div class="modal-section-label">'+t.lbl_tools+'</div><ul class="modal-challenges">'+
+    skills[idx].tools.map(function(tool){return '<li>'+tool+'</li>';}).join('')+
+    '</ul></div>';
+  var o=document.getElementById('skillModalOverlay');
+  o.setAttribute('data-open-idx',idx);
+  o.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSkillModal(){document.getElementById('skillModalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeSkillModalOutside(e){if(e.target===document.getElementById('skillModalOverlay'))closeSkillModal();}
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeModal(); closeSkillModal(); }
+function openModal(idx){
+  var p=currentLang==='en'?projectsEN[idx]:projects[idx];
+  var t=i18n[currentLang];
+  document.getElementById('modalTitle').textContent=p.title;
+  document.getElementById('modalTags').innerHTML=projects[idx].tags.map(function(tag){return '<span class="tag">'+tag+'</span>';}).join('');
+  document.getElementById('modalBody').innerHTML=
+    '<div><div class="modal-section-label">'+t.lbl_desc+'</div><p class="modal-text">'+p.description+'</p></div>'+
+    '<div><div class="modal-section-label">'+t.lbl_specs+'</div><div class="modal-specs">'+
+    p.specs.map(function(s){return '<div class="modal-spec"><div class="modal-spec-key">'+s.key+'</div><div class="modal-spec-val">'+s.val+'</div></div>';}).join('')+
+    '</div></div>'+
+    '<div><div class="modal-section-label">'+t.lbl_challenges+'</div><ul class="modal-challenges">'+
+    p.challenges.map(function(c){return '<li>'+c+'</li>';}).join('')+
+    '</ul></div>'+
+    '<div style="font-family:\'Space Mono\',monospace;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border);">'+p.period+' \u00b7 '+p.platform+'</div>';
+  var o=document.getElementById('modalOverlay');
+  o.setAttribute('data-open-idx',idx);
+  o.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeSkillModal();}});
+
+function switchLang(){
+  currentLang=currentLang==='it'?'en':'it';
+  history.replaceState(null,'','?'+currentLang);
+  var t=i18n[currentLang];
+  document.getElementById('lang-btn').textContent=t.lang_btn;
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined)el.textContent=t[key];
   });
+  document.getElementById('form-nome').placeholder=t.ph1;
+  document.getElementById('form-azienda').placeholder=t.ph2;
+  document.getElementById('form-email').placeholder=t.ph3;
+  document.getElementById('form-messaggio').placeholder=t.ph4;
+  var so=document.getElementById('skillModalOverlay');
+  var mo=document.getElementById('modalOverlay');
+  if(so.classList.contains('open'))openSkillModal(parseInt(so.getAttribute('data-open-idx')));
+  if(mo.classList.contains('open'))openModal(parseInt(mo.getAttribute('data-open-idx')));
+}
 
-  // ---- EMAILJS ----
-  window.addEventListener('load', function() { emailjs.init('kpcS4_EBMmxvlnJGD'); });
+window.addEventListener('load',function(){
+  emailjs.init('kpcS4_EBMmxvlnJGD');
+  if(currentLang==='en') applyLang('en');
+});
 
-  function inviaMailto(e) {
-    e.preventDefault();
-    var btn = e.target;
-    var nome = document.getElementById('form-nome').value.trim();
-    var azienda = document.getElementById('form-azienda').value.trim();
-    var email = document.getElementById('form-email').value.trim();
-    var messaggio = document.getElementById('form-messaggio').value.trim();
+function applyLang(lang){
+  currentLang=lang;
+  var t=i18n[lang];
+  document.getElementById('lang-btn').textContent=t.lang_btn;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(t[key]!==undefined)el.textContent=t[key];});
+  document.getElementById('form-nome').placeholder=t.ph1;
+  document.getElementById('form-azienda').placeholder=t.ph2;
+  document.getElementById('form-email').placeholder=t.ph3;
+  document.getElementById('form-messaggio').placeholder=t.ph4;
+  var so=document.getElementById('skillModalOverlay');
+  var mo=document.getElementById('modalOverlay');
+  if(so.classList.contains('open'))openSkillModal(parseInt(so.getAttribute('data-open-idx')));
+  if(mo.classList.contains('open'))openModal(parseInt(mo.getAttribute('data-open-idx')));
+}
 
-    if (!nome || !email || !messaggio) {
-      btn.textContent = 'COMPILA TUTTI I CAMPI';
-      btn.style.borderColor = '#e05252';
-      btn.style.color = '#e05252';
-      setTimeout(function() {
-        btn.textContent = 'INVIA MESSAGGIO →';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-      }, 2500);
-      return;
-    }
-
-    btn.textContent = 'INVIO IN CORSO...';
-    btn.disabled = true;
-
-    emailjs.send('service_3q0h5db', 'template_j7883ln', {
-      name: nome,
-      company: azienda || '—',
-      email: email,
-      message: messaggio
-    }).then(function() {
-      btn.textContent = 'MESSAGGIO INVIATO ✓';
-      btn.style.background = 'var(--accent)';
-      btn.style.color = 'var(--bg)';
-      btn.style.borderColor = 'var(--accent)';
-      document.getElementById('form-nome').value = '';
-      document.getElementById('form-azienda').value = '';
-      document.getElementById('form-email').value = '';
-      document.getElementById('form-messaggio').value = '';
-      setTimeout(function() {
-        btn.textContent = 'INVIA MESSAGGIO →';
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.style.borderColor = '';
-        btn.disabled = false;
-      }, 3000);
-    }, function(err) {
-      console.error('EmailJS error:', JSON.stringify(err));
-      btn.textContent = 'ERRORE: ' + (err.text || err.status || 'sconosciuto');
-      btn.style.borderColor = '#e05252';
-      btn.style.color = '#e05252';
-      btn.disabled = false;
-      setTimeout(function() {
-        btn.textContent = 'INVIA MESSAGGIO →';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-      }, 5000);
-    });
+function inviaMailto(e){
+  e.preventDefault();
+  var btn=e.target;
+  var nome=document.getElementById('form-nome').value.trim();
+  var azienda=document.getElementById('form-azienda').value.trim();
+  var email=document.getElementById('form-email').value.trim();
+  var messaggio=document.getElementById('form-messaggio').value.trim();
+  if(!nome||!email||!messaggio){
+    btn.textContent=currentLang==='en'?'FILL ALL FIELDS':'COMPILA TUTTI I CAMPI';
+    btn.style.borderColor='#e05252';btn.style.color='#e05252';
+    setTimeout(function(){btn.textContent=i18n[currentLang].btn_send;btn.style.borderColor='';btn.style.color='';},2500);
+    return;
   }
-
-  // ---- STAGGER ANIMATION ----
-  document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach(function(el, i) {
-    el.style.transitionDelay = (i % 3) * 80 + 'ms';
+  btn.textContent=currentLang==='en'?'SENDING...':'INVIO IN CORSO...';
+  btn.disabled=true;
+  emailjs.send('service_3q0h5db','template_j7883ln',{name:nome,company:azienda||'\u2014',email:email,message:messaggio})
+  .then(function(){
+    btn.textContent=currentLang==='en'?'MESSAGE SENT \u2713':'MESSAGGIO INVIATO \u2713';
+    btn.style.background='var(--accent)';btn.style.color='var(--bg)';btn.style.borderColor='var(--accent)';
+    document.getElementById('form-nome').value='';document.getElementById('form-azienda').value='';
+    document.getElementById('form-email').value='';document.getElementById('form-messaggio').value='';
+    setTimeout(function(){btn.textContent=i18n[currentLang].btn_send;btn.style.background='';btn.style.color='';btn.style.borderColor='';btn.disabled=false;},3000);
+  },function(err){
+    btn.textContent='ERRORE: '+(err.text||err.status||'sconosciuto');
+    btn.style.borderColor='#e05252';btn.style.color='#e05252';btn.disabled=false;
+    setTimeout(function(){btn.textContent=i18n[currentLang].btn_send;btn.style.borderColor='';btn.style.color='';},4000);
   });
-
+}
+var scrollObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var el=entry.target,i=Array.from(el.parentNode.children).indexOf(el);setTimeout(function(){el.classList.add('visible');},i*70);scrollObs.unobserve(el);}});},{threshold:0.08});
+document.querySelectorAll('.anim-item').forEach(function(el){scrollObs.observe(el);});
 </script>
 </body>
 </html>
