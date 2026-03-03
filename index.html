@@ -142,7 +142,7 @@
   }
 
   .hero-sub {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: var(--muted);
     max-width: 520px;
     line-height: 1.7;
@@ -235,7 +235,7 @@
 
   .stat-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--muted);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -305,7 +305,7 @@
   }
 
   .skill-desc {
-    font-size: 1.02rem;
+    font-size: 1.12rem;
     color: var(--muted);
     line-height: 1.6;
   }
@@ -371,7 +371,7 @@
   }
 
   .project-desc {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: var(--muted);
     line-height: 1.7;
   }
@@ -423,7 +423,7 @@
     color: var(--muted);
     line-height: 1.7;
     margin-bottom: 2rem;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
 
   .contact-links {
@@ -489,7 +489,7 @@
     padding: 0.8rem 1rem;
     color: var(--text);
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     outline: none;
     transition: border-color 0.2s;
     resize: none;
@@ -1111,10 +1111,7 @@
           <span class="contact-icon">in</span>
           linkedin.com/in/mario-rossi
         </a>
-        <a href="https://github.com/mario-rossi" class="contact-link">
-          <span class="contact-icon">◈</span>
-          github.com/mario-rossi
-        </a>
+
       </div>
     </div>
 
@@ -1123,20 +1120,20 @@
         <div class="form-row">
           <div class="form-field">
             <label>Nome</label>
-            <input type="text" placeholder="Il tuo nome">
+            <input type="text" id="form-nome" placeholder="Il tuo nome">
           </div>
           <div class="form-field">
             <label>Azienda</label>
-            <input type="text" placeholder="Azienda (opz.)">
+            <input type="text" id="form-azienda" placeholder="Azienda (opz.)">
           </div>
         </div>
         <div class="form-field">
           <label>Email</label>
-          <input type="email" placeholder="tua@email.com">
+          <input type="email" id="form-email" placeholder="tua@email.com">
         </div>
         <div class="form-field">
           <label>Messaggio</label>
-          <textarea rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
+          <textarea id="form-messaggio" rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
         </div>
         <button class="btn-send" onclick="inviaMailto(event)">INVIA MESSAGGIO →</button>
       </div>
@@ -1333,10 +1330,10 @@
   function inviaMailto(e) {
     e.preventDefault();
     var btn = e.target;
-    var nome = document.querySelector('input[placeholder="Il tuo nome"]').value.trim();
-    var azienda = document.querySelector('input[placeholder="Azienda (opz.)"]').value.trim();
-    var email = document.querySelector('input[placeholder="tua@email.com"]').value.trim();
-    var messaggio = document.querySelector('textarea').value.trim();
+    var nome = document.getElementById('form-nome').value.trim();
+    var azienda = document.getElementById('form-azienda').value.trim();
+    var email = document.getElementById('form-email').value.trim();
+    var messaggio = document.getElementById('form-messaggio').value.trim();
 
     if (!nome || !email || !messaggio) {
       btn.textContent = 'COMPILA TUTTI I CAMPI';
@@ -1363,10 +1360,10 @@
       btn.style.background = 'var(--accent)';
       btn.style.color = 'var(--bg)';
       btn.style.borderColor = 'var(--accent)';
-      document.querySelector('input[placeholder="Il tuo nome"]').value = '';
-      document.querySelector('input[placeholder="Azienda (opz.)"]').value = '';
-      document.querySelector('input[placeholder="tua@email.com"]').value = '';
-      document.querySelector('textarea').value = '';
+      document.getElementById('form-nome').value = '';
+      document.getElementById('form-azienda').value = '';
+      document.getElementById('form-email').value = '';
+      document.getElementById('form-messaggio').value = '';
       setTimeout(function() {
         btn.textContent = 'INVIA MESSAGGIO →';
         btn.style.background = '';
