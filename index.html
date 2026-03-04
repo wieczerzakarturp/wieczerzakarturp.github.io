@@ -4,20 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio — Ingegnere FPGA</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
-  :root { --bg:#1e1e1e; --bg2:#242424; --accent:#e8924a; --accent2:#c9762e; --text:#eeebe6; --muted:#b8b0a8; --border:#2e2e2e; --card:#252525; }
+  :root { --bg:#16181d; --bg2:#1c1e24; --accent:#e8924a; --accent2:#c9762e; --text:#edeae4; --muted:#a8a09a; --border:#2c2e35; --card:#1e2028; }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(232,146,74,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,146,74,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(30,30,30,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(30,30,30,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  body.light nav{background:rgba(245,243,240,0.92);}
   .nav-logo{font-family:'Space Mono',monospace;font-size:0.85rem;color:var(--accent);letter-spacing:0.1em;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.2s;}
   .nav-links a:hover{color:var(--accent);}
   .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.35rem 0.9rem;border-radius:2px;cursor:pointer;letter-spacing:0.1em;transition:border-color 0.2s,color 0.2s;}
+  #theme-btn{font-size:1.1rem;padding:0.25rem 0.6rem;line-height:1;}
   .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
   #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;z-index:1;}
   .hero-inner{max-width:900px;}
@@ -46,15 +48,15 @@
   .section-line{flex:1;height:1px;background:var(--border);}
   #skills{background:var(--bg2);}
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
-  .skill-card{background:var(--card);padding:2rem;transition:background 0.2s;cursor:pointer;}
+  .skill-card{background:var(--card);padding:2rem;transition:background 0.2s;cursor:pointer;display:flex;flex-direction:column;}
   .skill-card:hover{background:#2e2e2e;}
   .skill-name{font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;}
-  .skill-desc{font-size:1.12rem;color:var(--muted);line-height:1.6;}.skill-hint{font-size:1.1rem;color:var(--accent);opacity:0.5;text-align:right;margin-top:1rem;transition:opacity 0.2s,transform 0.2s;}.skill-card:hover .skill-hint{opacity:1;transform:translate(3px,-3px);}
+  .skill-desc{font-size:1.12rem;color:var(--muted);line-height:1.6;flex:1;}.skill-hint{font-size:1.1rem;color:var(--accent);opacity:0.5;text-align:right;margin-top:1rem;transition:opacity 0.2s,transform 0.2s;}.skill-card:hover .skill-hint{opacity:1;transform:translate(3px,-3px);}
   .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;}
-  .project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;cursor:pointer;}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;cursor:pointer;display:flex;flex-direction:column;}
   .project-card:hover{transform:translateY(-4px);border-color:rgba(232,146,74,0.3);box-shadow:0 8px 24px rgba(0,0,0,0.35);}
   .project-top{height:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-  .project-body{padding:1.8rem;}
+  .project-body{padding:1.8rem;flex:1;}
   .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
   .tag{font-family:'Space Mono',monospace;font-size:0.75rem;padding:0.2rem 0.6rem;background:rgba(232,146,74,0.07);color:var(--accent);border-radius:2px;letter-spacing:0.05em;border:1px solid rgba(232,146,74,0.15);}
   .project-title{font-size:1.25rem;font-weight:700;margin-bottom:0.7rem;line-height:1.3;}
@@ -75,13 +77,14 @@
   .contact-form{display:flex;flex-direction:column;gap:1rem;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
   .form-field{display:flex;flex-direction:column;gap:0.4rem;}
-  .form-field label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
-  .form-field input,.form-field textarea{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:0.8rem 1rem;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:1.1rem;outline:none;transition:border-color 0.2s;resize:none;}
+  .form-field label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}.form-field label .req{color:var(--accent);}
+  .form-field input,.form-field textarea{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:0.8rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:1.1rem;outline:none;transition:border-color 0.2s;resize:none;}
   .form-field input:focus,.form-field textarea:focus{border-color:var(--accent);}
   .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted);}
   .btn-send{padding:1rem 2rem;background:transparent;border:1px solid var(--accent);color:var(--accent);font-family:'Space Mono',monospace;font-size:0.8rem;letter-spacing:0.1em;cursor:pointer;border-radius:2px;transition:background 0.2s,color 0.2s;align-self:flex-start;}
   .btn-send:hover{background:var(--accent);color:var(--bg);}
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
+  body.light .modal-overlay{background:rgba(20,22,26,0.55);backdrop-filter:blur(10px);}
   .modal-overlay.open{display:flex;opacity:1;pointer-events:all;}
   .modal{background:var(--card);border:1px solid rgba(232,146,74,0.25);border-radius:4px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
   .modal-top{height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
@@ -113,6 +116,13 @@
   .anim-item.visible{opacity:1;transform:translateY(0);}
   .modal-overlay.open .modal{animation:modalIn 0.28s ease forwards;}
 
+
+  body.light{--bg:#eef0f4;--bg2:#e4e7ed;--accent:#c97a2e;--accent2:#a85f1a;--text:#0a0c10;--muted:#454850;--border:#c0c4cc;--card:#ffffff;}
+  body.light .nav-logo{color:var(--text);}body.light nav a{color:var(--text);}body.light .lang-btn{color:var(--text);border-color:var(--border);}body.light .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+  body.light .skill-card:hover{background:#e8e4de;}
+  body.light .project-card{box-shadow:0 2px 12px rgba(0,0,0,0.10);border-color:#c0c4cc;}body.light .skill-card{box-shadow:0 1px 6px rgba(0,0,0,0.07);}body.light .modal{box-shadow:0 8px 40px rgba(0,0,0,0.18);border-color:#b8bcc4;}body.light .stats-bar{box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+  body.light .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);}
+  body.light .btn-send:hover{color:#fff;}
   @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}#hero{padding:7rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}}
 </style>
 </head>
@@ -124,7 +134,10 @@
     <li><a href="#projects" data-i18n="nav_projects">Progetti</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contatti</a></li>
   </ul>
-  <button id="lang-btn" class="lang-btn" onclick="switchLang()">EN</button>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button id="theme-btn" class="lang-btn" onclick="toggleTheme()" title="Toggle theme">&#9788;</button>
+    <button id="lang-btn" class="lang-btn" onclick="switchLang()">EN</button>
+  </div>
 </nav>
 
 <section id="hero">
@@ -200,18 +213,18 @@
       <h3 class="contact-headline"><span data-i18n="cht1">Hai un progetto</span><br><span data-i18n="cht2">FPGA in mente?</span></h3>
       <p class="contact-text" data-i18n="contact_text">Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#d1a6ffb0a3a5a4a3a191b6bcb0b8bdffb2bebc" class="contact-link"><span class="contact-icon">&#9993;</span><span class="__cf_email__" data-cfemail="e196cf809395949391a1868c80888dcf828e8c">[email&#160;protected]</span></a>
+        <a href="#" id="email-link" class="contact-link"><span class="contact-icon">&#9993;</span><span id="email-text"></span></a>
         <a href="https://www.linkedin.com/in/arturpw/" class="contact-link" target="_blank" rel="noopener noreferrer"><span class="contact-icon">in</span>linkedin.com/in/arturpw</a>
       </div>
     </div>
     <div>
       <div class="contact-form">
         <div class="form-row">
-          <div class="form-field"><label data-i18n="lbl1">Nome</label><input type="text" id="form-nome" placeholder="Il tuo nome"></div>
+          <div class="form-field"><label data-i18n="lbl1">Nome *</label><input type="text" id="form-nome" placeholder="Il tuo nome"></div>
           <div class="form-field"><label data-i18n="lbl2">Azienda</label><input type="text" id="form-azienda" placeholder="Azienda (opz.)"></div>
         </div>
-        <div class="form-field"><label data-i18n="lbl3">Email</label><input type="email" id="form-email" placeholder="tua@email.com"></div>
-        <div class="form-field"><label data-i18n="lbl4">Messaggio</label><textarea id="form-messaggio" rows="5" placeholder="Descrivi il tuo progetto..."></textarea></div>
+        <div class="form-field"><label data-i18n="lbl3">Email *</label><input type="email" id="form-email" placeholder="tua@email.com"></div>
+        <div class="form-field"><label data-i18n="lbl4">Messaggio *</label><textarea id="form-messaggio" rows="5" placeholder="Descrivi il tuo progetto..."></textarea></div>
         <button class="btn-send" data-i18n="btn_send" onclick="inviaMailto(event)">INVIA MESSAGGIO &#8594;</button>
       </div>
     </div>
@@ -236,7 +249,7 @@
   <div class="footer-copy" data-i18n="footer">&#169; 2025 Artur Pawel Wieczerzak &middot; Tutti i diritti riservati</div>
   <div class="footer-tag">// Built with precision</div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 var currentLang=(location.search==='?en')?'en':'it';
 var i18n={
   it:{
@@ -254,7 +267,7 @@ var i18n={
     sk5_name:'Sistemi & Piattaforme',sk5_desc:'Xilinx Zynq (7000 e UltraScale+), bring-up schede custom, debug su hardware. Esperienza con PetaLinux per configurazione software di sistema.',
     cht1:'Hai un progetto',cht2:'FPGA in mente?',
     contact_text:'Sono disponibile per collaborazioni freelance su progetti di progettazione digitale, verifica e ottimizzazione su FPGA. Rispondo entro 24 ore.',
-    lbl1:'Nome',lbl2:'Azienda',lbl3:'Email',lbl4:'Messaggio',
+    lbl1:'Nome *',lbl2:'Azienda',lbl3:'Email *',lbl4:'Messaggio *',
     ph1:'Il tuo nome',ph2:'Azienda (opz.)',ph3:'tua@email.com',ph4:'Descrivi il tuo progetto...',
     btn_send:'INVIA MESSAGGIO \u2192',
     
@@ -281,7 +294,7 @@ var i18n={
     sk5_name:'Sistemi & Piattaforme',sk5_desc:'Xilinx Zynq (7000 and UltraScale+), custom board bring-up, hardware debug. Experience with PetaLinux for system software configuration.',
     cht1:'Have an',cht2:'FPGA project in mind?',
     contact_text:'Available for freelance collaboration on digital design, verification and FPGA optimisation projects. I reply within 24 hours.',
-    lbl1:'Name',lbl2:'Company',lbl3:'Email',lbl4:'Message',
+    lbl1:'Name *',lbl2:'Company',lbl3:'Email *',lbl4:'Message *',
     ph1:'Your name',ph2:'Company (opt.)',ph3:'your@email.com',ph4:'Describe your project...',
     btn_send:'SEND MESSAGE \u2192',
     pt0:'DO-254 DAL-A Validation — Avionic AFDX Controller',pd0:'Verification and validation in simulation of an avionic AFDX controller per DO-254 DAL-A. VHDL testbench development and 100% code coverage analysis in Aldec Active-HDL.',
@@ -317,7 +330,7 @@ var projects=[
   {title:'Validazione DO-254 DAL-A — Controller AFDX Avionico',tags:['VHDL','DO-254','AFDX','Aldec','Ethernet'],platform:'Microsemi PolarFire (target)',description:'Attività di verifica e validazione in simulazione di un controller AFDX sviluppato da terze parti, in ambito avionico DO-254 DAL-A. Il lavoro ha compreso la review dei requisiti in IBM DOORS, lo sviluppo di testbench VHDL strutturati su Aldec Active-HDL e il raggiungimento del 100% di code coverage (statement, branch, MC/DC) richiesto dalla normativa.',specs:[{key:'Standard',val:'DO-254 DAL-A'},{key:'Protocollo',val:'AFDX / Ethernet'},{key:'Tool simulazione',val:'Aldec Active-HDL'},{key:'Coverage',val:'100% stmt/branch/MC-DC'}],challenges:['Review e tracciabilità requisiti in IBM DOORS','Sviluppo testbench VHDL per copertura funzionale completa','Raggiungimento 100% code coverage secondo DO-254 DAL-A']},
   
   {title:'Digital Pattern Generator 128 Canali High-Speed',tags:['VHDL','Zynq','Aurora','SPI'],platform:'Xilinx Zynq UltraScale+ + Artix-7 (scheda custom)',description:'Sistema a 128 canali digitali ad alta velocità su scheda custom (Zynq + Artix-7), indirizzato al test di sistemi digitali. Il design gestisce la generazione dei pattern, la comunicazione con le altre schede tramite Aurora 8b/10b e 64b/66b, e il controllo dei pin driver tramite un protocollo seriale custom. I pin driver sono dispositivi dedicati che realizzano le uscite fisiche verso il dispositivo in test.',specs:[{key:'Piattaforma',val:'Scheda custom (Zynq UltraScale+ + Artix-7)'},{key:'Canali',val:'128 digitali'},{key:'Freq. attuale',val:'100 MHz (target 1 Gbit/s)'},{key:'Interfacce',val:'Aurora 8b/10b, 64b/66b, SPI'}],challenges:['Timing closure su design con interfacce ad alta velocità (Aurora, SPI)','Progettazione del protocollo seriale custom per controllo dei pin driver','Gestione della comunicazione Aurora 8b/10b e 64b/66b verso altre schede','Architettura del sistema per garantire scalabilità verso 1 Gbit/s']},
-  {title:'Pattern Generator Digitale a 256 Canali',tags:['VHDL','Zynq','Spartan-6','Aurora','ISE'],platform:'Zynq + Spartan-6 (schede custom)',description:'Sviluppo della logica FPGA per un pattern generator digitale a 256 canali, distribuito su due schede custom, ciascuna composta da una Zynq e due Spartan-6. I file descrittivi del pattern vengono caricati dalla Zynq e trasmessi alle FPGA tramite link seriale Aurora 64b/66b, dove vengono memorizzati in BRAM e mandati in esecuzione. Il progetto ha incluso il bring-up completo delle schede custom, integrazione e debug del sistema complessivo.',specs:[{key:'Piattaforma',val:'2 schede custom (1 Zynq + 2 Spartan-6 ciascuna)'},{key:'Link dati',val:'Aurora 64b/66b'},{key:'Freq. max',val:'32 MHz'}],challenges:['Bring-up e debug delle schede custom (Zynq + Spartan-6)','Sincronizzazione deterministica tra 2 Zynq e 4 Spartan-6','Ricezione e storage dei pattern in BRAM via Aurora 64b/66b','FSM di controllo per esecuzione di sequenze di pattern arbitrariamente lunghe']},
+  {title:'Pattern Generator Digitale a 256 Canali',tags:['VHDL','Zynq','Spartan-6','Aurora','ISE'],platform:'Zynq + Spartan-6 (schede custom)',description:'Sviluppo della logica FPGA per un pattern generator digitale a 256 canali, distribuito su due schede custom, ciascuna composta da una Zynq e due Spartan-6. I file descrittivi del pattern vengono caricati dalla Zynq e trasmessi alle FPGA tramite link seriale Aurora 64b/66b, dove vengono memorizzati in BRAM e mandati in esecuzione. Il progetto ha incluso il bring-up completo delle schede custom, integrazione e debug del sistema complessivo.',specs:[{key:'Piattaforma',val:'2 schede custom (1 Zynq + 2 Spartan-6 ciascuna)'},{key:'Interfacce',val:'Aurora 64b/66b'},{key:'Freq. max',val:'32 MHz'},{key:'Canali',val:'256 digitali'}],challenges:['Bring-up e debug delle schede custom (Zynq + Spartan-6)','Sincronizzazione deterministica tra 2 Zynq e 4 Spartan-6','Ricezione e storage dei pattern in BRAM via Aurora 64b/66b','FSM di controllo per esecuzione di sequenze di pattern arbitrariamente lunghe']},
   {title:'Controller FPGA per Test Funzionale di Banco di Prova',tags:['VHDL','Zynq','Vivado','UART','Spazio'],platform:'Xilinx Zynq',description:'Sviluppo di un controller FPGA su Zynq dedicato al test rapido e al debug funzionale di un banco di prova. Il design, separato dal firmware operativo del banco, consentiva di azionare manualmente qualsiasi risorsa tramite comandi seriali inviati da terminale, facilitando le attività di verifica e debug. Il progetto ha incluso il bring-up dell\'hardware e il debug sul banco reale.',specs:[{key:'Piattaforma',val:'Scheda custom (Zynq UltraScale+ + Artix-7)'},{key:'Tool',val:'Vivado / Active-HDL / ModelSim'},{key:'Interfaccia',val:'Comandi seriali (UART)'},{key:'Contesto',val:'Banco di prova'}],challenges:['Bring-up dell\'hardware Zynq e debug sul banco reale','Progettazione di un\'architettura flessibile per il controllo manuale di risorse eterogenee','Separazione netta tra design di test e firmware operativo','Verifica funzionale rapida tramite interfaccia a comandi seriali']},
   {title:'Monitoring Board per Attuatore Avionico',tags:['VHDL','DO-254','SmartFusion','LVDT','Resolver'],platform:'Microchip/Microsemi',description:'Progetto seguito per l\'intero ciclo di sviluppo: stesura dei requisiti FPGA a partire dai requisiti di sistema, progettazione della logica in VHDL, debug e integrazione hardware, fino alla stesura di testcase e testbench per la validazione DO-254 DAL-C. Il design implementa algoritmi di monitoring di coerenza del movimento motore (tramite sensori LVDT e resolver), delle correnti di attuazione, della velocità e delle temperature, con capacità di bloccare l\'attuazione in caso di anomalia. La board comunica con il computer di volo (FCU) tramite un protocollo seriale custom ad alta sicurezza e inoltra dati verso la scheda di controllo basata su microcontrollore. Parti del design sono sviluppate con gestione SEU e ridondanza secondo DO-254 DAL-C.',specs:[{key:'Piattaforma',val:'Microsemi SmartFusion'},{key:'Standard',val:'DO-254 DAL-C'},{key:'Comunicazione',val:'Protocollo seriale custom (FCU)'},{key:'Sensori',val:'LVDT, Resolver'}],challenges:['Stesura dei requisiti FPGA a partire da requisiti di sistema di più alto livello','Sviluppo di algoritmi di monitoring di coerenza meccanica da sensori LVDT e resolver','Comunicazione affidabile con FCU via protocollo seriale custom ad alta sicurezza','Gestione SEU e ridondanza secondo requisiti DO-254 DAL-C','Sviluppo testcase e testbench per validazione DO-254 DAL-C','Testbench con sistema di logging strutturato per tracciabilità diretta dei requisiti e facilitazione della review','Integrazione con la control board e debug su hardware con motore reale']}
 ,
@@ -327,7 +340,7 @@ var projectsEN=[
   {title:'DO-254 DAL-A Validation — Avionic AFDX Controller',tags:['VHDL','DO-254','AFDX','Aldec','Ethernet'],platform:'Microsemi PolarFire (target)',description:'Verification and validation in simulation of a third-party avionic AFDX controller, performed against DO-254 DAL-A requirements. Work included requirements review in IBM DOORS, structured VHDL testbench development in Aldec Active-HDL, and achieving 100% code coverage (statement, branch, MC/DC) as mandated by the standard.',specs:[{key:'Standard',val:'DO-254 DAL-A'},{key:'Protocol',val:'AFDX / Ethernet'},{key:'Simulation tool',val:'Aldec Active-HDL'},{key:'Coverage',val:'100% stmt/branch/MC-DC'}],challenges:['Requirements review and traceability in IBM DOORS','Structured VHDL testbench development for full functional coverage','100% code coverage achievement per DO-254 DAL-A']},
   
   {title:'128-Channel High-Speed Digital Pattern Generator',tags:['VHDL','Zynq','Aurora','SPI'],platform:'Xilinx Zynq UltraScale+ + Artix-7 (custom board)',description:'128-channel high-speed digital system on a custom board (Zynq + Artix-7), targeting digital system testing. The design handles pattern generation, inter-board communication via Aurora 8b/10b and 64b/66b, and pin driver control via a custom serial protocol. The pin drivers are dedicated devices implementing the physical outputs toward the device under test.',specs:[{key:'Platform',val:'Custom board (Zynq UltraScale+ + Artix-7)'},{key:'Channels',val:'128 digital'},{key:'Current freq.',val:'100 MHz (target 1 Gbit/s)'},{key:'Interfaces',val:'Aurora 8b/10b, 64b/66b, SPI'}],challenges:['Timing closure on a design with multiple high-speed interfaces (Aurora, SPI)','Custom serial protocol design for pin driver control','Aurora 8b/10b and 64b/66b communication management toward other boards','System architecture designed for scalability toward 1 Gbit/s']},
-  {title:'256-Channel Digital Pattern Generator',tags:['VHDL','Zynq','Spartan-6','Aurora','ISE'],platform:'Zynq + Spartan-6 (custom boards)',description:'FPGA logic development for a 256-channel digital pattern generator distributed across two custom boards, each comprising one Zynq and two Spartan-6 FPGAs. Pattern files are loaded from the Zynq and transmitted to the FPGAs via Aurora 64b/66b serial links, where they are stored in BRAM and executed on command. The project included full bring-up of the custom boards, system integration and debug.',specs:[{key:'Platform',val:'2 custom boards (1 Zynq + 2 Spartan-6 each)'},{key:'Data link',val:'Aurora 64b/66b'},{key:'Max freq.',val:'32 MHz'}],challenges:['Bring-up and debug of custom boards (Zynq + Spartan-6)','Deterministic synchronisation across 2 Zynqs and 4 Spartan-6 FPGAs','Pattern data reception and BRAM storage via Aurora 64b/66b','Control FSM for arbitrarily long pattern sequence execution']},
+  {title:'256-Channel Digital Pattern Generator',tags:['VHDL','Zynq','Spartan-6','Aurora','ISE'],platform:'Zynq + Spartan-6 (custom boards)',description:'FPGA logic development for a 256-channel digital pattern generator distributed across two custom boards, each comprising one Zynq and two Spartan-6 FPGAs. Pattern files are loaded from the Zynq and transmitted to the FPGAs via Aurora 64b/66b serial links, where they are stored in BRAM and executed on command. The project included full bring-up of the custom boards, system integration and debug.',specs:[{key:'Platform',val:'2 custom boards (1 Zynq + 2 Spartan-6 each)'},{key:'Interfaces',val:'Aurora 64b/66b'},{key:'Max freq.',val:'32 MHz'},{key:'Channels',val:'256 digital'}],challenges:['Bring-up and debug of custom boards (Zynq + Spartan-6)','Deterministic synchronisation across 2 Zynqs and 4 Spartan-6 FPGAs','Pattern data reception and BRAM storage via Aurora 64b/66b','Control FSM for arbitrarily long pattern sequence execution']},
   {title:'FPGA Controller for Functional Test Bench Testing',tags:['VHDL','Zynq','Vivado','UART','Space'],platform:'Xilinx Zynq',description:'Development of a Zynq-based FPGA controller dedicated to rapid functional testing and debug of a test bench. The design, kept entirely separate from the bench operational firmware, allowed manual control of any resource via serial commands from a terminal, greatly simplifying verification and debug activities. The project included hardware bring-up and on-bench debug.',specs:[{key:'Platform',val:'Custom board (Zynq UltraScale+ + Artix-7)'},{key:'Tools',val:'Vivado / Active-HDL / ModelSim'},{key:'Interface',val:'Serial commands (UART)'},{key:'Context',val:'Test bench'}],challenges:['Zynq hardware bring-up and on-bench debug','Flexible architecture design for manual control of heterogeneous resources','Clean separation between test design and operational firmware','Rapid functional verification via serial command interface']},
   {title:'Monitoring Board for Avionic Actuator',tags:['VHDL','DO-254','SmartFusion','LVDT','Resolver'],platform:'Microchip/Microsemi',description:'Project followed through the full development cycle: FPGA requirements authoring from system-level requirements, VHDL logic design, hardware debug and integration, through to test case and testbench development for DO-254 DAL-C validation. The design implements monitoring algorithms for mechanical movement consistency (via LVDT and resolver sensors), actuation currents, speed and temperatures, with the ability to trip actuation upon fault detection. The board communicates with the Flight Control Unit (FCU) via a custom high-integrity serial protocol and forwards data to a microcontroller-based control board. Parts of the design include SEU handling and redundancy per DO-254 DAL-C.',specs:[{key:'Platform',val:'Microchip/Microsemi'},{key:'Standard',val:'DO-254 DAL-C'},{key:'Communication',val:'Custom serial protocol (FCU)'},{key:'Sensors',val:'LVDT, Resolver'}],challenges:['FPGA requirements authoring from higher-level system requirements','Monitoring algorithms for mechanical consistency from LVDT and resolver sensors','Reliable FCU communication via custom high-integrity serial protocol','SEU handling and redundancy per DO-254 DAL-C requirements','Test case and testbench development for DO-254 DAL-C validation','Structured logging system in testbench for direct requirements traceability and review facilitation','Integration with control board and debug on hardware with real motor']}
 ,
@@ -383,6 +396,7 @@ function switchLang(){
     if(t[key]!==undefined)el.textContent=t[key];
   });
   document.getElementById('form-nome').placeholder=t.ph1;
+  styleRequiredLabels();
   document.getElementById('form-azienda').placeholder=t.ph2;
   document.getElementById('form-email').placeholder=t.ph3;
   document.getElementById('form-messaggio').placeholder=t.ph4;
@@ -402,8 +416,9 @@ function applyLang(lang){
   var t=i18n[lang];
   document.getElementById('lang-btn').textContent=t.lang_btn;
   document.documentElement.lang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(t[key]!==undefined)el.textContent=t[key];});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(t[key]!==undefined){if(el.tagName==='LABEL')el.innerHTML=t[key];else el.textContent=t[key];}});
   document.getElementById('form-nome').placeholder=t.ph1;
+  styleRequiredLabels();
   document.getElementById('form-azienda').placeholder=t.ph2;
   document.getElementById('form-email').placeholder=t.ph3;
   document.getElementById('form-messaggio').placeholder=t.ph4;
@@ -421,7 +436,7 @@ function inviaMailto(e){
   var email=document.getElementById('form-email').value.trim();
   var messaggio=document.getElementById('form-messaggio').value.trim();
   if(!nome||!email||!messaggio){
-    btn.textContent=currentLang==='en'?'FILL ALL FIELDS':'COMPILA TUTTI I CAMPI';
+    btn.textContent=currentLang==='en'?'FILL REQUIRED FIELDS':'CAMPI OBBLIGATORI MANCANTI';
     btn.style.borderColor='#e05252';btn.style.color='#e05252';
     setTimeout(function(){btn.textContent=i18n[currentLang].btn_send;btn.style.borderColor='';btn.style.color='';},2500);
     return;
@@ -441,8 +456,47 @@ function inviaMailto(e){
     setTimeout(function(){btn.textContent=i18n[currentLang].btn_send;btn.style.borderColor='';btn.style.color='';},4000);
   });
 }
+
+function styleRequiredLabels(){
+  ['lbl1','lbl3','lbl4'].forEach(function(key){
+    var el=document.querySelector('[data-i18n="'+key+'"]');
+    if(el){
+      var txt=el.textContent;
+      if(txt.indexOf('*')>-1){
+        el.innerHTML=txt.replace(' *',' <span style="color:#e8924a">*</span>');
+      }
+    }
+  });
+}
+
+function toggleTheme(){
+  var body=document.body;
+  var btn=document.getElementById('theme-btn');
+  if(body.classList.contains('light')){
+    body.classList.remove('light');
+    btn.textContent='☀';
+    localStorage.setItem('theme','dark');
+  } else {
+    body.classList.add('light');
+    btn.textContent='☽';
+    localStorage.setItem('theme','light');
+  }
+}
+// restore saved theme
+(function(){
+  var saved=localStorage.getItem('theme');
+  if(saved==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='☽';}
+})();
 var scrollObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var el=entry.target,i=Array.from(el.parentNode.children).indexOf(el);setTimeout(function(){el.classList.add('visible');},i*70);scrollObs.unobserve(el);}});},{threshold:0.08});
 document.querySelectorAll('.anim-item').forEach(function(el){scrollObs.observe(el);});
+styleRequiredLabels();
+// build email at runtime to avoid scrapers
+(function(){
+  var u='w.arturp';var d='gmail.com';var e=u+'@'+d;
+  var el=document.getElementById('email-link');
+  var txt=document.getElementById('email-text');
+  if(el&&txt){el.href='mailto:'+e;txt.textContent=e;}
+})();
 </script>
 </body>
 </html>
