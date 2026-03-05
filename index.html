@@ -359,6 +359,8 @@ function openSkillModal(idx){history.pushState({modal:'skill',idx:idx},null,null
   var o=document.getElementById('skillModalOverlay');
   o.setAttribute('data-open-idx',idx);
   o.classList.add('open');
+  o.scrollTop=0;
+  var si=o.querySelector('.modal');if(si)si.scrollTop=0;
   document.body.style.overflow='hidden';
 }
 function closeSkillModal(){document.getElementById('skillModalOverlay').classList.remove('open');document.body.style.overflow='';if(history.state&&history.state.modal)history.back();}
@@ -380,6 +382,8 @@ function openModal(idx){history.pushState({modal:'project',idx:idx},null,null);
   var o=document.getElementById('modalOverlay');
   o.setAttribute('data-open-idx',idx);
   o.classList.add('open');
+  o.scrollTop=0;
+  var mi=o.querySelector('.modal');if(mi)mi.scrollTop=0;
   document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';if(history.state&&history.state.modal)history.back();}
