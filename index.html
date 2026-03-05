@@ -88,7 +88,7 @@
   .modal-overlay.open{display:flex;opacity:1;pointer-events:all;}
   .modal{background:var(--card);border:1px solid rgba(232,146,74,0.25);border-radius:4px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
   .modal-top{height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-  .modal-header{padding:2rem 2rem 1.2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+  .modal-header{padding:2rem 2rem 1.2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;position:sticky;top:0;background:var(--card);z-index:10;}
   .modal-title{font-size:1.6rem;font-weight:800;line-height:1.3;}
   .modal-close{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:2px;cursor:pointer;font-size:1rem;flex-shrink:0;transition:border-color 0.2s,color 0.2s;display:flex;align-items:center;justify-content:center;}
   .modal-close:hover{border-color:var(--accent);color:var(--accent);}
@@ -346,7 +346,7 @@ var projectsEN=[
 ,
   {title:'Three-Phase FOC Control on FPGA — Debug and Finalisation',tags:['VHDL','DO-254 DAL-B','SmartFusion','FOC','Fixed-Point'],platform:'Microchip/Microsemi',description:'Takeover and finalisation of a mature FPGA design for Field-Oriented Control (FOC) of a three-phase avionic electric actuator, originally developed by others. Work included in-depth hardware debug with a real motor, resolution of outstanding issues, rewriting of PID controller and PWM modules, and code rework for compliance with internal DO-254 coding rules following Aldec Alint-Pro analysis. The design incorporates integrated monitoring algorithms and is implemented predominantly in fixed-point arithmetic.',specs:[{key:'Platform',val:'Microchip/Microsemi'},{key:'Standard',val:'DO-254 DAL-B'},{key:'Control',val:'FOC + PID (fixed-point)'},{key:'Tools',val:'Vivado / Alint-Pro / Active-HDL'}],challenges:['Hardware debug with real motor on a pre-existing design','Correction and rewriting of PID and PWM controller modules in fixed-point','Code rework for DO-254 coding rule compliance via Aldec Alint-Pro','Rapid understanding of a complex design not originally developed in-house']}];
 
-function openSkillModal(idx){
+function openSkillModal(idx){history.pushState({modal:'skill',idx:idx},null,null);
   var s=currentLang==='en'?Object.assign({},skills[idx],skillsEN[idx]):skills[idx];
   var t=i18n[currentLang];
   document.getElementById('skillModalTitle').textContent=s.title;
@@ -360,10 +360,10 @@ function openSkillModal(idx){
   o.classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeSkillModal(){document.getElementById('skillModalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeSkillModal(){document.getElementById('skillModalOverlay').classList.remove('open');document.body.style.overflow='';if(history.state&&history.state.modal)history.back();}
 function closeSkillModalOutside(e){if(e.target===document.getElementById('skillModalOverlay'))closeSkillModal();}
 
-function openModal(idx){
+function openModal(idx){history.pushState({modal:'project',idx:idx},null,null);
   var p=currentLang==='en'?projectsEN[idx]:projects[idx];
   var t=i18n[currentLang];
   document.getElementById('modalTitle').textContent=p.title;
@@ -381,7 +381,7 @@ function openModal(idx){
   o.classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';if(history.state&&history.state.modal)history.back();}
 function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeSkillModal();}});
 
@@ -487,6 +487,14 @@ function toggleTheme(){
   var saved=localStorage.getItem('theme');
   if(saved==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='☽';}
 })();
+
+window.addEventListener('popstate',function(e){
+  var pm=document.getElementById('modalOverlay');
+  var sm=document.getElementById('skillModalOverlay');
+  if(pm&&pm.classList.contains('open'))closeModal();
+  else if(sm&&sm.classList.contains('open'))closeSkillModal();
+});
+
 var scrollObs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var el=entry.target,i=Array.from(el.parentNode.children).indexOf(el);setTimeout(function(){el.classList.add('visible');},i*70);scrollObs.unobserve(el);}});},{threshold:0.08});
 document.querySelectorAll('.anim-item').forEach(function(el){scrollObs.observe(el);});
 styleRequiredLabels();
