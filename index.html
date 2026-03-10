@@ -16,8 +16,9 @@
   body.light nav{background:rgba(245,243,240,0.92);}
   .nav-logo{font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--accent);letter-spacing:0.1em;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.95rem;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.2s;}
-  .nav-links a:hover{color:var(--accent);}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.95rem;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.2s, border-bottom 0.2s;cursor:pointer;padding-bottom:0.2rem;border-bottom:1px solid transparent;}
+  .nav-links a:hover{color:var(--accent);border-bottom:1px solid rgba(232,146,74,0.5);}
+  .nav-links a.nav-active{color:var(--accent) !important;border-bottom:1px solid var(--accent) !important;}
   .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:0.82rem;padding:0.35rem 0.9rem;border-radius:2px;cursor:pointer;letter-spacing:0.1em;transition:border-color 0.2s,color 0.2s;}
   .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
   #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;z-index:1;}
@@ -448,6 +449,31 @@ function switchLang(){
   if(so.classList.contains('open'))openSkillModal(parseInt(so.getAttribute('data-open-idx')));
   if(mo.classList.contains('open'))openModal(parseInt(mo.getAttribute('data-open-idx')));
 }
+
+
+function updateActiveNav(){
+  var scrollY = window.scrollY;
+  var winH = window.innerHeight;
+  var docH = document.documentElement.scrollHeight;
+  var sections = ['skills','projects','contact'];
+  var current = null;
+  // If near bottom of page, always activate last section
+  if(scrollY + winH >= docH - 40){
+    current = 'contact';
+  } else {
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop - winH * 0.4 <= scrollY) current = id;
+    });
+  }
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    var href = a.getAttribute('href').replace('#','');
+    if(href === current) a.classList.add('nav-active');
+    else a.classList.remove('nav-active');
+  });
+}
+window.addEventListener('scroll', updateActiveNav, {passive:true});
+document.addEventListener('DOMContentLoaded', updateActiveNav);
 
 window.addEventListener('load',function(){
   emailjs.init('kpcS4_EBMmxvlnJGD');
