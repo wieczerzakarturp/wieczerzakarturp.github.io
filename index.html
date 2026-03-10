@@ -133,7 +133,7 @@
   body.light .project-card{box-shadow:0 2px 12px rgba(0,0,0,0.10);border-color:#c0c4cc;}body.light .skill-card{box-shadow:0 1px 6px rgba(0,0,0,0.07);}body.light .modal{box-shadow:0 8px 40px rgba(0,0,0,0.18);border-color:#b8bcc4;}body.light .stats-bar{box-shadow:0 2px 8px rgba(0,0,0,0.06);}
   body.light .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);}
   body.light .btn-send:hover{color:#fff;}
-  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:flex;width:100%;justify-content:center;gap:1.5rem;padding-top:0.6rem;border-top:1px solid var(--border);margin-top:0.6rem;}.nav-links a{font-size:0.8rem;}#hero{padding:9rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}
+  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-logo{order:1;}.nav-links{order:3;display:flex;width:100%;justify-content:center;gap:1.5rem;padding-top:0.6rem;border-top:1px solid var(--border);margin-top:0.6rem;}.nav-links a{font-size:0.8rem;}.nav-buttons{order:2;}#hero{padding:9rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}
   body{font-size:13.5px;}.hero-sub{font-size:0.95rem;}.section-title{font-size:1.55rem;}.project-title{font-size:1rem;}.project-desc{font-size:0.92rem;}.skill-name{font-size:0.95rem;}.skill-desc{font-size:0.92rem;}.modal-title{font-size:1rem;}.modal-text{font-size:0.82rem;}.modal-challenges li{font-size:0.82rem;}.modal-section-label{font-size:0.6rem;}.stat-num{font-size:2rem;}.contact-headline{font-size:1.4rem;}.contact-text{font-size:0.92rem;}.modal-specs{grid-template-columns:1fr;}.modal-spec{padding:0.7rem 1rem;}.modal-spec-key{font-size:0.55rem;}.modal-spec-val{font-size:0.82rem;}.form-field label{font-size:0.6rem;}.form-field input,.form-field textarea{font-size:0.9rem;}.btn-send{font-size:0.7rem;padding:0.8rem 1.4rem;}.modal-body{padding:0 1.2rem 1.5rem;}.modal-header{padding:1.2rem 1.2rem 0.8rem;}.modal-tags{padding:0 1.2rem 0.8rem;}}
 </style>
 </head>
@@ -147,7 +147,7 @@
     <li><a href="#projects" data-i18n="nav_projects" onclick="smoothScrollTo('#projects',event)">Progetti</a></li>
     <li><a href="#contact" data-i18n="nav_contact" onclick="smoothScrollTo('#contact',event)">Contatti</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:0.5rem;">
+  <div class="nav-buttons" style="display:flex;align-items:center;gap:0.5rem;">
     <button id="theme-btn" class="lang-btn" onclick="toggleTheme()" title="Toggle theme">LIGHT</button>
     <button id="lang-btn" class="lang-btn" onclick="switchLang()">EN</button>
   </div>
