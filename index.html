@@ -309,6 +309,7 @@ async function loadData() {
     renderSkills(data);
     renderProjects(data);
     applyLang(currentLang);
+    setTimeout(updateActiveNav, 100);
   } catch(e) {
     console.error('Failed to load portfolio-data.json', e);
   }
@@ -473,7 +474,6 @@ function updateActiveNav(){
   });
 }
 window.addEventListener('scroll', updateActiveNav, {passive:true});
-document.addEventListener('DOMContentLoaded', updateActiveNav);
 
 window.addEventListener('load',function(){
   emailjs.init('kpcS4_EBMmxvlnJGD');
