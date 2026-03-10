@@ -12,14 +12,13 @@
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(232,146,74,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,146,74,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(30,30,30,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(30,30,30,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
   body.light nav{background:rgba(245,243,240,0.92);}
   .nav-logo{font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--accent);letter-spacing:0.1em;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:0.95rem;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.2s;}
   .nav-links a:hover{color:var(--accent);}
   .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:0.82rem;padding:0.35rem 0.9rem;border-radius:2px;cursor:pointer;letter-spacing:0.1em;transition:border-color 0.2s,color 0.2s;}
-  #theme-btn{font-size:1.1rem;padding:0.25rem 0.6rem;line-height:1;}
   .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
   #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;z-index:1;}
   .hero-inner{max-width:900px;position:relative;z-index:2;}
@@ -118,6 +117,12 @@
   @keyframes fadeInUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
   @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
   .anim-item{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+  body,body *{transition:background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;}
+  .anim-item{transition:opacity 0.5s ease, transform 0.5s ease !important;}
+  .modal-overlay{transition:opacity 0.3s ease !important;}
+  #lang-flash{position:fixed;inset:0;background:var(--bg);opacity:0;pointer-events:none;z-index:9997;transition:opacity 0.15s ease;}
+  #theme-ripple{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:0;transition:opacity 0.18s ease;}
+  #theme-ripple.fade-in{opacity:1;}
   .anim-item.visible{opacity:1;transform:translateY(0);}
   .modal-overlay.open .modal{animation:modalIn 0.28s ease forwards;}
 
@@ -128,20 +133,22 @@
   body.light .project-card{box-shadow:0 2px 12px rgba(0,0,0,0.10);border-color:#c0c4cc;}body.light .skill-card{box-shadow:0 1px 6px rgba(0,0,0,0.07);}body.light .modal{box-shadow:0 8px 40px rgba(0,0,0,0.18);border-color:#b8bcc4;}body.light .stats-bar{box-shadow:0 2px 8px rgba(0,0,0,0.06);}
   body.light .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);}
   body.light .btn-send:hover{color:#fff;}
-  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}#hero{padding:7rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}
+  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:flex;width:100%;justify-content:center;gap:1.5rem;padding-top:0.6rem;border-top:1px solid var(--border);margin-top:0.6rem;}.nav-links a{font-size:0.8rem;}#hero{padding:9rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}
   body{font-size:13.5px;}.hero-sub{font-size:0.95rem;}.section-title{font-size:1.55rem;}.project-title{font-size:1rem;}.project-desc{font-size:0.92rem;}.skill-name{font-size:0.95rem;}.skill-desc{font-size:0.92rem;}.modal-title{font-size:1rem;}.modal-text{font-size:0.82rem;}.modal-challenges li{font-size:0.82rem;}.modal-section-label{font-size:0.6rem;}.stat-num{font-size:2rem;}.contact-headline{font-size:1.4rem;}.contact-text{font-size:0.92rem;}.modal-specs{grid-template-columns:1fr;}.modal-spec{padding:0.7rem 1rem;}.modal-spec-key{font-size:0.55rem;}.modal-spec-val{font-size:0.82rem;}.form-field label{font-size:0.6rem;}.form-field input,.form-field textarea{font-size:0.9rem;}.btn-send{font-size:0.7rem;padding:0.8rem 1.4rem;}.modal-body{padding:0 1.2rem 1.5rem;}.modal-header{padding:1.2rem 1.2rem 0.8rem;}.modal-tags{padding:0 1.2rem 0.8rem;}}
 </style>
 </head>
 <body>
+<div id="lang-flash"></div>
+<div id="theme-ripple"></div>
 <nav>
   <div class="nav-logo">// FPGA.ENGINEER</div>
   <ul class="nav-links">
-    <li><a href="#skills" data-i18n="nav_skills">Competenze</a></li>
-    <li><a href="#projects" data-i18n="nav_projects">Progetti</a></li>
-    <li><a href="#contact" data-i18n="nav_contact">Contatti</a></li>
+    <li><a href="#skills" data-i18n="nav_skills" onclick="smoothScrollTo('#skills',event)">Competenze</a></li>
+    <li><a href="#projects" data-i18n="nav_projects" onclick="smoothScrollTo('#projects',event)">Progetti</a></li>
+    <li><a href="#contact" data-i18n="nav_contact" onclick="smoothScrollTo('#contact',event)">Contatti</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:0.5rem;">
-    <button id="theme-btn" class="lang-btn" onclick="toggleTheme()" title="Toggle theme">&#9788;</button>
+    <button id="theme-btn" class="lang-btn" onclick="toggleTheme()" title="Toggle theme">LIGHT</button>
     <button id="lang-btn" class="lang-btn" onclick="switchLang()">EN</button>
   </div>
 </nav>
@@ -152,8 +159,8 @@
     <h1 class="hero-name">Artur Pawel Wieczerzak<span data-i18n="hero_job">FPGA Engineer</span></h1>
     <p class="hero-sub" data-i18n="hero_sub">Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.</p>
     <div class="hero-cta">
-      <a href="#projects" class="btn-primary" data-i18n="cta1">VEDI PROGETTI →</a>
-      <a href="#contact" class="btn-outline" data-i18n="cta2">CONTATTAMI</a>
+      <a href="#projects" class="btn-primary" onclick="smoothScrollTo('#projects',event)" data-i18n="cta1">VEDI PROGETTI →</a>
+      <a href="#contact" class="btn-outline" onclick="smoothScrollTo('#contact',event)" data-i18n="cta2">CONTATTAMI</a>
     </div>
   </div>
   <a href="#skills" class="scroll-indicator" aria-label="Scorri in basso" onclick="smoothScrollTo('.stats-bar', event)">
@@ -250,8 +257,7 @@
 </div>
 
 <footer>
-  <div class="footer-copy" data-i18n="footer">&#169; 2025 Artur Pawel Wieczerzak &middot; Tutti i diritti riservati</div>
-  <div class="footer-tag">// Built with precision</div>
+  <div class="footer-copy" data-i18n="footer">&#169; 2026 Artur Pawel Wieczerzak &middot; Tutti i diritti riservati</div>
 </footer>
 <script>
 var currentLang=(location.search==='?en')?'en':'it';
@@ -260,54 +266,30 @@ var i18n={
     nav_skills:'Competenze',nav_projects:'Alcuni Progetti',nav_contact:'Contatti',lang_btn:'EN',
     hero_tag:'Disponibile per nuovi progetti',hero_job:'FPGA Engineer',
     hero_sub:'Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.',
-    cta1:'VEDI PROGETTI \u2192',cta2:'CONTATTAMI',
+    cta1:'VEDI PROGETTI →',cta2:'CONTATTAMI',
     stat1:'Anni di esperienza',stat2:'Progetti completati',stat3:'Famiglie FPGA',
     sec1:'Competenze',sec2:'Alcuni Progetti',sec3:'Contatti',
-    sk0_name:'VHDL & RTL Design',sk0_desc:'Sviluppo VHDL RTL su Xilinx, Microchip/Microsemi e Intel/Altera. Design custom complessi con integrazione di vendor IP in contesti industriali, militari e avionici.',
-    sk1_name:'Simulazione & Verifica',sk1_desc:'Testbench VHDL strutturati, logging per tracciabilità requisiti, analisi code coverage (stmt/branch/MC-DC) per design safety-critical.',
-    sk2_name:'Standard DO-254',sk2_desc:'Design avionici DO-254 DAL-A/B/C: sviluppo testcase e testbench, coding conforme agli standard DO-254, linting con Alint-Pro, gestione SEU e ridondanza.',
-    sk3_name:'Protocolli & Interfacce',sk3_desc:'Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, protocolli seriali custom.',
-    sk4_name:'Toolchain & Sintesi',sk4_desc:'Vivado, ISE 14.7, Quartus Prime, Alint-Pro. Timing closure, place & route e analisi risorse su design complessi.',
-    sk5_name:'Sistemi & Piattaforme',sk5_desc:'Xilinx Zynq (7000 e UltraScale+), bring-up schede custom, debug su hardware. Esperienza con PetaLinux per configurazione software di sistema.',
     cht1:'Hai un progetto',cht2:'FPGA in mente?',
     contact_text:'Aperto a collaborazioni freelance per progettazione FPGA, verifica funzionale e ottimizzazione — in ambito industriale, militare e avionico. Rispondo entro 24 ore.',
     lbl1:'Nome *',lbl2:'Azienda',lbl3:'Email *',lbl4:'Messaggio *',
     ph1:'Il tuo nome',ph2:'Azienda (opz.)',ph3:'tua@email.com',ph4:'Il tuo messaggio...',
-    btn_send:'INVIA MESSAGGIO \u2192',
-    
-    
-    pt0:'Validazione DO-254 DAL-A — Controller AFDX Avionico',pd0:'Verifica e validazione in simulazione di un controller AFDX avionico secondo DO-254 DAL-A. Testbench VHDL e code coverage al 100% su Aldec Active-HDL.',pt1:'Digital Pattern Generator 128 Canali High-Speed',pd1:'Sistema a 128 canali digitali high-speed su scheda custom (Zynq + Artix-7) per test di sistemi digitali. Interfacce Aurora 8b/10b e 64b/66b, SPI, protocollo custom per controllo pin driver.',
-    pt2:'Pattern Generator Digitale a 256 Canali',pd2:'Pattern generator distribuito su 2 schede custom (ciascuna con 1 Zynq e 2 Spartan-6). Distribuzione dati via Aurora 64b/66b, storage in BRAM, sincronizzazione precisa tra 6 dispositivi.',
-    pt3:'Controller FPGA per Test Funzionale di Banco di Prova',pd3:'Zynq dedicata al test rapido delle funzionalità di un banco di prova. Controllo manuale delle risorse via comandi seriali, separato dal design operativo.',
-    pt4:'Monitoring Board per Attuatore Avionico',pd4:'Design FPGA per il monitoraggio di un sistema di controllo motore elettrico trifase avionico. Rilevamento anomalie, comunicazione con FCU via protocollo seriale custom, conformità DO-254 DAL-C.',pt5:'Debug e Finalizzazione Design FOC Trifase su FPGA',pd5:'Presa in carico e finalizzazione di un design FOC+PID trifase su SmartFusion: debug su hardware, correzione di moduli PID e PWM, adeguamento alle regole DO-254 DAL-B.',
-    footer:'\u00a9 2025 Artur Pawel Wieczerzak \u00b7 Tutti i diritti riservati',
+    btn_send:'INVIA MESSAGGIO →',
+    footer:'© 2026 Artur Pawel Wieczerzak · Tutti i diritti riservati',
     lbl_desc:'Descrizione',lbl_specs:'Specifiche tecniche',lbl_challenges:'Sfide affrontate',lbl_tools:'Competenze chiave'
   },
   en:{
     nav_skills:'Skills',nav_projects:'Selected Projects',nav_contact:'Contact',lang_btn:'IT',
     hero_tag:'Available for new projects',hero_job:'FPGA Engineer',
     hero_sub:'Electronics engineer specialised in FPGA design and VHDL development. I turn complex requirements into efficient, reliable digital architectures.',
-    cta1:'VIEW PROJECTS \u2192',cta2:'CONTACT ME',
+    cta1:'VIEW PROJECTS →',cta2:'CONTACT ME',
     stat1:'Years of experience',stat2:'Completed projects',stat3:'FPGA families',
     sec1:'Skills',sec2:'Selected Projects',sec3:'Contact',
-    sk0_name:'VHDL & RTL Design',sk0_desc:'VHDL RTL development on Xilinx, Microchip/Microsemi and Intel/Altera. Complex custom designs with vendor IP integration in industrial, military and avionic contexts.',
-    sk1_name:'Simulation & Verification',sk1_desc:'Structured VHDL testbenches, requirements traceability logging, code coverage (stmt/branch/MC-DC) for safety-critical designs.',
-    sk2_name:'DO-254 Standard',sk2_desc:'Avionic DO-254 DAL-A/B/C designs: test case and testbench development, DO-254 compliant coding, Alint-Pro linting, SEU handling and redundancy.',
-    sk3_name:'Protocols & Interfaces',sk3_desc:'Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, custom serial protocols.',
-    sk4_name:'Toolchain & Synthesis',sk4_desc:'Vivado, ISE 14.7, Quartus Prime, Alint-Pro. Timing closure, place & route and resource analysis on complex designs.',
-    sk5_name:'Sistemi & Piattaforme',sk5_desc:'Xilinx Zynq (7000 and UltraScale+), custom board bring-up, hardware debug. Experience with PetaLinux for system software configuration.',
     cht1:'Have an',cht2:'FPGA project in mind?',
     contact_text:'Open to freelance collaborations in FPGA design, functional verification and optimisation — in industrial, military and avionic contexts. I reply within 24 hours.',
     lbl1:'Name *',lbl2:'Company',lbl3:'Email *',lbl4:'Message *',
     ph1:'Your name',ph2:'Company (opt.)',ph3:'your@email.com',ph4:'Your message...',
-    btn_send:'SEND MESSAGE \u2192',
-    pt0:'DO-254 DAL-A Validation — Avionic AFDX Controller',pd0:'Verification and validation in simulation of an avionic AFDX controller per DO-254 DAL-A. VHDL testbench development and 100% code coverage analysis in Aldec Active-HDL.',
-    
-    pt1:'128-Channel High-Speed Digital Pattern Generator',pd1:'128-channel high-speed digital system on a custom board (Zynq + Artix-7) for digital system testing. Aurora 8b/10b and 64b/66b interfaces, SPI, custom serial protocol for pin driver control.',
-    pt2:'256-Channel Digital Pattern Generator',pd2:'Pattern generator distributed across 2 custom boards, each housing 1 Zynq and 2 Spartan-6 FPGAs. Data distribution via Aurora 64b/66b, BRAM storage, precise synchronisation across 6 devices.',
-    pt3:'FPGA Controller for Functional Test Bench Testing',pd3:'Zynq-based controller for rapid functional testing of a test bench. Manual resource control via serial commands, fully separate from the operational design.',
-    pt4:'Monitoring Board for Avionic Actuator',pd4:'FPGA design for monitoring a three-phase avionic electric motor control system. Fault detection, FCU communication via custom serial protocol, DO-254 DAL-C compliance.',pt5:'Takeover and Finalisation of Three-Phase FOC Design on FPGA',pd5:'Takeover and finalisation of a FOC+PID three-phase design on SmartFusion: hardware debug, PID and PWM module rework, DO-254 DAL-B coding compliance.',
-    footer:'\u00a9 2025 Artur Pawel Wieczerzak \u00b7 All rights reserved',
+    btn_send:'SEND MESSAGE →',
+    footer:'© 2026 Artur Pawel Wieczerzak · All rights reserved',
     lbl_desc:'Description',lbl_specs:'Technical specs',lbl_challenges:'Challenges',lbl_tools:'Key competencies'
   }
 };
@@ -323,7 +305,6 @@ async function loadData() {
     skillsEN  = data.skills.map(s => ({title:s.en.title, description:s.en.modal_desc}));
     projects  = data.projects.map(p => ({title:p.it.title, tags:p.it.tags, platform:p.it.platform, description:p.it.modal_desc, specs:p.it.specs}));
     projectsEN= data.projects.map(p => ({title:p.en.title, tags:p.en.tags, platform:p.en.platform, description:p.en.modal_desc, specs:p.en.specs}));
-
     renderSkills(data);
     renderProjects(data);
     applyLang(currentLang);
@@ -346,7 +327,13 @@ function renderSkills(data) {
       <div class="skill-desc" data-it="${it.card_desc}" data-en="${en.card_desc}">${it.card_desc}</div>
       <div class="skill-hint card-arrow">↗</div>`;
     grid.appendChild(card);
-    scrollObs.observe(card);
+    (function(el, idx){
+      if(el.getBoundingClientRect().top < window.innerHeight){
+        setTimeout(function(){ el.classList.add('visible'); }, idx * 90 + 60);
+      } else {
+        scrollObs.observe(el);
+      }
+    })(card, i);
   });
 }
 
@@ -371,7 +358,13 @@ function renderProjects(data) {
         <span class="project-arrow">↗</span>
       </div>`;
     grid.appendChild(card);
-    scrollObs.observe(card);
+    (function(el, idx){
+      if(el.getBoundingClientRect().top < window.innerHeight){
+        setTimeout(function(){ el.classList.add('visible'); }, idx * 90 + 60);
+      } else {
+        scrollObs.observe(el);
+      }
+    })(card, i);
   });
 }
 
@@ -523,20 +516,14 @@ function styleRequiredLabels(){
 function toggleTheme(){
   var body=document.body;
   var btn=document.getElementById('theme-btn');
-  if(body.classList.contains('light')){
-    body.classList.remove('light');
-    btn.textContent='☀';
-    localStorage.setItem('theme','dark');
-  } else {
-    body.classList.add('light');
-    btn.textContent='☽';
-    localStorage.setItem('theme','light');
-  }
+  var toLight=!body.classList.contains('light');
+  if(toLight){ body.classList.add('light'); btn.textContent='LIGHT'; localStorage.setItem('theme','light'); }
+  else { body.classList.remove('light'); btn.textContent='DARK'; localStorage.setItem('theme','dark'); }
 }
 // restore saved theme
 (function(){
   var saved=localStorage.getItem('theme');
-  if(saved==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='☽';}
+  if(saved==='light'){document.body.classList.add('light');document.getElementById('theme-btn').textContent='DARK';} else {document.getElementById('theme-btn').textContent='LIGHT';}
 })();
 
 window.addEventListener('popstate',function(e){
