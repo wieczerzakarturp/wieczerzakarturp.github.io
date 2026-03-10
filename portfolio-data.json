@@ -6,14 +6,24 @@
         "card_desc": "Sviluppo VHDL RTL su Xilinx, Microchip/Microsemi e Intel/Altera. Design custom complessi con integrazione di vendor IP in contesti industriali, militari e avionici.",
         "modal_desc": "Progettazione digitale in VHDL a livello RTL su piattaforme Xilinx, Microchip/Microsemi e Intel/Altera. Sviluppo di architetture custom complesse, integrazione di vendor IP e core proprietari, dalla specifica funzionale al design sintetizzabile e verificato in contesti industriali, militari e avionici.",
         "tools_label": "Competenze chiave",
-        "tools": ["VHDL-93 / VHDL-2008", "Xilinx", "Microchip/Microsemi", "Intel/Altera"]
+        "tools": [
+          "VHDL-93 / VHDL-2008",
+          "Xilinx",
+          "Microchip/Microsemi",
+          "Intel/Altera"
+        ]
       },
       "en": {
         "title": "VHDL & RTL Design",
         "card_desc": "VHDL RTL development on Xilinx, Microchip/Microsemi and Intel/Altera. Complex custom designs with vendor IP integration in industrial, military and avionic contexts.",
         "modal_desc": "VHDL RTL design on Xilinx, Microchip/Microsemi and Intel/Altera platforms. Development of complex custom architectures, integration of vendor IP and proprietary cores, from functional specification to synthesisable and verified design in industrial, military and avionic contexts.",
         "tools_label": "Key competencies",
-        "tools": ["VHDL-93 / VHDL-2008", "Xilinx", "Microchip/Microsemi", "Intel/Altera"]
+        "tools": [
+          "VHDL-93 / VHDL-2008",
+          "Xilinx",
+          "Microchip/Microsemi",
+          "Intel/Altera"
+        ]
       }
     },
     {
@@ -22,14 +32,24 @@
         "card_desc": "Testbench VHDL strutturati, logging per tracciabilità requisiti, analisi code coverage (stmt/branch/MC-DC) per design safety-critical.",
         "modal_desc": "Sviluppo di testbench VHDL strutturati per la verifica funzionale completa: stimoli automatici, self-checking testbench, logging strutturato per tracciabilità dei requisiti. Analisi di code coverage (statement, branch, MC/DC) per design safety-critical.",
         "tools_label": "Competenze chiave",
-        "tools": ["Aldec Active-HDL", "ModelSim / Questa", "Code coverage (stmt/branch/MC-DC)", "Self-checking testbench"]
+        "tools": [
+          "Aldec Active-HDL",
+          "ModelSim / Questa",
+          "Code coverage (stmt/branch/MC-DC)",
+          "Self-checking testbench"
+        ]
       },
       "en": {
         "title": "Simulation & Verification",
         "card_desc": "Structured VHDL testbenches, requirements traceability logging, code coverage (stmt/branch/MC-DC) for safety-critical designs.",
         "modal_desc": "Structured VHDL testbench development for complete functional verification: automatic stimuli, self-checking testbenches, structured logging for requirements traceability. Code coverage analysis (statement, branch, MC/DC) for safety-critical designs.",
         "tools_label": "Key competencies",
-        "tools": ["Aldec Active-HDL", "ModelSim / Questa", "Code coverage (stmt/branch/MC-DC)", "Self-checking testbench"]
+        "tools": [
+          "Aldec Active-HDL",
+          "ModelSim / Questa",
+          "Code coverage (stmt/branch/MC-DC)",
+          "Self-checking testbench"
+        ]
       }
     },
     {
@@ -38,14 +58,24 @@
         "card_desc": "Design avionici DO-254 DAL-A/B/C: sviluppo testcase e testbench, coding conforme agli standard DO-254, linting con Alint-Pro, gestione SEU e ridondanza.",
         "modal_desc": "Esperienza applicata su design avionici DO-254 DAL-A, DAL-B e DAL-C: sviluppo di testcase e testbench per validazione funzionale, coding aderente a standard DO-254, analisi di linting con Alint-Pro, gestione SEU e ridondanza.",
         "tools_label": "Competenze chiave",
-        "tools": ["DO-254 DAL-A / DAL-B / DAL-C", "Aldec Alint-Pro (linting)", "Requirements traceability", "SEU handling & redundancy"]
+        "tools": [
+          "DO-254 DAL-A / DAL-B / DAL-C",
+          "Aldec Alint-Pro (linting)",
+          "Requirements traceability",
+          "SEU handling & redundancy"
+        ]
       },
       "en": {
         "title": "DO-254 Standard",
         "card_desc": "Avionic DO-254 DAL-A/B/C designs: test case and testbench development, DO-254 compliant coding, Alint-Pro linting, SEU handling and redundancy.",
         "modal_desc": "Hands-on experience on avionic DO-254 DAL-A, DAL-B and DAL-C designs: test case and testbench development for functional validation, DO-254 compliant coding practices, linting analysis with Alint-Pro, SEU handling and redundancy.",
         "tools_label": "Key competencies",
-        "tools": ["DO-254 DAL-A / DAL-B / DAL-C", "Aldec Alint-Pro (linting)", "Requirements traceability", "SEU handling & redundancy"]
+        "tools": [
+          "DO-254 DAL-A / DAL-B / DAL-C",
+          "Aldec Alint-Pro (linting)",
+          "Requirements traceability",
+          "SEU handling & redundancy"
+        ]
       }
     },
     {
@@ -54,14 +84,26 @@
         "card_desc": "Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, protocolli seriali custom.",
         "modal_desc": "Implementazione e verifica di interfacce standard e custom: Aurora 8b/10b e 64b/66b per comunicazione inter-FPGA, SPI / UART / I2C, AXI4 / AXI4-Lite, protocolli seriali custom ad alta integrità per applicazioni avioniche, interfacciamento con sensori.",
         "tools_label": "Competenze chiave",
-        "tools": ["Aurora 8b/10b & 64b/66b", "SPI / UART / I2C", "AXI4 / AXI4-Lite", "Custom serial protocols", "Sensor interfacing"]
+        "tools": [
+          "Aurora 8b/10b & 64b/66b",
+          "SPI / UART / I2C",
+          "AXI4 / AXI4-Lite",
+          "Custom serial protocols",
+          "Sensor interfacing"
+        ]
       },
       "en": {
         "title": "Protocols & Interfaces",
         "card_desc": "Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, custom serial protocols.",
         "modal_desc": "Implementation and verification of standard and custom interfaces: Aurora 8b/10b and 64b/66b for inter-FPGA communication, SPI / UART / I2C, AXI4 / AXI4-Lite, custom high-integrity serial protocols for avionic applications, sensor interfacing.",
         "tools_label": "Key competencies",
-        "tools": ["Aurora 8b/10b & 64b/66b", "SPI / UART / I2C", "AXI4 / AXI4-Lite", "Custom serial protocols", "Sensor interfacing"]
+        "tools": [
+          "Aurora 8b/10b & 64b/66b",
+          "SPI / UART / I2C",
+          "AXI4 / AXI4-Lite",
+          "Custom serial protocols",
+          "Sensor interfacing"
+        ]
       }
     },
     {
@@ -70,14 +112,26 @@
         "card_desc": "Vivado, Quartus Prime, Libero SoC, Alint-Pro. Timing closure, place & route e analisi risorse su design complessi.",
         "modal_desc": "Gestione del flusso completo di implementazione FPGA: sintesi RTL, place & route, timing closure su design ad alta frequenza, analisi dei report di utilizzo risorse. Esperienza con tool di vendor diversi: Vivado, Quartus Prime e Libero SoC.",
         "tools_label": "Competenze chiave",
-        "tools": ["Xilinx Vivado", "Intel Quartus Prime", "Microchip Libero SoC", "Aldec Alint-Pro", "XDC / SDC constraints"]
+        "tools": [
+          "Xilinx Vivado",
+          "Intel Quartus Prime",
+          "Microchip Libero SoC",
+          "Aldec Alint-Pro",
+          "XDC / SDC constraints"
+        ]
       },
       "en": {
         "title": "Toolchain & Synthesis",
         "card_desc": "Vivado, Quartus Prime, Libero SoC, Alint-Pro. Timing closure, place & route and resource analysis on complex designs.",
         "modal_desc": "Full FPGA implementation flow management: RTL synthesis, place & route, timing closure on high-frequency designs, resource utilisation report analysis. Experience with tools from multiple vendors: Vivado, Quartus Prime and Libero SoC.",
         "tools_label": "Key competencies",
-        "tools": ["Xilinx Vivado", "Intel Quartus Prime", "Microchip Libero SoC", "Aldec Alint-Pro", "XDC / SDC constraints"]
+        "tools": [
+          "Xilinx Vivado",
+          "Intel Quartus Prime",
+          "Microchip Libero SoC",
+          "Aldec Alint-Pro",
+          "XDC / SDC constraints"
+        ]
       }
     },
     {
@@ -86,14 +140,26 @@
         "card_desc": "Xilinx Zynq (7000 e UltraScale+), bring-up schede custom, debug su hardware. Esperienza con PetaLinux per configurazione software di sistema.",
         "modal_desc": "Esperienza su piattaforme Xilinx Zynq (7000 e UltraScale+) in contesti industriali e avionici, con attività di bring-up di schede custom e debug su hardware. Esperienza con PetaLinux per la configurazione del software di sistema su Zynq.",
         "tools_label": "Competenze chiave",
-        "tools": ["Xilinx Zynq 7000", "Xilinx Zynq UltraScale+", "PetaLinux", "Custom board bring-up", "Hardware debug"]
+        "tools": [
+          "Xilinx Zynq 7000",
+          "Xilinx Zynq UltraScale+",
+          "PetaLinux",
+          "Custom board bring-up",
+          "Hardware debug"
+        ]
       },
       "en": {
         "title": "Systems & Platforms",
         "card_desc": "Xilinx Zynq (7000 and UltraScale+), custom board bring-up, hardware debug. Experience with PetaLinux for system software configuration.",
         "modal_desc": "Experience with Xilinx Zynq platforms (7000 and UltraScale+) in industrial and avionic contexts, including custom board bring-up and hardware debug. Experience with PetaLinux for system software configuration on Zynq.",
         "tools_label": "Key competencies",
-        "tools": ["Xilinx Zynq 7000", "Xilinx Zynq UltraScale+", "PetaLinux", "Custom board bring-up", "Hardware debug"]
+        "tools": [
+          "Xilinx Zynq 7000",
+          "Xilinx Zynq UltraScale+",
+          "PetaLinux",
+          "Custom board bring-up",
+          "Hardware debug"
+        ]
       }
     }
   ],
@@ -103,26 +169,62 @@
         "title": "Validazione DO-254 DAL-A — Controller AFDX Avionico",
         "card_desc": "Verifica e validazione in simulazione di un controller AFDX avionico secondo DO-254 DAL-A. Testbench VHDL e code coverage al 100% su Aldec Active-HDL.",
         "platform": "Microsemi PolarFire (target)",
-        "tags": ["VHDL", "DO-254", "AFDX", "Aldec", "Ethernet"],
+        "tags": [
+          "VHDL",
+          "DO-254",
+          "AFDX",
+          "Aldec",
+          "Ethernet"
+        ],
         "modal_desc": "Attività di verifica e validazione in simulazione di un controller AFDX sviluppato da terze parti, in ambito avionico DO-254 DAL-A. Il lavoro ha compreso la review dei requisiti in IBM DOORS, lo sviluppo di testbench VHDL strutturati su Aldec Active-HDL e il raggiungimento del 100% di code coverage (statement, branch, MC/DC) richiesto dalla normativa.",
         "specs": [
-          { "key": "Standard", "val": "DO-254 DAL-A" },
-          { "key": "Protocollo", "val": "AFDX / Ethernet" },
-          { "key": "Tool simulazione", "val": "Aldec Active-HDL" },
-          { "key": "Coverage", "val": "100% stmt/branch/MC-DC" }
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-A"
+          },
+          {
+            "key": "Protocollo",
+            "val": "AFDX / Ethernet"
+          },
+          {
+            "key": "Tool simulazione",
+            "val": "Aldec Active-HDL"
+          },
+          {
+            "key": "Coverage",
+            "val": "100% stmt/branch/MC-DC"
+          }
         ]
       },
       "en": {
         "title": "DO-254 DAL-A Validation — Avionic AFDX Controller",
         "card_desc": "Verification and validation in simulation of an avionic AFDX controller per DO-254 DAL-A. VHDL testbench development and 100% code coverage analysis in Aldec Active-HDL.",
         "platform": "Microsemi PolarFire (target)",
-        "tags": ["VHDL", "DO-254", "AFDX", "Aldec", "Ethernet"],
+        "tags": [
+          "VHDL",
+          "DO-254",
+          "AFDX",
+          "Aldec",
+          "Ethernet"
+        ],
         "modal_desc": "Verification and validation in simulation of a third-party avionic AFDX controller, performed against DO-254 DAL-A requirements. Work included requirements review in IBM DOORS, structured VHDL testbench development in Aldec Active-HDL, and achieving 100% code coverage (statement, branch, MC/DC) as mandated by the standard.",
         "specs": [
-          { "key": "Standard", "val": "DO-254 DAL-A" },
-          { "key": "Protocol", "val": "AFDX / Ethernet" },
-          { "key": "Simulation tool", "val": "Aldec Active-HDL" },
-          { "key": "Coverage", "val": "100% stmt/branch/MC-DC" }
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-A"
+          },
+          {
+            "key": "Protocol",
+            "val": "AFDX / Ethernet"
+          },
+          {
+            "key": "Simulation tool",
+            "val": "Aldec Active-HDL"
+          },
+          {
+            "key": "Coverage",
+            "val": "100% stmt/branch/MC-DC"
+          }
         ]
       }
     },
@@ -131,26 +233,60 @@
         "title": "Digital Pattern Generator 128 Canali High-Speed",
         "card_desc": "Sistema a 128 canali digitali high-speed su scheda custom (Zynq + Artix-7) per test di sistemi digitali. Interfacce Aurora 8b/10b e 64b/66b, SPI, protocollo custom per controllo pin driver.",
         "platform": "Xilinx Zynq UltraScale+ + Artix-7 (scheda custom)",
-        "tags": ["VHDL", "Zynq", "Aurora", "SPI"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Aurora",
+          "SPI"
+        ],
         "modal_desc": "Sistema a 128 canali digitali ad alta velocità su scheda custom (Zynq + Artix-7), indirizzato al test di sistemi digitali. Il design gestisce la generazione dei pattern, la comunicazione con le altre schede tramite Aurora 8b/10b e 64b/66b, e il controllo dei pin driver (dispositivi dedicati) tramite un protocollo seriale custom. Il progetto ha incluso bring-up dell'hardware e debug su scheda, timing closure su interfacce ad alta velocità e la progettazione del protocollo seriale custom.",
         "specs": [
-          { "key": "Piattaforma", "val": "Scheda custom (Zynq UltraScale+ + Artix-7)" },
-          { "key": "Canali", "val": "128 digitali" },
-          { "key": "Freq. attuale", "val": "100 MHz (target 1 Gbit/s)" },
-          { "key": "Interfacce", "val": "Aurora 8b/10b, 64b/66b, SPI" }
+          {
+            "key": "Piattaforma",
+            "val": "Scheda custom (Zynq UltraScale+ + Artix-7)"
+          },
+          {
+            "key": "Canali",
+            "val": "128 digitali"
+          },
+          {
+            "key": "Freq. attuale",
+            "val": "100 MHz (target 1 Gbit/s)"
+          },
+          {
+            "key": "Interfacce",
+            "val": "Aurora 8b/10b, 64b/66b, SPI"
+          }
         ]
       },
       "en": {
         "title": "128-Channel High-Speed Digital Pattern Generator",
         "card_desc": "128-channel high-speed digital system on a custom board (Zynq + Artix-7) for digital system testing. Aurora 8b/10b and 64b/66b interfaces, SPI, custom serial protocol for pin driver control.",
         "platform": "Xilinx Zynq UltraScale+ + Artix-7 (custom board)",
-        "tags": ["VHDL", "Zynq", "Aurora", "SPI"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Aurora",
+          "SPI"
+        ],
         "modal_desc": "128-channel high-speed digital system on a custom board (Zynq + Artix-7), targeting digital system testing. The design handles pattern generation, inter-board communication via Aurora 8b/10b and 64b/66b, and pin driver control (dedicated devices) via a custom serial protocol. The project included hardware bring-up and board-level debug, timing closure on high-speed interfaces and custom serial protocol design.",
         "specs": [
-          { "key": "Platform", "val": "Custom board (Zynq UltraScale+ + Artix-7)" },
-          { "key": "Channels", "val": "128 digital" },
-          { "key": "Current freq.", "val": "100 MHz (target 1 Gbit/s)" },
-          { "key": "Interfaces", "val": "Aurora 8b/10b, 64b/66b, SPI" }
+          {
+            "key": "Platform",
+            "val": "Custom board (Zynq UltraScale+ + Artix-7)"
+          },
+          {
+            "key": "Channels",
+            "val": "128 digital"
+          },
+          {
+            "key": "Current freq.",
+            "val": "100 MHz (target 1 Gbit/s)"
+          },
+          {
+            "key": "Interfaces",
+            "val": "Aurora 8b/10b, 64b/66b, SPI"
+          }
         ]
       }
     },
@@ -159,26 +295,62 @@
         "title": "Pattern Generator Digitale a 256 Canali",
         "card_desc": "Pattern generator distribuito su 2 schede custom (ciascuna con 1 Zynq e 2 Spartan-6). Distribuzione dati via Aurora 64b/66b, storage in BRAM, sincronizzazione precisa tra 6 dispositivi.",
         "platform": "Zynq + Spartan-6 (schede custom)",
-        "tags": ["VHDL", "Zynq", "Spartan-6", "Aurora", "ISE"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Spartan-6",
+          "Aurora",
+          "ISE"
+        ],
         "modal_desc": "Sviluppo della logica FPGA per un pattern generator digitale a 256 canali, distribuito su due schede custom, ciascuna composta da una Zynq e due Spartan-6. I file descrittivi del pattern vengono caricati dalla Zynq e trasmessi alle FPGA tramite link seriale Aurora 64b/66b, dove vengono memorizzati in BRAM e mandati in esecuzione. Il progetto ha incluso il bring-up completo delle schede custom, la sincronizzazione deterministica tra 6 dispositivi (2 Zynq e 4 Spartan-6), e il debug del sistema complessivo.",
         "specs": [
-          { "key": "Piattaforma", "val": "2 schede custom (1 Zynq + 2 Spartan-6 ciascuna)" },
-          { "key": "Interfacce", "val": "Aurora 64b/66b" },
-          { "key": "Freq. max", "val": "32 MHz" },
-          { "key": "Canali", "val": "256 digitali" }
+          {
+            "key": "Piattaforma",
+            "val": "2 schede custom (1 Zynq + 2 Spartan-6 ciascuna)"
+          },
+          {
+            "key": "Interfacce",
+            "val": "Aurora 64b/66b"
+          },
+          {
+            "key": "Freq. max",
+            "val": "32 MHz"
+          },
+          {
+            "key": "Canali",
+            "val": "256 digitali"
+          }
         ]
       },
       "en": {
         "title": "256-Channel Digital Pattern Generator",
         "card_desc": "Pattern generator distributed across 2 custom boards, each housing 1 Zynq and 2 Spartan-6 FPGAs. Data distribution via Aurora 64b/66b, BRAM storage, precise synchronisation across 6 devices.",
         "platform": "Zynq + Spartan-6 (custom boards)",
-        "tags": ["VHDL", "Zynq", "Spartan-6", "Aurora", "ISE"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Spartan-6",
+          "Aurora",
+          "ISE"
+        ],
         "modal_desc": "FPGA logic development for a 256-channel digital pattern generator distributed across two custom boards, each comprising one Zynq and two Spartan-6 FPGAs. Pattern files are loaded from the Zynq and transmitted to the FPGAs via Aurora 64b/66b serial links, where they are stored in BRAM and executed on command. The project included full bring-up of the custom boards, deterministic synchronisation across 6 devices (2 Zynq and 4 Spartan-6), system integration and debug.",
         "specs": [
-          { "key": "Platform", "val": "2 custom boards (1 Zynq + 2 Spartan-6 each)" },
-          { "key": "Interfaces", "val": "Aurora 64b/66b" },
-          { "key": "Max freq.", "val": "32 MHz" },
-          { "key": "Channels", "val": "256 digital" }
+          {
+            "key": "Platform",
+            "val": "2 custom boards (1 Zynq + 2 Spartan-6 each)"
+          },
+          {
+            "key": "Interfaces",
+            "val": "Aurora 64b/66b"
+          },
+          {
+            "key": "Max freq.",
+            "val": "32 MHz"
+          },
+          {
+            "key": "Channels",
+            "val": "256 digital"
+          }
         ]
       }
     },
@@ -187,26 +359,62 @@
         "title": "Controller FPGA per Test Funzionale di Banco di Prova",
         "card_desc": "Zynq dedicata al test rapido delle funzionalità di un banco di prova. Controllo manuale delle risorse via comandi seriali, separato dal design operativo.",
         "platform": "Xilinx Zynq",
-        "tags": ["VHDL", "Zynq", "Vivado", "UART", "Spazio"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Vivado",
+          "UART",
+          "Spazio"
+        ],
         "modal_desc": "Sviluppo di un controller FPGA su Zynq dedicato al test rapido e al debug funzionale di un banco di prova. Il design, separato dal firmware operativo del banco, consentiva di azionare manualmente qualsiasi risorsa tramite comandi seriali inviati da terminale, facilitando le attività di verifica e debug. Il progetto ha incluso il bring-up dell'hardware e il debug sul banco reale.",
         "specs": [
-          { "key": "Piattaforma", "val": "Scheda custom (Zynq UltraScale+ + Artix-7)" },
-          { "key": "Tool", "val": "Vivado / Active-HDL / ModelSim" },
-          { "key": "Interfaccia", "val": "Comandi seriali (UART)" },
-          { "key": "Contesto", "val": "Banco di prova" }
+          {
+            "key": "Piattaforma",
+            "val": "Scheda custom (Zynq UltraScale+ + Artix-7)"
+          },
+          {
+            "key": "Tool",
+            "val": "Vivado / Active-HDL / ModelSim"
+          },
+          {
+            "key": "Interfaccia",
+            "val": "Comandi seriali (UART)"
+          },
+          {
+            "key": "Contesto",
+            "val": "Banco di prova"
+          }
         ]
       },
       "en": {
         "title": "FPGA Controller for Functional Test Bench Testing",
         "card_desc": "Zynq-based controller for rapid functional testing of a test bench. Manual resource control via serial commands, fully separate from the operational design.",
         "platform": "Xilinx Zynq",
-        "tags": ["VHDL", "Zynq", "Vivado", "UART", "Space"],
+        "tags": [
+          "VHDL",
+          "Zynq",
+          "Vivado",
+          "UART",
+          "Space"
+        ],
         "modal_desc": "Development of a Zynq-based FPGA controller dedicated to rapid functional testing and debug of a test bench. The design, kept entirely separate from the bench operational firmware, allowed manual control of any resource via serial commands from a terminal, greatly simplifying verification and debug activities. The project included hardware bring-up and on-bench debug.",
         "specs": [
-          { "key": "Platform", "val": "Custom board (Zynq UltraScale+ + Artix-7)" },
-          { "key": "Tools", "val": "Vivado / Active-HDL / ModelSim" },
-          { "key": "Interface", "val": "Serial commands (UART)" },
-          { "key": "Context", "val": "Test bench" }
+          {
+            "key": "Platform",
+            "val": "Custom board (Zynq UltraScale+ + Artix-7)"
+          },
+          {
+            "key": "Tools",
+            "val": "Vivado / Active-HDL / ModelSim"
+          },
+          {
+            "key": "Interface",
+            "val": "Serial commands (UART)"
+          },
+          {
+            "key": "Context",
+            "val": "Test bench"
+          }
         ]
       }
     },
@@ -215,26 +423,64 @@
         "title": "Monitoring Board per Attuatore Avionico",
         "card_desc": "Design FPGA per il monitoraggio di un sistema di controllo motore elettrico trifase avionico. Rilevamento anomalie, comunicazione con FCU via protocollo seriale custom, conformità DO-254 DAL-C.",
         "platform": "Microchip/Microsemi",
-        "tags": ["VHDL", "DO-254", "SmartFusion", "Libero SoC", "LVDT", "Resolver"],
+        "tags": [
+          "VHDL",
+          "DO-254",
+          "SmartFusion",
+          "Libero SoC",
+          "LVDT",
+          "Resolver"
+        ],
         "modal_desc": "Progetto seguito per l'intero ciclo di sviluppo: dalla progettazione della logica VHDL al debug e integrazione hardware, fino alla stesura di testcase e testbench con logging strutturato per tracciabilità diretta dei requisiti DO-254 DAL-C. Il design implementa algoritmi di monitoring di coerenza del movimento motore (tramite sensori LVDT e resolver), delle correnti di attuazione, della velocità e delle temperature, con capacità di bloccare l'attuazione in caso di anomalia. La board comunica con il computer di volo (FCU) tramite un protocollo seriale custom ad alta sicurezza e inoltra dati verso la scheda di controllo basata su microcontrollore. Parti del design sono sviluppate con gestione SEU e ridondanza secondo DO-254 DAL-C.",
         "specs": [
-          { "key": "Piattaforma", "val": "Microsemi SmartFusion" },
-          { "key": "Standard", "val": "DO-254 DAL-C" },
-          { "key": "Comunicazione", "val": "Protocollo seriale custom (FCU)" },
-          { "key": "Sensori", "val": "LVDT, Resolver" }
+          {
+            "key": "Piattaforma",
+            "val": "Microsemi SmartFusion"
+          },
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-C"
+          },
+          {
+            "key": "Comunicazione",
+            "val": "Protocollo seriale custom (FCU)"
+          },
+          {
+            "key": "Sensori",
+            "val": "LVDT, Resolver"
+          }
         ]
       },
       "en": {
         "title": "Monitoring Board for Avionic Actuator",
         "card_desc": "FPGA design for monitoring a three-phase avionic electric motor control system. Fault detection, FCU communication via custom serial protocol, DO-254 DAL-C compliance.",
         "platform": "Microchip/Microsemi",
-        "tags": ["VHDL", "DO-254", "SmartFusion", "Libero SoC", "LVDT", "Resolver"],
+        "tags": [
+          "VHDL",
+          "DO-254",
+          "SmartFusion",
+          "Libero SoC",
+          "LVDT",
+          "Resolver"
+        ],
         "modal_desc": "Project followed through the full development cycle: VHDL logic design, hardware debug and integration, through to test case and testbench development with structured logging for direct DO-254 DAL-C requirements traceability. The design implements monitoring algorithms for mechanical movement consistency (via LVDT and resolver sensors), actuation currents, speed and temperatures, with the ability to trip actuation upon fault detection. The board communicates with the Flight Control Unit (FCU) via a custom high-integrity serial protocol and forwards data to a microcontroller-based control board. Parts of the design include SEU handling and redundancy per DO-254 DAL-C.",
         "specs": [
-          { "key": "Platform", "val": "Microchip/Microsemi" },
-          { "key": "Standard", "val": "DO-254 DAL-C" },
-          { "key": "Communication", "val": "Custom serial protocol (FCU)" },
-          { "key": "Sensors", "val": "LVDT, Resolver" }
+          {
+            "key": "Platform",
+            "val": "Microchip/Microsemi"
+          },
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-C"
+          },
+          {
+            "key": "Communication",
+            "val": "Custom serial protocol (FCU)"
+          },
+          {
+            "key": "Sensors",
+            "val": "LVDT, Resolver"
+          }
         ]
       }
     },
@@ -243,26 +489,64 @@
         "title": "Controllo FOC Trifase su FPGA — Debug e Finalizzazione",
         "card_desc": "Presa in carico e finalizzazione di un design FOC+PID trifase su SmartFusion: debug su hardware, correzione di moduli PID e PWM, adeguamento alle regole DO-254 DAL-B.",
         "platform": "Microchip/Microsemi",
-        "tags": ["VHDL", "DO-254 DAL-B", "SmartFusion", "Libero SoC", "FOC", "Fixed-Point"],
+        "tags": [
+          "VHDL",
+          "DO-254 DAL-B",
+          "SmartFusion",
+          "Libero SoC",
+          "FOC",
+          "Fixed-Point"
+        ],
         "modal_desc": "Presa in carico e finalizzazione di un design FPGA maturo per il controllo vettoriale FOC (Field-Oriented Control) di un attuatore elettrico trifase avionico, sviluppato in precedenza da altri. Il lavoro ha compreso debug approfondito su hardware con motore reale, correzione di problematiche residue, riscrittura di parti del controllore PID e dei moduli PWM, e adeguamento del codice alle regole di stesura interne DO-254 a seguito di analisi con Aldec Alint-Pro. Il design include algoritmi di monitoraggio integrati ed è realizzato prevalentemente in aritmetica fixed-point.",
         "specs": [
-          { "key": "Piattaforma", "val": "Microsemi SmartFusion" },
-          { "key": "Standard", "val": "DO-254 DAL-B" },
-          { "key": "Controllo", "val": "FOC + PID (fixed-point)" },
-          { "key": "Tool", "val": "Vivado / Alint-Pro / Active-HDL" }
+          {
+            "key": "Piattaforma",
+            "val": "Microsemi SmartFusion"
+          },
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-B"
+          },
+          {
+            "key": "Controllo",
+            "val": "FOC + PID (fixed-point)"
+          },
+          {
+            "key": "Tool",
+            "val": "Vivado / Alint-Pro / Active-HDL"
+          }
         ]
       },
       "en": {
         "title": "Three-Phase FOC Control on FPGA — Debug and Finalisation",
         "card_desc": "Takeover and finalisation of a FOC+PID three-phase design on SmartFusion: hardware debug, PID and PWM module rework, DO-254 DAL-B coding compliance.",
         "platform": "Microchip/Microsemi",
-        "tags": ["VHDL", "DO-254 DAL-B", "SmartFusion", "Libero SoC", "FOC", "Fixed-Point"],
+        "tags": [
+          "VHDL",
+          "DO-254 DAL-B",
+          "SmartFusion",
+          "Libero SoC",
+          "FOC",
+          "Fixed-Point"
+        ],
         "modal_desc": "Takeover and finalisation of a mature FPGA design for Field-Oriented Control (FOC) of a three-phase avionic electric actuator, originally developed by others. Work included in-depth hardware debug with a real motor, resolution of outstanding issues, rewriting of PID controller and PWM modules, and code rework for compliance with internal DO-254 coding rules following Aldec Alint-Pro analysis. The design incorporates integrated monitoring algorithms and is implemented predominantly in fixed-point arithmetic.",
         "specs": [
-          { "key": "Platform", "val": "Microchip/Microsemi" },
-          { "key": "Standard", "val": "DO-254 DAL-B" },
-          { "key": "Control", "val": "FOC + PID (fixed-point)" },
-          { "key": "Tools", "val": "Vivado / Alint-Pro / Active-HDL" }
+          {
+            "key": "Platform",
+            "val": "Microchip/Microsemi"
+          },
+          {
+            "key": "Standard",
+            "val": "DO-254 DAL-B"
+          },
+          {
+            "key": "Control",
+            "val": "FOC + PID (fixed-point)"
+          },
+          {
+            "key": "Tools",
+            "val": "Vivado / Alint-Pro / Active-HDL"
+          }
         ]
       }
     }
