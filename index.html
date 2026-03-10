@@ -453,18 +453,19 @@ function switchLang(){
 
 
 function updateActiveNav(){
-  var scrollY = window.scrollY;
   var winH = window.innerHeight;
   var docH = document.documentElement.scrollHeight;
+  var scrollY = window.scrollY;
   var sections = ['skills','projects','contact'];
   var current = null;
-  // If near bottom of page, always activate last section
   if(scrollY + winH >= docH - 40){
     current = 'contact';
   } else {
     sections.forEach(function(id){
       var el = document.getElementById(id);
-      if(el && el.offsetTop - winH * 0.4 <= scrollY) current = id;
+      if(!el) return;
+      var rect = el.getBoundingClientRect();
+      if(rect.top <= winH * 0.5) current = id;
     });
   }
   document.querySelectorAll('.nav-links a').forEach(function(a){
