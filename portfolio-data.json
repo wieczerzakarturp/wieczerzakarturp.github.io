@@ -553,12 +553,12 @@
   ],
   "ip_library": {
     "intro": {
-      "it": "Libreria personale di moduli VHDL-2008 riutilizzabili, costruita per uso professionale. Ogni modulo è verificato con testbench OSVVM (zero errori), indipendente dal vendor — compatibile con Xilinx, Intel e Microchip — e validato su hardware reale. La libreria è gestita con una toolchain CLI custom che automatizza compilazione, simulazione e tracciamento delle dipendenze.",
-      "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM testbenches (zero errors), vendor-independent — compatible with Xilinx, Intel and Microchip — and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
+      "it": "Libreria personale di moduli VHDL-2008 riutilizzabili, costruita per uso professionale. Ogni modulo è verificato con testbench OSVVM (zero errori), indipendente dal vendor (compatibile con Xilinx, Intel e Microchip) e validato su hardware reale. La libreria è gestita con una toolchain CLI custom che automatizza compilazione, simulazione e tracciamento delle dipendenze.",
+      "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM testbenches (zero errors), vendor-independent (compatible with Xilinx, Intel and Microchip) and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
     },
     "features": {
-      "it": ["VHDL-2008", "OSVVM · zero ERROR", "Vendor-independent", "HW verificato · Basys3 / Artix-7", "DO-254 ready"],
-      "en": ["VHDL-2008", "OSVVM · zero errors", "Vendor-independent", "HW verified · Basys3 / Artix-7", "DO-254 ready"]
+      "it": ["VHDL-2008", "OSVVM · zero ERROR", "Vendor-independent", "HW verificato · Basys3 / Artix-7"],
+      "en": ["VHDL-2008", "OSVVM · zero errors", "Vendor-independent", "HW verified · Basys3 / Artix-7"]
     },
     "categories": [
       {

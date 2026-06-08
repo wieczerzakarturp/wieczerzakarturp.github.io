@@ -401,12 +401,10 @@ function renderIPLibrary(data) {
   var grid = document.getElementById('iplibrary-grid');
   grid.innerHTML = ipLibData.categories.map(function(cat){
     var c = cat[lang];
-    var mods = cat.modules.map(function(m){ return '<span class="iplibrary-mod">'+m+'</span>'; }).join('');
     return '<div class="iplibrary-card anim-item">'+
       '<div class="iplibrary-card-lib">'+cat.lib+'</div>'+
       '<div class="iplibrary-card-name">'+c.name+'</div>'+
       '<div class="iplibrary-card-desc">'+c.desc+'</div>'+
-      '<div class="iplibrary-modules">'+mods+'</div>'+
       '</div>';
   }).join('');
   grid.querySelectorAll('.anim-item').forEach(function(el, i){
