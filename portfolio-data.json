@@ -550,5 +550,65 @@
         ]
       }
     }
-  ]
+  ],
+  "ip_library": {
+    "intro": {
+      "it": "Libreria personale di moduli VHDL-2008 riutilizzabili, costruita per uso professionale. Ogni modulo è verificato con testbench OSVVM (zero errori), indipendente dal vendor — compatibile con Xilinx, Intel e Microchip — e validato su hardware reale. La libreria è gestita con una toolchain CLI custom che automatizza compilazione, simulazione e tracciamento delle dipendenze.",
+      "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM testbenches (zero errors), vendor-independent — compatible with Xilinx, Intel and Microchip — and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
+    },
+    "features": {
+      "it": ["VHDL-2008", "OSVVM · zero ERROR", "Vendor-independent", "HW verificato · Basys3 / Artix-7", "DO-254 ready"],
+      "en": ["VHDL-2008", "OSVVM · zero errors", "Vendor-independent", "HW verified · Basys3 / Artix-7", "DO-254 ready"]
+    },
+    "categories": [
+      {
+        "lib": "apw_common",
+        "it": {
+          "name": "Infrastruttura di base",
+          "desc": "Primitive fondamentali riutilizzabili in qualsiasi design: gestione CDC (multi-bit, pulse, handshake), FIFO sincrona e asincrona, RAM (SDP/SP/TDP), CRC engine, framing AXI-Stream, word resizer, debouncer multi-bit."
+        },
+        "en": {
+          "name": "Core infrastructure",
+          "desc": "Foundation primitives reusable in any design: CDC handling (multi-bit, pulse, handshake), synchronous and asynchronous FIFOs, RAM wrappers (SDP/SP/TDP), CRC engine, AXI-Stream framing, word resizer, multi-bit debouncer."
+        },
+        "modules": ["bits_sync", "reset_sync", "cdc_pulse_sync", "cdc_data_handshake", "fifo_sync", "fifo_async", "sdp_ram", "sp_ram", "tdp_ram", "crc_engine", "tx_framer", "rx_deframer", "strobe_gen", "debouncer"]
+      },
+      {
+        "lib": "apw_interfaces",
+        "it": {
+          "name": "Interfacce seriali",
+          "desc": "Controller per i protocolli seriali industriali più diffusi. SPI master/slave con tutti e 4 i modi CPOL/CPHA e frequenza configurabile a runtime, I2C master con multi-master arbitration e clock stretching, UART con baud rate frazionario (algoritmo di Bresenham)."
+        },
+        "en": {
+          "name": "Serial interfaces",
+          "desc": "Controllers for the most common industrial serial protocols. SPI master/slave with all 4 CPOL/CPHA modes and runtime-configurable frequency, I2C master with multi-master arbitration and clock stretching, UART with fractional baud rate (Bresenham algorithm)."
+        },
+        "modules": ["spi_master", "spi_slave", "spi_slave_async", "i2c_master", "uart"]
+      },
+      {
+        "lib": "apw_axi",
+        "it": {
+          "name": "Ecosistema AXI",
+          "desc": "Slave AXI4-Lite con timeout e SLVERR, bridge AXI-to-Serial per SPI, I2C e UART con FIFO integrate e register bank generati automaticamente da spec YAML. Compatibile con sistemi MicroBlaze e Zynq."
+        },
+        "en": {
+          "name": "AXI ecosystem",
+          "desc": "AXI4-Lite slave with timeout and SLVERR, AXI-to-Serial bridges for SPI, I2C and UART with integrated FIFOs and register banks auto-generated from YAML specs. Compatible with MicroBlaze and Zynq systems."
+        },
+        "modules": ["axi4l_slave", "axi2serial_spi", "axi2serial_i2c", "axi2serial_uart", "axis_fifo"]
+      },
+      {
+        "lib": "apw_hw",
+        "it": {
+          "name": "Controllo hardware",
+          "desc": "Primitivi per il controllo di potenza: generatore PWM center-aligned con shadow register aggiornati alla valley, inserzione deadtime con FSM a 4 stati e fault combinatoriale, wrapper strutturale half-bridge."
+        },
+        "en": {
+          "name": "Hardware control",
+          "desc": "Power control primitives: center-aligned PWM generator with valley-updated shadow registers, dead-time insertion with 4-state FSM and combinatorial fault handling, structural half-bridge wrapper."
+        },
+        "modules": ["pwm_gen", "deadtime_insert", "half_bridge_pwm"]
+      }
+    ]
+  }
 }

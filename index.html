@@ -134,6 +134,17 @@
   body.light .project-card{box-shadow:0 2px 12px rgba(0,0,0,0.10);border-color:#c0c4cc;}body.light .skill-card{box-shadow:0 1px 6px rgba(0,0,0,0.07);}body.light .modal{box-shadow:0 8px 40px rgba(0,0,0,0.18);border-color:#b8bcc4;}body.light .stats-bar{box-shadow:0 2px 8px rgba(0,0,0,0.06);}
   body.light .modal{box-shadow:0 20px 60px rgba(0,0,0,0.15);}
   body.light .btn-send:hover{color:#fff;}
+  .iplibrary-intro{color:var(--muted);line-height:1.7;font-size:1.15rem;margin-bottom:2rem;max-width:820px;}
+  .iplibrary-features{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem;}
+  .iplibrary-feature{font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.35rem 0.9rem;border:1px solid rgba(232,146,74,0.3);border-radius:2px;color:var(--accent);background:rgba(232,146,74,0.06);letter-spacing:0.08em;}
+  .iplibrary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
+  .iplibrary-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.8rem;transition:border-color 0.2s;}
+  .iplibrary-card:hover{border-color:rgba(232,146,74,0.3);}
+  .iplibrary-card-lib{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:0.5rem;}
+  .iplibrary-card-name{font-size:1.1rem;font-weight:700;margin-bottom:0.8rem;}
+  .iplibrary-card-desc{font-size:0.92rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem;}
+  .iplibrary-modules{display:flex;flex-wrap:wrap;gap:0.35rem;}
+  .iplibrary-mod{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.18rem 0.5rem;background:rgba(232,146,74,0.05);color:var(--muted);border-radius:2px;border:1px solid var(--border);letter-spacing:0.03em;}
   @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-logo{order:1;}.nav-links{order:3;display:flex;width:100%;justify-content:center;gap:1.5rem;padding-top:0.6rem;border-top:1px solid var(--border);margin-top:0.6rem;}.nav-links a{font-size:0.8rem;}.nav-buttons{order:2;}#hero{padding:9rem 1.5rem 3rem;}section{padding:4rem 1.5rem;}.stats-bar{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.5rem;text-align:center;}.circuit-deco{display:none;}
   body{font-size:13.5px;}.hero-sub{font-size:0.95rem;}.section-title{font-size:1.55rem;}.project-title{font-size:1rem;}.project-desc{font-size:0.92rem;}.skill-name{font-size:0.95rem;}.skill-desc{font-size:0.92rem;}.modal-title{font-size:1rem;}.modal-text{font-size:0.82rem;}.modal-challenges li{font-size:0.82rem;}.modal-section-label{font-size:0.6rem;}.stat-num{font-size:2rem;}.contact-headline{font-size:1.4rem;}.contact-text{font-size:0.92rem;}.modal-specs{grid-template-columns:1fr;}.modal-spec{padding:0.7rem 1rem;}.modal-spec-key{font-size:0.55rem;}.modal-spec-val{font-size:0.82rem;}.form-field label{font-size:0.6rem;}.form-field input,.form-field textarea{font-size:0.9rem;}.btn-send{font-size:0.7rem;padding:0.8rem 1.4rem;}.modal-body{padding:0 1.2rem 1.5rem;}.modal-header{padding:1.2rem 1.2rem 0.8rem;}.modal-tags{padding:0 1.2rem 0.8rem;}}
 </style>
@@ -145,6 +156,7 @@
   <div class="nav-logo">// FPGA.ENGINEER</div>
   <ul class="nav-links">
     <li><a href="#skills" data-i18n="nav_skills" onclick="smoothScrollTo('#skills',event)">Competenze</a></li>
+    <li><a href="#iplibrary" data-i18n="nav_iplibrary" onclick="smoothScrollTo('#iplibrary',event)">IP Library</a></li>
     <li><a href="#projects" data-i18n="nav_projects" onclick="smoothScrollTo('#projects',event)">Progetti</a></li>
     <li><a href="#contact" data-i18n="nav_contact" onclick="smoothScrollTo('#contact',event)">Contatti</a></li>
   </ul>
@@ -204,7 +216,7 @@
 </section>
 
 <div class="stats-scroll-wrap">
-  <a href="#projects" class="scroll-indicator-2" aria-label="Vai ai progetti" onclick="smoothScrollTo('#projects', event)">
+  <a href="#iplibrary" class="scroll-indicator-2" aria-label="Vai alla libreria IP" onclick="smoothScrollTo('#iplibrary', event)">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polyline points="6,7 12,13 18,7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
       <polyline points="6,13 12,19 18,13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -212,14 +224,21 @@
   </a>
 </div>
 
+<section id="iplibrary">
+  <div class="section-header anim-item"><span class="section-num">02 /</span><h2 class="section-title" data-i18n="sec_ip">Libreria IP</h2><div class="section-line"></div></div>
+  <p class="iplibrary-intro anim-item" id="iplibrary-intro"></p>
+  <div class="iplibrary-features" id="iplibrary-features"></div>
+  <div class="iplibrary-grid" id="iplibrary-grid"></div>
+</section>
+
 <section id="projects">
-  <div class="section-header anim-item"><span class="section-num">02 /</span><h2 class="section-title" data-i18n="sec2">Alcuni Progetti</h2><div class="section-line"></div></div>
+  <div class="section-header anim-item"><span class="section-num">03 /</span><h2 class="section-title" data-i18n="sec3">Alcuni Progetti</h2><div class="section-line"></div></div>
   <div class="projects-grid">
   </div>
 </section>
 
 <section id="contact">
-  <div class="section-header anim-item"><span class="section-num">03 /</span><h2 class="section-title" data-i18n="sec3">Contatti</h2><div class="section-line"></div></div>
+  <div class="section-header anim-item"><span class="section-num">04 /</span><h2 class="section-title" data-i18n="sec4">Contatti</h2><div class="section-line"></div></div>
   <div class="contact-inner">
     <div>
       <h3 class="contact-headline"><span data-i18n="cht1">Hai un progetto</span><br><span data-i18n="cht2">FPGA in mente?</span></h3>
@@ -264,12 +283,12 @@
 var currentLang=(location.search==='?en')?'en':'it';
 var i18n={
   it:{
-    nav_skills:'Competenze',nav_projects:'Alcuni Progetti',nav_contact:'Contatti',lang_btn:'EN',
+    nav_skills:'Competenze',nav_iplibrary:'IP Library',nav_projects:'Alcuni Progetti',nav_contact:'Contatti',lang_btn:'EN',
     hero_tag:'Disponibile per nuovi progetti',hero_job:'FPGA Engineer',
     hero_sub:'Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.',
     cta1:'VEDI PROGETTI →',cta2:'CONTATTAMI',
     stat1:'Anni di esperienza',stat2:'Progetti completati',stat3:'Famiglie FPGA',
-    sec1:'Competenze',sec2:'Alcuni Progetti',sec3:'Contatti',
+    sec1:'Competenze',sec_ip:'Libreria IP',sec3:'Alcuni Progetti',sec4:'Contatti',
     cht1:'Hai un progetto',cht2:'FPGA in mente?',
     contact_text:'Aperto a collaborazioni freelance per progettazione FPGA, verifica funzionale e ottimizzazione — in ambito industriale, militare e avionico. Rispondo entro 24 ore.',
     lbl1:'Nome *',lbl2:'Azienda',lbl3:'Email *',lbl4:'Messaggio *',
@@ -279,12 +298,12 @@ var i18n={
     lbl_desc:'Descrizione',lbl_specs:'Specifiche tecniche',lbl_challenges:'Sfide affrontate',lbl_tools:'Competenze chiave'
   },
   en:{
-    nav_skills:'Skills',nav_projects:'Selected Projects',nav_contact:'Contact',lang_btn:'IT',
+    nav_skills:'Skills',nav_iplibrary:'IP Library',nav_projects:'Selected Projects',nav_contact:'Contact',lang_btn:'IT',
     hero_tag:'Available for new projects',hero_job:'FPGA Engineer',
     hero_sub:'Electronics engineer specialised in FPGA design and VHDL development. I turn complex requirements into efficient, reliable digital architectures.',
     cta1:'VIEW PROJECTS →',cta2:'CONTACT ME',
     stat1:'Years of experience',stat2:'Completed projects',stat3:'FPGA families',
-    sec1:'Skills',sec2:'Selected Projects',sec3:'Contact',
+    sec1:'Skills',sec_ip:'IP Library',sec3:'Selected Projects',sec4:'Contact',
     cht1:'Have an',cht2:'FPGA project in mind?',
     contact_text:'Open to freelance collaborations in FPGA design, functional verification and optimisation — in industrial, military and avionic contexts. I reply within 24 hours.',
     lbl1:'Name *',lbl2:'Company',lbl3:'Email *',lbl4:'Message *',
@@ -295,7 +314,7 @@ var i18n={
   }
 };
 
-var skills=[], skillsEN=[], projects=[], projectsEN=[];
+var skills=[], skillsEN=[], projects=[], projectsEN=[], ipLibData=null;
 
 async function loadData() {
   try {
@@ -308,6 +327,7 @@ async function loadData() {
     projectsEN= data.projects.map(p => ({title:p.en.title, tags:p.en.tags, platform:p.en.platform, description:p.en.modal_desc, specs:p.en.specs}));
     renderSkills(data);
     renderProjects(data);
+    renderIPLibrary(data);
     applyLang(currentLang);
     setTimeout(updateActiveNav, 100);
   } catch(e) {
@@ -367,6 +387,48 @@ function renderProjects(data) {
         scrollObs.observe(el);
       }
     })(card, i);
+  });
+}
+
+function renderIPLibrary(data) {
+  if (!data.ip_library) return;
+  ipLibData = data.ip_library;
+  var lang = currentLang;
+  document.getElementById('iplibrary-intro').textContent = ipLibData.intro[lang];
+  document.getElementById('iplibrary-features').innerHTML = ipLibData.features[lang].map(function(f){
+    return '<span class="iplibrary-feature">'+f+'</span>';
+  }).join('');
+  var grid = document.getElementById('iplibrary-grid');
+  grid.innerHTML = ipLibData.categories.map(function(cat){
+    var c = cat[lang];
+    var mods = cat.modules.map(function(m){ return '<span class="iplibrary-mod">'+m+'</span>'; }).join('');
+    return '<div class="iplibrary-card anim-item">'+
+      '<div class="iplibrary-card-lib">'+cat.lib+'</div>'+
+      '<div class="iplibrary-card-name">'+c.name+'</div>'+
+      '<div class="iplibrary-card-desc">'+c.desc+'</div>'+
+      '<div class="iplibrary-modules">'+mods+'</div>'+
+      '</div>';
+  }).join('');
+  grid.querySelectorAll('.anim-item').forEach(function(el, i){
+    if(el.getBoundingClientRect().top < window.innerHeight){
+      setTimeout(function(){ el.classList.add('visible'); }, i * 90 + 60);
+    } else {
+      scrollObs.observe(el);
+    }
+  });
+}
+
+function updateIPLibraryLang() {
+  if (!ipLibData) return;
+  var lang = currentLang;
+  document.getElementById('iplibrary-intro').textContent = ipLibData.intro[lang];
+  document.getElementById('iplibrary-features').innerHTML = ipLibData.features[lang].map(function(f){
+    return '<span class="iplibrary-feature">'+f+'</span>';
+  }).join('');
+  document.getElementById('iplibrary-grid').querySelectorAll('.iplibrary-card').forEach(function(card, i){
+    var cat = ipLibData.categories[i];
+    card.querySelector('.iplibrary-card-name').textContent = cat[lang].name;
+    card.querySelector('.iplibrary-card-desc').textContent = cat[lang].desc;
   });
 }
 
@@ -445,6 +507,7 @@ function switchLang(){
   document.getElementById('form-azienda').placeholder=t.ph2;
   document.getElementById('form-email').placeholder=t.ph3;
   document.getElementById('form-messaggio').placeholder=t.ph4;
+  updateIPLibraryLang();
   var so=document.getElementById('skillModalOverlay');
   var mo=document.getElementById('modalOverlay');
   if(so.classList.contains('open'))openSkillModal(parseInt(so.getAttribute('data-open-idx')));
@@ -456,7 +519,7 @@ function updateActiveNav(){
   var winH = window.innerHeight;
   var docH = document.documentElement.scrollHeight;
   var scrollY = window.scrollY;
-  var sections = ['skills','projects','contact'];
+  var sections = ['skills','iplibrary','projects','contact'];
   var current = null;
   if(scrollY + winH >= docH - 40){
     current = 'contact';
@@ -493,6 +556,7 @@ function applyLang(lang){
   document.getElementById('form-azienda').placeholder=t.ph2;
   document.getElementById('form-email').placeholder=t.ph3;
   document.getElementById('form-messaggio').placeholder=t.ph4;
+  updateIPLibraryLang();
   var so=document.getElementById('skillModalOverlay');
   var mo=document.getElementById('modalOverlay');
   if(so.classList.contains('open'))openSkillModal(parseInt(so.getAttribute('data-open-idx')));
