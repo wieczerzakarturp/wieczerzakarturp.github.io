@@ -544,8 +544,8 @@ function toggleTheme(){
   var body=document.body;
   var btn=document.getElementById('theme-btn');
   var toLight=!body.classList.contains('light');
-  if(toLight){ body.classList.add('light'); btn.textContent='LIGHT'; localStorage.setItem('theme','light'); }
-  else { body.classList.remove('light'); btn.textContent='DARK'; localStorage.setItem('theme','dark'); }
+  if(toLight){ body.classList.add('light'); btn.textContent='DARK'; localStorage.setItem('theme','light'); }
+  else { body.classList.remove('light'); btn.textContent='LIGHT'; localStorage.setItem('theme','dark'); }
 }
 // restore saved theme
 (function(){
