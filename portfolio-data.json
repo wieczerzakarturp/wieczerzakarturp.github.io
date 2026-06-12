@@ -553,12 +553,12 @@
   ],
   "ip_library": {
     "intro": {
-      "it": "Libreria personale di moduli VHDL-2008 riutilizzabili, costruita per uso professionale. Ogni modulo è verificato con testbench OSVVM (zero errori), indipendente dal vendor (compatibile con Xilinx, Intel e Microchip) e validato su hardware reale. La libreria è gestita con una toolchain CLI custom che automatizza compilazione, simulazione e tracciamento delle dipendenze.",
-      "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM testbenches (zero errors), vendor-independent (compatible with Xilinx, Intel and Microchip) and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
+      "it": "Libreria personale di moduli VHDL riutilizzabili. Ogni modulo è verificato con testbench selfchecking usando OSVVM, compatibile con tutti i vendor e validato su hardware reale. La libreria è gestita con una toolchain CLI custom che automatizza compilazione, simulazione e tracciamento delle dipendenze.",
+      "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM selfchecking testbenches, vendor-independent (compatible with Xilinx, Intel and Microchip) and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
     },
     "features": {
-      "it": ["VHDL-2008", "OSVVM · zero ERROR", "Vendor-independent", "HW verificato · Basys3 / Artix-7"],
-      "en": ["VHDL-2008", "OSVVM · zero errors", "Vendor-independent", "HW verified · Basys3 / Artix-7"]
+      "it": ["VHDL-2008", "OSVVM", "Vendor-independent", "Verificato su HW · Xilinx", "In continua manutenzione", "Git-tagged releases"],
+      "en": ["VHDL-2008", "OSVVM", "Vendor-independent", "HW verified · Xilinx", "Actively maintained", "Git-tagged releases"]
     },
     "categories": [
       {
@@ -610,5 +610,10 @@
         "modules": ["pwm_gen", "deadtime_insert", "half_bridge_pwm"]
       }
     ]
-  }
+  },
+  "stats": [
+    {"num": "5+", "it": "Anni di esperienza", "en": "Years of experience"},
+    {"num": "15+", "it": "Progetti completati", "en": "Completed projects"},
+    {"num": "3", "it": "Famiglie FPGA", "en": "FPGA families"}
+  ]
 }

@@ -136,7 +136,7 @@
   body.light .btn-send:hover{color:#fff;}
   .iplibrary-intro{color:var(--muted);line-height:1.7;font-size:1.15rem;margin-bottom:2rem;max-width:820px;}
   .iplibrary-features{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem;}
-  .iplibrary-feature{font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.35rem 0.9rem;border:1px solid rgba(232,146,74,0.3);border-radius:2px;color:var(--accent);background:rgba(232,146,74,0.06);letter-spacing:0.08em;}
+  .iplibrary-feature{font-family:'Space Mono',monospace;font-size:0.8rem;padding:0.35rem 0.9rem;border:1px solid rgba(232,146,74,0.3);border-radius:2px;color:var(--accent);background:rgba(232,146,74,0.06);letter-spacing:0.08em;}
   .iplibrary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
   .iplibrary-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.8rem;transition:border-color 0.2s;}
   .iplibrary-card:hover{border-color:rgba(232,146,74,0.3);}
@@ -204,9 +204,6 @@
 </section>
 
 <div class="stats-bar">
-  <div class="stat anim-item"><div class="stat-num">5+</div><div class="stat-label" data-i18n="stat1">Anni di esperienza</div></div>
-  <div class="stat anim-item"><div class="stat-num">15+</div><div class="stat-label" data-i18n="stat2">Progetti completati</div></div>
-  <div class="stat anim-item"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat3">Famiglie FPGA</div></div>
 </div>
 
 <section id="skills">
@@ -287,7 +284,6 @@ var i18n={
     hero_tag:'Disponibile per nuovi progetti',hero_job:'FPGA Engineer',
     hero_sub:'Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.',
     cta1:'VEDI PROGETTI →',cta2:'CONTATTAMI',
-    stat1:'Anni di esperienza',stat2:'Progetti completati',stat3:'Famiglie FPGA',
     sec1:'Competenze',sec_ip:'Libreria IP',sec3:'Alcuni Progetti',sec4:'Contatti',
     cht1:'Hai un progetto',cht2:'FPGA in mente?',
     contact_text:'Aperto a collaborazioni freelance per progettazione FPGA, verifica funzionale e ottimizzazione — in ambito industriale, militare e avionico. Rispondo entro 24 ore.',
@@ -302,7 +298,6 @@ var i18n={
     hero_tag:'Available for new projects',hero_job:'FPGA Engineer',
     hero_sub:'Electronics engineer specialised in FPGA design and VHDL development. I turn complex requirements into efficient, reliable digital architectures.',
     cta1:'VIEW PROJECTS →',cta2:'CONTACT ME',
-    stat1:'Years of experience',stat2:'Completed projects',stat3:'FPGA families',
     sec1:'Skills',sec_ip:'IP Library',sec3:'Selected Projects',sec4:'Contact',
     cht1:'Have an',cht2:'FPGA project in mind?',
     contact_text:'Open to freelance collaborations in FPGA design, functional verification and optimisation — in industrial, military and avionic contexts. I reply within 24 hours.',
@@ -322,12 +317,13 @@ async function loadData() {
     const data = await res.json();
 
     skills    = data.skills.map(s => ({title:s.it.title, description:s.it.modal_desc, tools:s.it.tools}));
-    skillsEN  = data.skills.map(s => ({title:s.en.title, description:s.en.modal_desc}));
+    skillsEN  = data.skills.map(s => ({title:s.en.title, description:s.en.modal_desc, tools:s.en.tools}));
     projects  = data.projects.map(p => ({title:p.it.title, tags:p.it.tags, platform:p.it.platform, description:p.it.modal_desc, specs:p.it.specs}));
     projectsEN= data.projects.map(p => ({title:p.en.title, tags:p.en.tags, platform:p.en.platform, description:p.en.modal_desc, specs:p.en.specs}));
     renderSkills(data);
     renderProjects(data);
     renderIPLibrary(data);
+    renderStats(data);
     applyLang(currentLang);
     setTimeout(updateActiveNav, 100);
   } catch(e) {
@@ -430,6 +426,25 @@ function updateIPLibraryLang() {
   });
 }
 
+function renderStats(data) {
+  if (!data.stats) return;
+  var bar = document.querySelector('.stats-bar');
+  if (!bar) return;
+  bar.innerHTML = data.stats.map(function(s) {
+    return '<div class="stat anim-item">' +
+      '<div class="stat-num">' + s.num + '</div>' +
+      '<div class="stat-label" data-it="' + s.it + '" data-en="' + s.en + '">' + s.it + '</div>' +
+      '</div>';
+  }).join('');
+  bar.querySelectorAll('.anim-item').forEach(function(el, i) {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      setTimeout(function(){ el.classList.add('visible'); }, i * 90 + 60);
+    } else {
+      scrollObs.observe(el);
+    }
+  });
+}
+
 function smoothScrollTo(selector, e){
   if(e) e.preventDefault();
   var target=document.querySelector(selector);
@@ -453,7 +468,7 @@ function openSkillModal(idx){history.pushState({modal:'skill',idx:idx},null,null
   document.getElementById('skillModalBody').innerHTML=
     '<div><div class="modal-section-label">'+t.lbl_desc+'</div><p class="modal-text">'+s.description+'</p></div>'+
     '<div><div class="modal-section-label">'+t.lbl_tools+'</div><ul class="modal-challenges">'+
-    skills[idx].tools.map(function(tool){return '<li>'+tool+'</li>';}).join('')+
+    s.tools.map(function(tool){return '<li>'+tool+'</li>';}).join('')+
     '</ul></div>';
   var o=document.getElementById('skillModalOverlay');
   o.setAttribute('data-open-idx',idx);
