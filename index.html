@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <!-- bump ?v= on every deploy that changes style.css or main.js, so browsers don't mix old and new files -->
-<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <nav>
@@ -128,6 +128,8 @@
         </div>
         <div class="form-field"><label data-i18n="lbl3">Email *</label><input type="email" id="form-email" data-i18n-ph="ph3" placeholder="tua@email.com"></div>
         <div class="form-field"><label data-i18n="lbl4">Messaggio *</label><textarea id="form-messaggio" data-i18n-ph="ph4" rows="5" placeholder="Il tuo messaggio..."></textarea></div>
+        <!-- anti-spam honeypot: invisible to people, bots fill it in -->
+        <div class="form-hp" aria-hidden="true"><label for="form-website">Website</label><input type="text" id="form-website" tabindex="-1" autocomplete="off"></div>
         <button class="btn-send" data-i18n="btn_send" onclick="inviaMailto(event)">INVIA MESSAGGIO &#8594;</button>
       </div>
     </div>
@@ -151,6 +153,6 @@
 <footer>
   <div class="footer-copy" data-i18n="footer">&#169; 2026 Artur Pawel Wieczerzak &middot; Tutti i diritti riservati</div>
 </footer>
-<script src="main.js?v=1"></script>
+<script src="main.js?v=2"></script>
 </body>
 </html>

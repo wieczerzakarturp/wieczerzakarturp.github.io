@@ -131,6 +131,7 @@
   ],
   "projects": [
     {
+      "id": "afdx",
       "tags": [
         "VHDL",
         "DO-254",
@@ -188,6 +189,7 @@
       }
     },
     {
+      "id": "digital-test-system",
       "tags": [
         "VHDL",
         "Zynq",
@@ -269,6 +271,7 @@
       }
     },
     {
+      "id": "pattern-gen-256",
       "tags": [
         "VHDL",
         "Zynq",
@@ -326,6 +329,7 @@
       }
     },
     {
+      "id": "bench-controller",
       "it": {
         "title": "Controller FPGA per Test Funzionale di Banco di Prova",
         "card_desc": "Zynq dedicata al test rapido delle funzionalità di un banco di prova. Controllo manuale delle risorse via comandi seriali, separato dal design operativo.",
@@ -390,6 +394,7 @@
       }
     },
     {
+      "id": "actuator-monitor",
       "tags": [
         "VHDL",
         "DO-254",
@@ -448,6 +453,7 @@
       }
     },
     {
+      "id": "foc",
       "tags": [
         "VHDL",
         "DO-254 DAL-B",
@@ -646,7 +652,8 @@
       "footer": "© 2026 Artur Pawel Wieczerzak · Tutti i diritti riservati",
       "lbl_desc": "Descrizione",
       "lbl_specs": "Specifiche tecniche",
-      "lbl_tools": "Competenze chiave"
+      "lbl_tools": "Competenze chiave",
+      "form_bad_email": "EMAIL NON VALIDA"
     },
     "en": {
       "nav_skills": "Skills",
@@ -682,7 +689,8 @@
       "footer": "© 2026 Artur Pawel Wieczerzak · All rights reserved",
       "lbl_desc": "Description",
       "lbl_specs": "Technical specs",
-      "lbl_tools": "Key competencies"
+      "lbl_tools": "Key competencies",
+      "form_bad_email": "INVALID EMAIL"
     }
   }
 }

@@ -168,8 +168,8 @@ function renderAll(){
 
 function switchLang(){
   currentLang = currentLang === 'it' ? 'en' : 'it';
-  // keep the current state so an open modal still closes correctly
-  history.replaceState(history.state, '', '?' + currentLang);
+  // keep the current state and #project so an open modal still closes correctly
+  history.replaceState(history.state, '', '?' + currentLang + location.hash);
   renderAll();
 }
 
@@ -181,11 +181,24 @@ async function loadData(){
     if(!res.ok) throw new Error('HTTP ' + res.status);
     DATA = await res.json();
     renderAll();
+    openFromHash();
     setTimeout(updateActiveNav, 100);
   } catch(e) {
     console.error('Failed to load portfolio-data.json', e);
     showLoadError();
   }
+}
+
+// direct link: index.html#foc (or ?en#foc) opens that project
+function openFromHash(){
+  var id = location.hash.slice(1);
+  if(!id) return;
+  var idx = DATA.projects.findIndex(function(p){ return p.id === id; });
+  if(idx < 0) return;
+  // drop the hash from the landing entry: openModal pushes it back, so closing
+  // the modal goes back to the clean URL and stays on the site
+  history.replaceState(null, '', location.pathname + location.search);
+  openModal(idx);
 }
 
 // the JSON (and its UI strings) is missing, so this text lives here
@@ -229,8 +242,9 @@ function closeSkillModalOutside(e){ if(e.target === document.getElementById('ski
 
 function openModal(idx){
   var o = document.getElementById('modalOverlay');
-  if(!o.classList.contains('open')) history.pushState({modal:'project', idx:idx}, null, null);
   var p = pick(DATA.projects[idx]), t = ui();
+  // the URL gets #<project id>, so the address bar holds a shareable direct link
+  if(!o.classList.contains('open')) history.pushState({modal:'project', idx:idx}, null, p.id ? '#' + p.id : null);
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalTags').innerHTML = renderTags(p.tags);
   document.getElementById('modalBody').innerHTML =
@@ -254,6 +268,9 @@ window.addEventListener('popstate', function(){
   var sm = document.getElementById('skillModalOverlay');
   if(pm.classList.contains('open')) closeModal();
   else if(sm.classList.contains('open')) closeSkillModal();
+  // the entry we came back to may carry the old ?lang if it was switched while a modal was open
+  var urlOk = location.search === '?' + currentLang || (currentLang === 'it' && location.search === '');
+  if(!urlOk) history.replaceState(history.state, '', '?' + currentLang + location.hash);
 });
 
 // ---------- navigation ----------
@@ -294,14 +311,42 @@ window.addEventListener('scroll', updateActiveNav, {passive:true});
 
 // ---------- theme ----------
 
+function setTheme(light){
+  document.body.classList.toggle('light', light);
+  document.getElementById('theme-btn').textContent = light ? 'DARK' : 'LIGHT';
+}
+
+// an explicit choice is saved and wins over the system setting from then on
 function toggleTheme(){
   var toLight = !document.body.classList.contains('light');
-  document.body.classList.toggle('light', toLight);
-  document.getElementById('theme-btn').textContent = toLight ? 'DARK' : 'LIGHT';
-  localStorage.setItem('theme', toLight ? 'light' : 'dark');
+  setTheme(toLight);
+  try { localStorage.setItem('theme', toLight ? 'light' : 'dark'); } catch(e) {}
+}
+
+function savedTheme(){
+  try { return localStorage.getItem('theme'); } catch(e) { return null; }
 }
 
 // ---------- contact form ----------
+
+var pageLoadedAt = Date.now();
+var FORM_FIELDS = ['form-nome','form-azienda','form-email','form-messaggio'];
+
+// show a temporary message on the send button, then restore it
+function flashBtn(btn, text, ms, ok){
+  btn.textContent = text;
+  if(ok){ btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)'; btn.style.borderColor = 'var(--accent)'; }
+  else  { btn.style.borderColor = '#e05252'; btn.style.color = '#e05252'; }
+  setTimeout(function(){
+    btn.textContent = ui().btn_send;
+    btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = '';
+    btn.disabled = false;
+  }, ms);
+}
+
+function clearForm(){
+  FORM_FIELDS.forEach(function(id){ document.getElementById(id).value = ''; });
+}
 
 function inviaMailto(e){
   e.preventDefault();
@@ -310,34 +355,39 @@ function inviaMailto(e){
   var azienda = document.getElementById('form-azienda').value.trim();
   var email = document.getElementById('form-email').value.trim();
   var messaggio = document.getElementById('form-messaggio').value.trim();
-  if(!nome || !email || !messaggio){
-    btn.textContent = t.form_missing;
-    btn.style.borderColor = '#e05252'; btn.style.color = '#e05252';
-    setTimeout(function(){ btn.textContent = ui().btn_send; btn.style.borderColor = ''; btn.style.color = ''; }, 2500);
+
+  // anti-spam: bots fill the hidden field or submit within seconds of loading;
+  // pretend success so they get no hint, but send nothing
+  var honeypot = document.getElementById('form-website').value;
+  if(honeypot || Date.now() - pageLoadedAt < 3000){
+    clearForm();
+    flashBtn(btn, t.form_sent, 3000, true);
     return;
   }
+
+  if(!nome || !email || !messaggio){ flashBtn(btn, t.form_missing, 2500); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ flashBtn(btn, t.form_bad_email, 2500); return; }
+
   btn.textContent = t.form_sending;
   btn.disabled = true;
   emailjs.send('service_3q0h5db', 'template_j7883ln', {name:nome, company:azienda || '—', email:email, message:messaggio})
   .then(function(){
-    btn.textContent = t.form_sent;
-    btn.style.background = 'var(--accent)'; btn.style.color = 'var(--bg)'; btn.style.borderColor = 'var(--accent)';
-    ['form-nome','form-azienda','form-email','form-messaggio'].forEach(function(id){ document.getElementById(id).value = ''; });
-    setTimeout(function(){ btn.textContent = ui().btn_send; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; btn.disabled = false; }, 3000);
+    clearForm();
+    flashBtn(btn, t.form_sent, 3000, true);
   }, function(err){
-    btn.textContent = t.form_error + (err.text || err.status || '?');
-    btn.style.borderColor = '#e05252'; btn.style.color = '#e05252'; btn.disabled = false;
-    setTimeout(function(){ btn.textContent = ui().btn_send; btn.style.borderColor = ''; btn.style.color = ''; }, 4000);
+    flashBtn(btn, t.form_error + (err.text || err.status || '?'), 4000);
   });
 }
 
 // ---------- startup ----------
 
-// restore saved theme
-if(localStorage.getItem('theme') === 'light'){
-  document.body.classList.add('light');
-  document.getElementById('theme-btn').textContent = 'DARK';
-}
+// theme: saved choice if any, otherwise follow the operating system setting
+(function(){
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  var saved = savedTheme();
+  setTheme(saved ? saved === 'light' : mq.matches);
+  mq.addEventListener('change', function(e){ if(!savedTheme()) setTheme(e.matches); });
+})();
 
 // static section headers
 document.querySelectorAll('.anim-item').forEach(function(el){ scrollObs.observe(el); });
