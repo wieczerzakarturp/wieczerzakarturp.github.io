@@ -175,13 +175,25 @@ function switchLang(){
 
 async function loadData(){
   try {
-    var res = await fetch('portfolio-data.json');
+    // no-cache: the browser revalidates with the server (cheap 304 when unchanged),
+    // so a new deploy is visible immediately
+    var res = await fetch('portfolio-data.json', {cache:'no-cache'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     DATA = await res.json();
     renderAll();
     setTimeout(updateActiveNav, 100);
   } catch(e) {
     console.error('Failed to load portfolio-data.json', e);
+    showLoadError();
   }
+}
+
+// the JSON (and its UI strings) is missing, so this text lives here
+function showLoadError(){
+  var msg = currentLang === 'en'
+    ? 'Content could not be loaded. Please reload the page.'
+    : 'Impossibile caricare i contenuti. Ricarica la pagina.';
+  document.querySelector('.stats-bar').innerHTML = '<div class="load-error">' + msg + '</div>';
 }
 
 // ---------- modals ----------
