@@ -1,181 +1,147 @@
 {
+  "stats": [
+    {
+      "num": "5+",
+      "it": "Anni di esperienza",
+      "en": "Years of experience"
+    },
+    {
+      "num": "15+",
+      "it": "Progetti completati",
+      "en": "Completed projects"
+    },
+    {
+      "num": "3",
+      "it": "Famiglie FPGA",
+      "en": "FPGA families"
+    }
+  ],
   "skills": [
     {
+      "tools": [
+        "VHDL-93 / VHDL-2008",
+        "Xilinx",
+        "Microchip/Microsemi",
+        "Intel/Altera"
+      ],
       "it": {
         "title": "VHDL & RTL Design",
         "card_desc": "Sviluppo VHDL RTL su Xilinx, Microchip/Microsemi e Intel/Altera. Design custom complessi con integrazione di vendor IP in contesti industriali, militari e avionici.",
-        "modal_desc": "Progettazione digitale in VHDL a livello RTL su piattaforme Xilinx, Microchip/Microsemi e Intel/Altera. Sviluppo di architetture custom complesse, integrazione di vendor IP e core proprietari, dalla specifica funzionale al design sintetizzabile e verificato in contesti industriali, militari e avionici.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "VHDL-93 / VHDL-2008",
-          "Xilinx",
-          "Microchip/Microsemi",
-          "Intel/Altera"
-        ]
+        "modal_desc": "Progettazione digitale in VHDL a livello RTL su piattaforme Xilinx, Microchip/Microsemi e Intel/Altera. Sviluppo di architetture custom complesse, integrazione di vendor IP e core proprietari, dalla specifica funzionale al design sintetizzabile e verificato in contesti industriali, militari e avionici."
       },
       "en": {
         "title": "VHDL & RTL Design",
         "card_desc": "VHDL RTL development on Xilinx, Microchip/Microsemi and Intel/Altera. Complex custom designs with vendor IP integration in industrial, military and avionic contexts.",
-        "modal_desc": "VHDL RTL design on Xilinx, Microchip/Microsemi and Intel/Altera platforms. Development of complex custom architectures, integration of vendor IP and proprietary cores, from functional specification to synthesisable and verified design in industrial, military and avionic contexts.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "VHDL-93 / VHDL-2008",
-          "Xilinx",
-          "Microchip/Microsemi",
-          "Intel/Altera"
-        ]
+        "modal_desc": "VHDL RTL design on Xilinx, Microchip/Microsemi and Intel/Altera platforms. Development of complex custom architectures, integration of vendor IP and proprietary cores, from functional specification to synthesisable and verified design in industrial, military and avionic contexts."
       }
     },
     {
+      "tools": [
+        "Aldec Active-HDL",
+        "ModelSim / Questa",
+        "Code coverage (stmt/branch/MC-DC)",
+        "Self-checking testbench"
+      ],
       "it": {
         "title": "Simulazione & Verifica",
         "card_desc": "Testbench VHDL strutturati, logging per tracciabilità requisiti, analisi code coverage (stmt/branch/MC-DC) per design safety-critical.",
-        "modal_desc": "Sviluppo di testbench VHDL strutturati per la verifica funzionale completa: stimoli automatici, self-checking testbench, logging strutturato per tracciabilità dei requisiti. Analisi di code coverage (statement, branch, MC/DC) per design safety-critical.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "Aldec Active-HDL",
-          "ModelSim / Questa",
-          "Code coverage (stmt/branch/MC-DC)",
-          "Self-checking testbench"
-        ]
+        "modal_desc": "Sviluppo di testbench VHDL strutturati per la verifica funzionale completa: stimoli automatici, self-checking testbench, logging strutturato per tracciabilità dei requisiti. Analisi di code coverage (statement, branch, MC/DC) per design safety-critical."
       },
       "en": {
         "title": "Simulation & Verification",
         "card_desc": "Structured VHDL testbenches, requirements traceability logging, code coverage (stmt/branch/MC-DC) for safety-critical designs.",
-        "modal_desc": "Structured VHDL testbench development for complete functional verification: automatic stimuli, self-checking testbenches, structured logging for requirements traceability. Code coverage analysis (statement, branch, MC/DC) for safety-critical designs.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "Aldec Active-HDL",
-          "ModelSim / Questa",
-          "Code coverage (stmt/branch/MC-DC)",
-          "Self-checking testbench"
-        ]
+        "modal_desc": "Structured VHDL testbench development for complete functional verification: automatic stimuli, self-checking testbenches, structured logging for requirements traceability. Code coverage analysis (statement, branch, MC/DC) for safety-critical designs."
       }
     },
     {
+      "tools": [
+        "DO-254 DAL-A / DAL-B / DAL-C",
+        "Aldec Alint-Pro (linting)",
+        "Requirements traceability",
+        "SEU handling & redundancy"
+      ],
       "it": {
         "title": "Standard DO-254",
         "card_desc": "Design avionici DO-254 DAL-A/B/C: sviluppo testcase e testbench, coding conforme agli standard DO-254, linting con Alint-Pro, gestione SEU e ridondanza.",
-        "modal_desc": "Esperienza applicata su design avionici DO-254 DAL-A, DAL-B e DAL-C: sviluppo di testcase e testbench per validazione funzionale, coding aderente a standard DO-254, analisi di linting con Alint-Pro, gestione SEU e ridondanza.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "DO-254 DAL-A / DAL-B / DAL-C",
-          "Aldec Alint-Pro (linting)",
-          "Requirements traceability",
-          "SEU handling & redundancy"
-        ]
+        "modal_desc": "Esperienza applicata su design avionici DO-254 DAL-A, DAL-B e DAL-C: sviluppo di testcase e testbench per validazione funzionale, coding aderente a standard DO-254, analisi di linting con Alint-Pro, gestione SEU e ridondanza."
       },
       "en": {
         "title": "DO-254 Standard",
         "card_desc": "Avionic DO-254 DAL-A/B/C designs: test case and testbench development, DO-254 compliant coding, Alint-Pro linting, SEU handling and redundancy.",
-        "modal_desc": "Hands-on experience on avionic DO-254 DAL-A, DAL-B and DAL-C designs: test case and testbench development for functional validation, DO-254 compliant coding practices, linting analysis with Alint-Pro, SEU handling and redundancy.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "DO-254 DAL-A / DAL-B / DAL-C",
-          "Aldec Alint-Pro (linting)",
-          "Requirements traceability",
-          "SEU handling & redundancy"
-        ]
+        "modal_desc": "Hands-on experience on avionic DO-254 DAL-A, DAL-B and DAL-C designs: test case and testbench development for functional validation, DO-254 compliant coding practices, linting analysis with Alint-Pro, SEU handling and redundancy."
       }
     },
     {
+      "tools": [
+        "Aurora 8b/10b & 64b/66b",
+        "SPI / UART / I2C",
+        "AXI4 / AXI4-Lite",
+        "Custom serial protocols",
+        "Sensor interfacing"
+      ],
       "it": {
         "title": "Protocolli & Interfacce",
         "card_desc": "Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, protocolli seriali custom.",
-        "modal_desc": "Implementazione e verifica di interfacce standard e custom: Aurora 8b/10b e 64b/66b per comunicazione inter-FPGA, SPI / UART / I2C, AXI4 / AXI4-Lite, protocolli seriali custom ad alta integrità per applicazioni avioniche, interfacciamento con sensori.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "Aurora 8b/10b & 64b/66b",
-          "SPI / UART / I2C",
-          "AXI4 / AXI4-Lite",
-          "Custom serial protocols",
-          "Sensor interfacing"
-        ]
+        "modal_desc": "Implementazione e verifica di interfacce standard e custom: Aurora 8b/10b e 64b/66b per comunicazione inter-FPGA, SPI / UART / I2C, AXI4 / AXI4-Lite, protocolli seriali custom ad alta integrità per applicazioni avioniche, interfacciamento con sensori."
       },
       "en": {
         "title": "Protocols & Interfaces",
         "card_desc": "Aurora, SPI, UART, I2C, AXI4 / AXI4-Lite, custom serial protocols.",
-        "modal_desc": "Implementation and verification of standard and custom interfaces: Aurora 8b/10b and 64b/66b for inter-FPGA communication, SPI / UART / I2C, AXI4 / AXI4-Lite, custom high-integrity serial protocols for avionic applications, sensor interfacing.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "Aurora 8b/10b & 64b/66b",
-          "SPI / UART / I2C",
-          "AXI4 / AXI4-Lite",
-          "Custom serial protocols",
-          "Sensor interfacing"
-        ]
+        "modal_desc": "Implementation and verification of standard and custom interfaces: Aurora 8b/10b and 64b/66b for inter-FPGA communication, SPI / UART / I2C, AXI4 / AXI4-Lite, custom high-integrity serial protocols for avionic applications, sensor interfacing."
       }
     },
     {
+      "tools": [
+        "Xilinx Vivado",
+        "Intel Quartus Prime",
+        "Microchip Libero SoC",
+        "Aldec Alint-Pro",
+        "XDC / SDC constraints"
+      ],
       "it": {
         "title": "Toolchain & Sintesi",
         "card_desc": "Vivado, Quartus Prime, Libero SoC, Alint-Pro. Timing closure, place & route e analisi risorse su design complessi.",
-        "modal_desc": "Gestione del flusso completo di implementazione FPGA: sintesi RTL, place & route, timing closure su design ad alta frequenza, analisi dei report di utilizzo risorse. Esperienza con tool di vendor diversi: Vivado, Quartus Prime e Libero SoC.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "Xilinx Vivado",
-          "Intel Quartus Prime",
-          "Microchip Libero SoC",
-          "Aldec Alint-Pro",
-          "XDC / SDC constraints"
-        ]
+        "modal_desc": "Gestione del flusso completo di implementazione FPGA: sintesi RTL, place & route, timing closure su design ad alta frequenza, analisi dei report di utilizzo risorse. Esperienza con tool di vendor diversi: Vivado, Quartus Prime e Libero SoC."
       },
       "en": {
         "title": "Toolchain & Synthesis",
         "card_desc": "Vivado, Quartus Prime, Libero SoC, Alint-Pro. Timing closure, place & route and resource analysis on complex designs.",
-        "modal_desc": "Full FPGA implementation flow management: RTL synthesis, place & route, timing closure on high-frequency designs, resource utilisation report analysis. Experience with tools from multiple vendors: Vivado, Quartus Prime and Libero SoC.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "Xilinx Vivado",
-          "Intel Quartus Prime",
-          "Microchip Libero SoC",
-          "Aldec Alint-Pro",
-          "XDC / SDC constraints"
-        ]
+        "modal_desc": "Full FPGA implementation flow management: RTL synthesis, place & route, timing closure on high-frequency designs, resource utilisation report analysis. Experience with tools from multiple vendors: Vivado, Quartus Prime and Libero SoC."
       }
     },
     {
+      "tools": [
+        "Xilinx Zynq 7000",
+        "Xilinx Zynq UltraScale+",
+        "PetaLinux",
+        "Custom board bring-up",
+        "Hardware debug"
+      ],
       "it": {
         "title": "Sistemi & Piattaforme",
         "card_desc": "Xilinx Zynq (7000 e UltraScale+), bring-up schede custom, debug su hardware. Esperienza con PetaLinux per configurazione software di sistema.",
-        "modal_desc": "Esperienza su piattaforme Xilinx Zynq (7000 e UltraScale+) in contesti industriali e avionici, con attività di bring-up di schede custom e debug su hardware. Esperienza con PetaLinux per la configurazione del software di sistema su Zynq.",
-        "tools_label": "Competenze chiave",
-        "tools": [
-          "Xilinx Zynq 7000",
-          "Xilinx Zynq UltraScale+",
-          "PetaLinux",
-          "Custom board bring-up",
-          "Hardware debug"
-        ]
+        "modal_desc": "Esperienza su piattaforme Xilinx Zynq (7000 e UltraScale+) in contesti industriali e avionici, con attività di bring-up di schede custom e debug su hardware. Esperienza con PetaLinux per la configurazione del software di sistema su Zynq."
       },
       "en": {
         "title": "Systems & Platforms",
         "card_desc": "Xilinx Zynq (7000 and UltraScale+), custom board bring-up, hardware debug. Experience with PetaLinux for system software configuration.",
-        "modal_desc": "Experience with Xilinx Zynq platforms (7000 and UltraScale+) in industrial and avionic contexts, including custom board bring-up and hardware debug. Experience with PetaLinux for system software configuration on Zynq.",
-        "tools_label": "Key competencies",
-        "tools": [
-          "Xilinx Zynq 7000",
-          "Xilinx Zynq UltraScale+",
-          "PetaLinux",
-          "Custom board bring-up",
-          "Hardware debug"
-        ]
+        "modal_desc": "Experience with Xilinx Zynq platforms (7000 and UltraScale+) in industrial and avionic contexts, including custom board bring-up and hardware debug. Experience with PetaLinux for system software configuration on Zynq."
       }
     }
   ],
   "projects": [
     {
+      "tags": [
+        "VHDL",
+        "DO-254",
+        "AFDX",
+        "Aldec",
+        "Ethernet"
+      ],
       "it": {
         "title": "Validazione DO-254 DAL-A — Controller AFDX Avionico",
         "card_desc": "Verifica e validazione in simulazione di un controller AFDX avionico secondo DO-254 DAL-A. Testbench VHDL e code coverage al 100% su Aldec Active-HDL.",
         "platform": "Microsemi PolarFire (target)",
-        "tags": [
-          "VHDL",
-          "DO-254",
-          "AFDX",
-          "Aldec",
-          "Ethernet"
-        ],
         "modal_desc": "Attività di verifica e validazione in simulazione di un controller AFDX sviluppato da terze parti, in ambito avionico DO-254 DAL-A. Il lavoro ha compreso la review dei requisiti in IBM DOORS, lo sviluppo di testbench VHDL strutturati su Aldec Active-HDL e il raggiungimento del 100% di code coverage (statement, branch, MC/DC) richiesto dalla normativa.",
         "specs": [
           {
@@ -200,13 +166,6 @@
         "title": "DO-254 DAL-A Validation — Avionic AFDX Controller",
         "card_desc": "Verification and validation in simulation of an avionic AFDX controller per DO-254 DAL-A. VHDL testbench development and 100% code coverage analysis in Aldec Active-HDL.",
         "platform": "Microsemi PolarFire (target)",
-        "tags": [
-          "VHDL",
-          "DO-254",
-          "AFDX",
-          "Aldec",
-          "Ethernet"
-        ],
         "modal_desc": "Verification and validation in simulation of a third-party avionic AFDX controller, performed against DO-254 DAL-A requirements. Work included requirements review in IBM DOORS, structured VHDL testbench development in Aldec Active-HDL, and achieving 100% code coverage (statement, branch, MC/DC) as mandated by the standard.",
         "specs": [
           {
@@ -229,20 +188,31 @@
       }
     },
     {
+      "tags": [
+        "VHDL",
+        "Zynq",
+        "Aurora",
+        "PCIe",
+        "AXI",
+        "PMU",
+        "SPI"
+      ],
       "it": {
         "title": "Sistema di Test Digitale a 128 Canali",
         "card_desc": "Sistema di test per dispositivi digitali su schede custom (Zynq UltraScale+ + Artix-7) controllato via PCIe. Pattern generator a 128 canali, link Aurora, protocollo seriale custom per pin driver, misure parametriche e generazione di forme d'onda.",
         "platform": "Xilinx Zynq UltraScale+ + Artix-7 (scheda custom)",
-        "tags": [
-          "VHDL",
-          "Zynq",
-          "Aurora",
-          "PCIe",
-          "AXI",
-          "PMU",
-          "SPI"
+        "modal_desc": [
+          "Sistema di test per dispositivi digitali basato su schede custom con Zynq UltraScale+ e FPGA Artix-7, controllato da un PC host tramite PCIe.",
+          [
+            "Pattern generator a 128 canali bidirezionali: sequenziamento dei vettori, direzione dei pin controllata dinamicamente, acquisizione delle risposte del DUT, trigger esterni.",
+            "Comunicazione tra schede e FPGA tramite link seriali multi-gigabit (Aurora 8b/10b e 64b/66b, AXI Chip2Chip), con gestione dell'inizializzazione e del recupero del link.",
+            "Controllo dei pin driver (dispositivi dedicati) tramite un protocollo seriale custom bidirezionale.",
+            "Misure parametriche (PMU): acquisizione da ADC ad alta velocità su interfaccia LVDS, con deserializzazione ed elaborazione delle misure in hardware.",
+            "Generazione di forme d'onda di tensione e corrente programmabili su più canali DAC.",
+            "Sincronizzazione hardware di generazione e misura tramite un manager dedicato."
+          ],
+          "Il progetto ha incluso verifica con testbench VHDL e flussi di progetto riproducibili tramite script TCL, bring-up dell'hardware e debug su scheda, inclusi timing closure e gestione dei domini di clock (CDC)."
         ],
-        "modal_desc": "Sistema di test per dispositivi digitali basato su schede custom con Zynq UltraScale+ e FPGA Artix-7, controllato da un PC host tramite PCIe.\n\n• Pattern generator a 128 canali bidirezionali: sequenziamento dei vettori, direzione dei pin controllata dinamicamente, acquisizione delle risposte del DUT, trigger esterni.\n• Comunicazione tra schede e FPGA tramite link seriali multi-gigabit (Aurora 8b/10b e 64b/66b, AXI Chip2Chip), con gestione dell'inizializzazione e del recupero del link.\n• Controllo dei pin driver (dispositivi dedicati) tramite un protocollo seriale custom bidirezionale.\n• Misure parametriche (PMU): acquisizione da ADC ad alta velocità su interfaccia LVDS, con deserializzazione ed elaborazione delle misure in hardware.\n• Generazione di forme d'onda di tensione e corrente programmabili su più canali DAC.\n• Sincronizzazione hardware di generazione e misura tramite un manager dedicato.\n\nIl progetto ha incluso verifica con testbench VHDL e flussi di progetto riproducibili tramite script TCL, bring-up dell'hardware e debug su scheda, inclusi timing closure e gestione dei domini di clock (CDC).",
         "specs": [
           {
             "key": "Piattaforma",
@@ -266,16 +236,18 @@
         "title": "128-Channel Digital Test System",
         "card_desc": "Test system for digital devices on custom boards (Zynq UltraScale+ + Artix-7), controlled over PCIe. 128-channel pattern generator, Aurora links, custom serial protocol for pin drivers, parametric measurements and waveform generation.",
         "platform": "Xilinx Zynq UltraScale+ + Artix-7 (custom board)",
-        "tags": [
-          "VHDL",
-          "Zynq",
-          "Aurora",
-          "PCIe",
-          "AXI",
-          "PMU",
-          "SPI"
+        "modal_desc": [
+          "Test system for digital devices built on custom boards with Zynq UltraScale+ and Artix-7 FPGAs, controlled by a host PC over PCIe.",
+          [
+            "128-channel bidirectional pattern generator: vector sequencing, dynamic pin direction control, DUT response capture, external triggers.",
+            "Board-to-board and FPGA-to-FPGA communication over multi-gigabit serial links (Aurora 8b/10b and 64b/66b, AXI Chip2Chip), including link initialization and recovery handling.",
+            "Pin driver control (dedicated devices) through a custom bidirectional serial protocol.",
+            "Parametric measurements (PMU): acquisition from high-speed ADCs over an LVDS interface, with deserialization and in-hardware measurement processing.",
+            "Programmable voltage and current waveform generation across multiple DAC channels.",
+            "Hardware synchronization of generation and measurement through a dedicated manager."
+          ],
+          "The project included VHDL testbench verification, reproducible design flows through TCL scripts, and hardware bring-up with on-board debugging, including timing closure and clock domain crossing (CDC) handling."
         ],
-        "modal_desc": "Test system for digital devices built on custom boards with Zynq UltraScale+ and Artix-7 FPGAs, controlled by a host PC over PCIe.\n\n• 128-channel bidirectional pattern generator: vector sequencing, dynamic pin direction control, DUT response capture, external triggers.\n• Board-to-board and FPGA-to-FPGA communication over multi-gigabit serial links (Aurora 8b/10b and 64b/66b, AXI Chip2Chip), including link initialization and recovery handling.\n• Pin driver control (dedicated devices) through a custom bidirectional serial protocol.\n• Parametric measurements (PMU): acquisition from high-speed ADCs over an LVDS interface, with deserialization and in-hardware measurement processing.\n• Programmable voltage and current waveform generation across multiple DAC channels.\n• Hardware synchronization of generation and measurement through a dedicated manager.\n\nThe project included VHDL testbench verification, reproducible design flows through TCL scripts, and hardware bring-up with on-board debugging, including timing closure and clock domain crossing (CDC) handling.",
         "specs": [
           {
             "key": "Platform",
@@ -297,17 +269,17 @@
       }
     },
     {
+      "tags": [
+        "VHDL",
+        "Zynq",
+        "Spartan-6",
+        "Aurora",
+        "ISE"
+      ],
       "it": {
         "title": "Pattern Generator Digitale a 256 Canali",
         "card_desc": "Pattern generator distribuito su 2 schede custom (ciascuna con 1 Zynq e 2 Spartan-6). Distribuzione dati via Aurora 64b/66b, storage in BRAM, sincronizzazione precisa tra 6 dispositivi.",
         "platform": "Zynq + Spartan-6 (schede custom)",
-        "tags": [
-          "VHDL",
-          "Zynq",
-          "Spartan-6",
-          "Aurora",
-          "ISE"
-        ],
         "modal_desc": "Sviluppo della logica FPGA per un pattern generator digitale a 256 canali, distribuito su due schede custom, ciascuna composta da una Zynq e due Spartan-6. I file descrittivi del pattern vengono caricati dalla Zynq e trasmessi alle FPGA tramite link seriale Aurora 64b/66b, dove vengono memorizzati in BRAM e mandati in esecuzione. Il progetto ha incluso il bring-up completo delle schede custom, la sincronizzazione deterministica tra 6 dispositivi (2 Zynq e 4 Spartan-6), e il debug del sistema complessivo.",
         "specs": [
           {
@@ -332,13 +304,6 @@
         "title": "256-Channel Digital Pattern Generator",
         "card_desc": "Pattern generator distributed across 2 custom boards, each housing 1 Zynq and 2 Spartan-6 FPGAs. Data distribution via Aurora 64b/66b, BRAM storage, precise synchronisation across 6 devices.",
         "platform": "Zynq + Spartan-6 (custom boards)",
-        "tags": [
-          "VHDL",
-          "Zynq",
-          "Spartan-6",
-          "Aurora",
-          "ISE"
-        ],
         "modal_desc": "FPGA logic development for a 256-channel digital pattern generator distributed across two custom boards, each comprising one Zynq and two Spartan-6 FPGAs. Pattern files are loaded from the Zynq and transmitted to the FPGAs via Aurora 64b/66b serial links, where they are stored in BRAM and executed on command. The project included full bring-up of the custom boards, deterministic synchronisation across 6 devices (2 Zynq and 4 Spartan-6), system integration and debug.",
         "specs": [
           {
@@ -364,7 +329,6 @@
       "it": {
         "title": "Controller FPGA per Test Funzionale di Banco di Prova",
         "card_desc": "Zynq dedicata al test rapido delle funzionalità di un banco di prova. Controllo manuale delle risorse via comandi seriali, separato dal design operativo.",
-        "platform": "Xilinx Zynq",
         "tags": [
           "VHDL",
           "Zynq",
@@ -372,6 +336,7 @@
           "UART",
           "Spazio"
         ],
+        "platform": "Xilinx Zynq",
         "modal_desc": "Sviluppo di un controller FPGA su Zynq dedicato al test rapido e al debug funzionale di un banco di prova. Il design, separato dal firmware operativo del banco, consentiva di azionare manualmente qualsiasi risorsa tramite comandi seriali inviati da terminale, facilitando le attività di verifica e debug. Il progetto ha incluso il bring-up dell'hardware e il debug sul banco reale.",
         "specs": [
           {
@@ -395,7 +360,6 @@
       "en": {
         "title": "FPGA Controller for Functional Test Bench Testing",
         "card_desc": "Zynq-based controller for rapid functional testing of a test bench. Manual resource control via serial commands, fully separate from the operational design.",
-        "platform": "Xilinx Zynq",
         "tags": [
           "VHDL",
           "Zynq",
@@ -403,6 +367,7 @@
           "UART",
           "Space"
         ],
+        "platform": "Xilinx Zynq",
         "modal_desc": "Development of a Zynq-based FPGA controller dedicated to rapid functional testing and debug of a test bench. The design, kept entirely separate from the bench operational firmware, allowed manual control of any resource via serial commands from a terminal, greatly simplifying verification and debug activities. The project included hardware bring-up and on-bench debug.",
         "specs": [
           {
@@ -425,18 +390,18 @@
       }
     },
     {
+      "tags": [
+        "VHDL",
+        "DO-254",
+        "SmartFusion",
+        "Libero SoC",
+        "LVDT",
+        "Resolver"
+      ],
       "it": {
         "title": "Monitoring Board per Attuatore Avionico",
         "card_desc": "Design FPGA per il monitoraggio di un sistema di controllo motore elettrico trifase avionico. Rilevamento anomalie, comunicazione con FCU via protocollo seriale custom, conformità DO-254 DAL-C.",
         "platform": "Microchip/Microsemi",
-        "tags": [
-          "VHDL",
-          "DO-254",
-          "SmartFusion",
-          "Libero SoC",
-          "LVDT",
-          "Resolver"
-        ],
         "modal_desc": "Progetto seguito per l'intero ciclo di sviluppo: dalla progettazione della logica VHDL al debug e integrazione hardware, fino alla stesura di testcase e testbench con logging strutturato per tracciabilità diretta dei requisiti DO-254 DAL-C. Il design implementa algoritmi di monitoring di coerenza del movimento motore (tramite sensori LVDT e resolver), delle correnti di attuazione, della velocità e delle temperature, con capacità di bloccare l'attuazione in caso di anomalia. La board comunica con il computer di volo (FCU) tramite un protocollo seriale custom ad alta sicurezza e inoltra dati verso la scheda di controllo basata su microcontrollore. Parti del design sono sviluppate con gestione SEU e ridondanza secondo DO-254 DAL-C.",
         "specs": [
           {
@@ -461,14 +426,6 @@
         "title": "Monitoring Board for Avionic Actuator",
         "card_desc": "FPGA design for monitoring a three-phase avionic electric motor control system. Fault detection, FCU communication via custom serial protocol, DO-254 DAL-C compliance.",
         "platform": "Microchip/Microsemi",
-        "tags": [
-          "VHDL",
-          "DO-254",
-          "SmartFusion",
-          "Libero SoC",
-          "LVDT",
-          "Resolver"
-        ],
         "modal_desc": "Project followed through the full development cycle: VHDL logic design, hardware debug and integration, through to test case and testbench development with structured logging for direct DO-254 DAL-C requirements traceability. The design implements monitoring algorithms for mechanical movement consistency (via LVDT and resolver sensors), actuation currents, speed and temperatures, with the ability to trip actuation upon fault detection. The board communicates with the Flight Control Unit (FCU) via a custom high-integrity serial protocol and forwards data to a microcontroller-based control board. Parts of the design include SEU handling and redundancy per DO-254 DAL-C.",
         "specs": [
           {
@@ -491,18 +448,18 @@
       }
     },
     {
+      "tags": [
+        "VHDL",
+        "DO-254 DAL-B",
+        "SmartFusion",
+        "Libero SoC",
+        "FOC",
+        "Fixed-Point"
+      ],
       "it": {
         "title": "Controllo FOC Trifase su FPGA — Debug e Finalizzazione",
         "card_desc": "Presa in carico e finalizzazione di un design FOC+PID trifase su SmartFusion: debug su hardware, correzione di moduli PID e PWM, adeguamento alle regole DO-254 DAL-B.",
         "platform": "Microchip/Microsemi",
-        "tags": [
-          "VHDL",
-          "DO-254 DAL-B",
-          "SmartFusion",
-          "Libero SoC",
-          "FOC",
-          "Fixed-Point"
-        ],
         "modal_desc": "Presa in carico e finalizzazione di un design FPGA maturo per il controllo vettoriale FOC (Field-Oriented Control) di un attuatore elettrico trifase avionico, sviluppato in precedenza da altri. Il lavoro ha compreso debug approfondito su hardware con motore reale, correzione di problematiche residue, riscrittura di parti del controllore PID e dei moduli PWM, e adeguamento del codice alle regole di stesura interne DO-254 a seguito di analisi con Aldec Alint-Pro. Il design include algoritmi di monitoraggio integrati ed è realizzato prevalentemente in aritmetica fixed-point.",
         "specs": [
           {
@@ -527,14 +484,6 @@
         "title": "Three-Phase FOC Control on FPGA — Debug and Finalisation",
         "card_desc": "Takeover and finalisation of a FOC+PID three-phase design on SmartFusion: hardware debug, PID and PWM module rework, DO-254 DAL-B coding compliance.",
         "platform": "Microchip/Microsemi",
-        "tags": [
-          "VHDL",
-          "DO-254 DAL-B",
-          "SmartFusion",
-          "Libero SoC",
-          "FOC",
-          "Fixed-Point"
-        ],
         "modal_desc": "Takeover and finalisation of a mature FPGA design for Field-Oriented Control (FOC) of a three-phase avionic electric actuator, originally developed by others. Work included in-depth hardware debug with a real motor, resolution of outstanding issues, rewriting of PID controller and PWM modules, and code rework for compliance with internal DO-254 coding rules following Aldec Alint-Pro analysis. The design incorporates integrated monitoring algorithms and is implemented predominantly in fixed-point arithmetic.",
         "specs": [
           {
@@ -563,8 +512,22 @@
       "en": "A personal library of reusable VHDL-2008 modules, built to professional standards. Every module is verified with OSVVM selfchecking testbenches, vendor-independent (compatible with Xilinx, Intel and Microchip) and validated on real hardware. Managed by a custom CLI toolchain that automates compilation, simulation and dependency tracking."
     },
     "features": {
-      "it": ["VHDL-2008", "OSVVM", "Vendor-independent", "Verificato su HW · Xilinx", "In continua manutenzione", "Git-tagged releases"],
-      "en": ["VHDL-2008", "OSVVM", "Vendor-independent", "HW verified · Xilinx", "Actively maintained", "Git-tagged releases"]
+      "it": [
+        "VHDL-2008",
+        "OSVVM",
+        "Vendor-independent",
+        "Verificato su HW · Xilinx",
+        "In continua manutenzione",
+        "Git-tagged releases"
+      ],
+      "en": [
+        "VHDL-2008",
+        "OSVVM",
+        "Vendor-independent",
+        "HW verified · Xilinx",
+        "Actively maintained",
+        "Git-tagged releases"
+      ]
     },
     "categories": [
       {
@@ -577,7 +540,22 @@
           "name": "Core infrastructure",
           "desc": "Foundation primitives reusable in any design: CDC handling (multi-bit, pulse, handshake), synchronous and asynchronous FIFOs, RAM wrappers (SDP/SP/TDP), CRC engine, AXI-Stream framing, word resizer, multi-bit debouncer."
         },
-        "modules": ["bits_sync", "reset_sync", "cdc_pulse_sync", "cdc_data_handshake", "fifo_sync", "fifo_async", "sdp_ram", "sp_ram", "tdp_ram", "crc_engine", "tx_framer", "rx_deframer", "strobe_gen", "debouncer"]
+        "modules": [
+          "bits_sync",
+          "reset_sync",
+          "cdc_pulse_sync",
+          "cdc_data_handshake",
+          "fifo_sync",
+          "fifo_async",
+          "sdp_ram",
+          "sp_ram",
+          "tdp_ram",
+          "crc_engine",
+          "tx_framer",
+          "rx_deframer",
+          "strobe_gen",
+          "debouncer"
+        ]
       },
       {
         "lib": "apw_interfaces",
@@ -589,7 +567,13 @@
           "name": "Serial interfaces",
           "desc": "Controllers for the most common industrial serial protocols. SPI master/slave with all 4 CPOL/CPHA modes and runtime-configurable frequency, I2C master with multi-master arbitration and clock stretching, UART with fractional baud rate (Bresenham algorithm)."
         },
-        "modules": ["spi_master", "spi_slave", "spi_slave_async", "i2c_master", "uart"]
+        "modules": [
+          "spi_master",
+          "spi_slave",
+          "spi_slave_async",
+          "i2c_master",
+          "uart"
+        ]
       },
       {
         "lib": "apw_axi",
@@ -601,7 +585,13 @@
           "name": "AXI ecosystem",
           "desc": "AXI4-Lite slave with timeout and SLVERR, AXI-to-Serial bridges for SPI, I2C and UART with integrated FIFOs and register banks auto-generated from YAML specs. Compatible with MicroBlaze and Zynq systems."
         },
-        "modules": ["axi4l_slave", "axi2serial_spi", "axi2serial_i2c", "axi2serial_uart", "axis_fifo"]
+        "modules": [
+          "axi4l_slave",
+          "axi2serial_spi",
+          "axi2serial_i2c",
+          "axi2serial_uart",
+          "axis_fifo"
+        ]
       },
       {
         "lib": "apw_hw",
@@ -613,13 +603,86 @@
           "name": "Hardware control",
           "desc": "Power control primitives: center-aligned PWM generator with valley-updated shadow registers, dead-time insertion with 4-state FSM and combinatorial fault handling, structural half-bridge wrapper."
         },
-        "modules": ["pwm_gen", "deadtime_insert", "half_bridge_pwm"]
+        "modules": [
+          "pwm_gen",
+          "deadtime_insert",
+          "half_bridge_pwm"
+        ]
       }
     ]
   },
-  "stats": [
-    {"num": "5+", "it": "Anni di esperienza", "en": "Years of experience"},
-    {"num": "15+", "it": "Progetti completati", "en": "Completed projects"},
-    {"num": "3", "it": "Famiglie FPGA", "en": "FPGA families"}
-  ]
+  "ui": {
+    "it": {
+      "nav_skills": "Competenze",
+      "nav_iplibrary": "IP Library",
+      "nav_projects": "Alcuni Progetti",
+      "nav_contact": "Contatti",
+      "lang_btn": "EN",
+      "hero_tag": "Disponibile per nuovi progetti",
+      "hero_job": "FPGA Engineer",
+      "hero_sub": "Ingegnere elettronico specializzato in progettazione su FPGA e sviluppo VHDL. Trasformo requisiti complessi in architetture digitali efficienti e affidabili.",
+      "cta1": "VEDI PROGETTI →",
+      "cta2": "CONTATTAMI",
+      "sec1": "Competenze",
+      "sec_ip": "Libreria IP",
+      "sec3": "Alcuni Progetti",
+      "sec4": "Contatti",
+      "cht1": "Hai un progetto",
+      "cht2": "FPGA in mente?",
+      "contact_text": "Aperto a collaborazioni freelance per progettazione FPGA, verifica funzionale e ottimizzazione — in ambito industriale, militare e avionico. Rispondo entro 24 ore.",
+      "lbl1": "Nome *",
+      "lbl2": "Azienda",
+      "lbl3": "Email *",
+      "lbl4": "Messaggio *",
+      "ph1": "Il tuo nome",
+      "ph2": "Azienda (opz.)",
+      "ph3": "tua@email.com",
+      "ph4": "Il tuo messaggio...",
+      "btn_send": "INVIA MESSAGGIO →",
+      "form_missing": "CAMPI OBBLIGATORI MANCANTI",
+      "form_sending": "INVIO IN CORSO...",
+      "form_sent": "MESSAGGIO INVIATO ✓",
+      "form_error": "ERRORE: ",
+      "footer": "© 2026 Artur Pawel Wieczerzak · Tutti i diritti riservati",
+      "lbl_desc": "Descrizione",
+      "lbl_specs": "Specifiche tecniche",
+      "lbl_tools": "Competenze chiave"
+    },
+    "en": {
+      "nav_skills": "Skills",
+      "nav_iplibrary": "IP Library",
+      "nav_projects": "Selected Projects",
+      "nav_contact": "Contact",
+      "lang_btn": "IT",
+      "hero_tag": "Available for new projects",
+      "hero_job": "FPGA Engineer",
+      "hero_sub": "Electronics engineer specialised in FPGA design and VHDL development. I turn complex requirements into efficient, reliable digital architectures.",
+      "cta1": "VIEW PROJECTS →",
+      "cta2": "CONTACT ME",
+      "sec1": "Skills",
+      "sec_ip": "IP Library",
+      "sec3": "Selected Projects",
+      "sec4": "Contact",
+      "cht1": "Have an",
+      "cht2": "FPGA project in mind?",
+      "contact_text": "Open to freelance collaborations in FPGA design, functional verification and optimisation — in industrial, military and avionic contexts. I reply within 24 hours.",
+      "lbl1": "Name *",
+      "lbl2": "Company",
+      "lbl3": "Email *",
+      "lbl4": "Message *",
+      "ph1": "Your name",
+      "ph2": "Company (opt.)",
+      "ph3": "your@email.com",
+      "ph4": "Your message...",
+      "btn_send": "SEND MESSAGE →",
+      "form_missing": "FILL REQUIRED FIELDS",
+      "form_sending": "SENDING...",
+      "form_sent": "MESSAGE SENT ✓",
+      "form_error": "ERROR: ",
+      "footer": "© 2026 Artur Pawel Wieczerzak · All rights reserved",
+      "lbl_desc": "Description",
+      "lbl_specs": "Technical specs",
+      "lbl_tools": "Key competencies"
+    }
+  }
 }
